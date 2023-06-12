@@ -1,0 +1,9 @@
+# DS-Store
+.DS_Store
+
+# Idea (webstorm)
+.idea
+.idea/*
+
+#Composer
+.composer.phar

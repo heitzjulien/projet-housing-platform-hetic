@@ -1,0 +1,26 @@
+{
+    "name": "lebenjos/mvc-template-php-vanilla",
+    "description": "Open-source MVC template for myself and other newcomers in development.",
+    "autoload": {
+        "psr-4": {
+            "src\\": "src/",
+            "App\\": "src/App/",
+            "Controller\\": "src/Controller/",
+            "Model\\": "src/Model/",
+            "Router\\": "src/Router/",
+            "Repository\\": "src/Repository/",
+            "Service\\": "src/Service/",
+            "Exception\\": "src/Exception/"
+        },
+        "files": ["const.php"]
+    },
+    "authors": [
+        {
+            "name": "LeBenjos",
+            "email": "benjamin.schinkel01@outlook.fr"
+        }
+    ],
+    "require": {
+        "symfony/var-dumper": "^6.3"
+    }
+}
