@@ -1,3 +1,4 @@
+<h2>Home</h2>
 <?php foreach($data['start'] as $i => $c): ?>
     <?= $c->getName() ?>
     <?= $c->getPrice() ?>€/nuit
