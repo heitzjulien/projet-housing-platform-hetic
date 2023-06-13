@@ -49,11 +49,11 @@ class Routes {
             ->setTitle("Home")
         );
         $this->addRoute(
-            (new Route("dashboardAdmin", PrivateController::class, "dashboardAdmin"))
+            (new Route("dashboard/admin", PrivateController::class, "dashboardAdmin"))
             ->setTitle("Dashboard Admin")
         );
         $this->addRoute(
-            (new Route("dashboardUserParametre", PrivateController::class, "dashboardUserParametre"))
+            (new Route("parametre/user", PrivateController::class, "dashboardUserParametre"))
             ->setTitle("Parametre")
         );
     }
