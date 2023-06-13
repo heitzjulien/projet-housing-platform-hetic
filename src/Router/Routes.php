@@ -3,11 +3,14 @@
 namespace Router;
 
 use App\Request;
+use Controller\PublicController;
 use Router\Route;
 
 // Controllers
 use Controller\TemplateController;
 use Controller\AuthController;
+use Controller\PrivateController;
+
 
 class Routes {
     private array $routes = [];
@@ -36,6 +39,14 @@ class Routes {
         $this->addRoute(
             (new Route("register", AuthController::class, "register"))
             ->setMethod("POST")->setTitle("Register")
+        );
+        $this->addRoute(
+            (new Route("dashboardclient", PrivateController::class, "dashboardClient"))
+            ->setTitle("Dashboard Client")
+        );
+        $this->addRoute(
+            (new Route("home", PublicController::class, "home"))
+            ->setTitle("Home")
         );
     }
 

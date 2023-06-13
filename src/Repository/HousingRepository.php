@@ -7,17 +7,17 @@ use Model\HousingModel;
 use PDO;
 use PDOException;
 
-class HousingRepository {
-    private Database $db;
-    public function __construct() {
-        $this->db = Database::getInstance();
-    }
+class HousingRepository extends Repository{
 
     public function selectAllHousing(): array {
         $stmt = $this->db->pdo->prepare("SELECT * FROM housing");
         $stmt->execute();
 
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $results;
+        $housings = [];
+        foreach($results as $r){
+            $housings[] = new HousingModel($r);
+        }
+        return $housings;
     }
 }
