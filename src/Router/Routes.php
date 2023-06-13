@@ -8,6 +8,8 @@ use Router\Route;
 // Controllers
 use Controller\TemplateController;
 use Controller\AuthController;
+use Controller\DashboardClientController;
+
 
 class Routes {
     private array $routes = [];
@@ -36,6 +38,10 @@ class Routes {
         $this->addRoute(
             (new Route("register", AuthController::class, "register"))
             ->setMethod("POST")->setTitle("Register")
+        );
+        $this->addRoute(
+            (new Route("dashboardclient", DashboardClientController::class, "dashboardclient"))
+            ->setTitle("Dashboard Client")
         );
     }
 
