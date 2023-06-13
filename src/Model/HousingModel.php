@@ -13,27 +13,75 @@ class HousingModel {
     private int $number_pieces;
     private int $number_rooms;
     private int $number_bathroom;
-    private string $exterior;
-    private string $car_park;
+    private ?string $exterior;
+    private ?string $car_park;
     private int $area;
 
-    public function __construct($id, $name, $capacity, $price, $description, $note, $instruction, $number_pieces, $number_rooms, $number_bathroom, $exterior, $car_park, $area) {
-        $this->id = $id;
-        $this->name = $name;
-        $this->capacity = $capacity;
-        $this->price = $price;
-        $this->description = $description;
-        $this->note = $note;
-        $this->instruction = $instruction;
-        $this->number_pieces = $number_pieces;
-        $this->number_rooms = $number_rooms;
-        $this->number_bathroom = $number_bathroom;
-        $this->exterior = $exterior;
-        $this->car_park = $car_park;
-        $this->area = $area;
+    public function __construct(array $contents) {
+        $this->id = $contents["id"];
+        $this->name = $contents["name"];
+        $this->capacity = $contents["capacity"];
+        $this->price = $contents["price"];
+        $this->description = $contents["description"];
+        $this->note = $contents["note"];
+        $this->instruction = $contents["instruction"];
+        $this->number_pieces = $contents["number_pieces"];
+        $this->number_rooms = $contents["number_rooms"];
+        $this->number_bathroom = $contents["number_bathroom"];
+        $this->exterior = $contents["exterior"];
+        $this->car_park = $contents["car_park"];
+        $this->area = $contents["area"];
     }
 
     public function getId(): int {
         return $this->id;
+    }
+
+    public function getName(): string {
+        return $this->name;
+    }
+
+    public function getCapacity(): int {
+        return $this->capacity;
+    }
+
+    public function getPrice(): int {
+        return $this->price;
+    }
+
+    public function getDescription(): string {
+        return $this->description;
+    }
+
+    public function getNote(): string {
+        return $this->note;
+    }
+
+    public function getInstruction(): string {
+        return $this->instruction;
+    }
+
+    public function getNumberPieces(): int {
+        return $this->number_pieces;
+    }
+
+    public function getNumberRooms(): int {
+        return $this->number_rooms;
+    }
+
+    public function getNumberBathroom(): int {
+        return $this->number_bathroom;
+    }
+
+    public function getExterior(): ?string {
+        return $this->exterior;
+    }
+
+    public function getCarPark(): ?string {
+        return $this->car_park;
+    }
+
+    public function getArea(): int {
+        return $this->area;
     }
 }

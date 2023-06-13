@@ -3,6 +3,7 @@
 namespace Router;
 
 use App\Request;
+use Controller\PublicController;
 use Router\Route;
 
 // Controllers
@@ -42,6 +43,10 @@ class Routes {
         $this->addRoute(
             (new Route("dashboardclient", PrivateController::class, "dashboardClient"))
             ->setTitle("Dashboard Client")
+        );
+        $this->addRoute(
+            (new Route("home", PublicController::class, "home"))
+            ->setTitle("Home")
         );
     }
 
