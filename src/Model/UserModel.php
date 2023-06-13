@@ -2,7 +2,9 @@
 
 namespace Model;
 
-class UserModel{
+use Model\Model;
+
+class UserModel extends Model{
     private string $firstname;
     private string $lastname;
     private string $mail;

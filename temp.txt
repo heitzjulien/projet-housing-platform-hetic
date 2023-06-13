@@ -1,6 +1,1 @@
-
-
-Class Model et Repo parent
-class Service ?
-
 séparer les fichiers codable des non codable

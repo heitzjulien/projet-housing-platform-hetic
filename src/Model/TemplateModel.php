@@ -2,7 +2,7 @@
 
 namespace Model;
 
-class TemplateModel{
+class TemplateModel extends Model{
     private readonly int $id;
     private ?string $content;
 

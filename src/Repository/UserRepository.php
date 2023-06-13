@@ -8,13 +8,7 @@ use PDOException;
 
 use Model\UserModel;
 
-class UserRepository{
-    private Database $db;
-
-    public function __construct(){
-        $this->db = Database::getInstance();
-    }
-
+class UserRepository extends Repository{
     public function addUser(UserModel $user): void{
         $stmt = $this->db->pdo->prepare("INSERT INTO users (firstname, lastname, mail, password, birthdate) VALUES (:firstname, :lastname, :mail, :password, :birthdate)");
         $stmt->execute([
