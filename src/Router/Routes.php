@@ -8,7 +8,7 @@ use Router\Route;
 // Controllers
 use Controller\TemplateController;
 use Controller\AuthController;
-use Controller\DashboardClientController;
+use Controller\PrivateController;
 
 
 class Routes {
@@ -40,7 +40,7 @@ class Routes {
             ->setMethod("POST")->setTitle("Register")
         );
         $this->addRoute(
-            (new Route("dashboardclient", DashboardClientController::class, "dashboardclient"))
+            (new Route("dashboardclient", PrivateController::class, "dashboardClient"))
             ->setTitle("Dashboard Client")
         );
     }
