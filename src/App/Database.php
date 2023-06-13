@@ -8,7 +8,7 @@ use PDOException;
 class Database {
     private string $motor = "mysql";
     private string $host = "localhost";
-    private string $dbName = "templateMVC";
+    private string $dbName = "aparis";
     private string $userName = "root";
     private string $userPassword = "";
     public PDO $pdo;

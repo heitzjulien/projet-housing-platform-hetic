@@ -5,11 +5,11 @@ use Controller\Controller;
 use App\Request;
 use Router\Route;
 
-// Repository
+// Services
 use Service\TemplateService;
 
 class TemplateController extends Controller{
-    public TemplateService $templateService;
+    private TemplateService $templateService;
 
     public function __construct(){
         $this->templateService = new TemplateService();

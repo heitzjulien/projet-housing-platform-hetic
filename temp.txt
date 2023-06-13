@@ -1,3 +1,6 @@
-Les Middlewares - TODO
 
-Les Exeptions - Need help !
+
+Class Model et Repo parent
+class Service ?
+
+séparer les fichiers codable des non codable

@@ -7,6 +7,7 @@ use Router\Route;
 
 // Controllers
 use Controller\TemplateController;
+use Controller\AuthController;
 
 class Routes {
     private array $routes = [];
@@ -14,7 +15,27 @@ class Routes {
     public function __construct(){
         $this->addRoute(
             (new Route("template", TemplateController::class, "template"))
-            ->setTitle("Template Test")
+            ->setTitle("Template")
+        );
+        
+        $this->addRoute(
+            (new Route("login", AuthController::class, "login"))
+            ->setTitle("Login")
+        );
+        
+        $this->addRoute(
+            (new Route("login", AuthController::class, "login"))
+            ->setMethod("POST")->setTitle("Login")
+        );
+
+        $this->addRoute(
+            (new Route("register", AuthController::class, "register"))
+            ->setTitle("Register")
+        );
+        
+        $this->addRoute(
+            (new Route("register", AuthController::class, "register"))
+            ->setMethod("POST")->setTitle("Register")
         );
     }
 

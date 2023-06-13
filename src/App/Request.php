@@ -12,7 +12,7 @@ class Request
 
     public function __construct(){
        $this->method = filter_input(INPUT_SERVER, "REQUEST_METHOD");
-       $this->url = filter_input(INPUT_GET, "p") ? filter_input(INPUT_GET, "p") : "template";
+       $this->url = filter_input(INPUT_GET, "p") ? strtolower(filter_input(INPUT_GET, "p")) : "template";
        $this->headers = $_SERVER;
        $this->queryParams = $_GET;
        $this->rawBody = $_POST;
