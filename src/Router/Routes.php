@@ -3,13 +3,13 @@
 namespace Router;
 
 use App\Request;
-use Controller\PublicController;
 use Router\Route;
 
 // Controllers
 use Controller\TemplateController;
 use Controller\AuthController;
 use Controller\PrivateController;
+use Controller\PublicController;
 
 
 class Routes {
@@ -47,6 +47,14 @@ class Routes {
         $this->addRoute(
             (new Route("home", PublicController::class, "home"))
             ->setTitle("Home")
+        );
+        $this->addRoute(
+            (new Route("dashboardAdmin", PrivateController::class, "dashboardAdmin"))
+            ->setTitle("Dashboard Admin")
+        );
+        $this->addRoute(
+            (new Route("dashboardUserParametre", PrivateController::class, "dashboardUserParametre"))
+            ->setTitle("Parametre")
         );
     }
 
