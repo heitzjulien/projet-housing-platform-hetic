@@ -1,5 +1,5 @@
-const jsonPath = './dashboard_card_content.json'
-function createDashboardCard(jsonFilePath) {
+const jsonPath = './../src/Json/dashboard_card_content.json'
+export function createDashboardCard(jsonFilePath) {
     fetch(jsonFilePath)
         .then(response => response.json())
         .then(data => {
@@ -27,6 +27,9 @@ function createDashboardCard(jsonFilePath) {
 
             }
         })
+        .catch(error => console.error("Une erreur s'est produite lors du chargement du fichier JSON :", error));
+
+
 }
 
 createDashboardCard(jsonPath)
