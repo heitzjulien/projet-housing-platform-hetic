@@ -11,7 +11,7 @@ class HousingService {
         $this->housingRepository = new HousingRepository();
     }
 
-    public function selectHousing() {
-        return $this->housingRepository->selectAllHousing();
+    public function selectHousingHome() {
+        return $this->housingRepository->selectHousingForHome();
     }
 }

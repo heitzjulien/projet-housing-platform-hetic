@@ -17,7 +17,7 @@ class PublicController extends Controller {
     public function home(Request $request, Route $route):void {
         $this->updateStyles(['home.css']);
 
-        $content = $this->HousingService->selectHousing();
+        $content = $this->HousingService->selectHousingHome();
 
         $this->render("home.php", $this->styles, [
             "start" => $content,
