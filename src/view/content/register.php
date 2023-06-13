@@ -9,12 +9,12 @@
     <input id="lastname" name="lastname" type="text" placeholder="Lastname" <?php if($data["newUser"]["lastname"]) { echo("value='" . $data["newUser"]["lastname"] . "'"); } ?>>
     <label for="mail">Mail :</label>
     <input id="mail" name="mail" type="text" placeholder="exemple@mail.com" <?php if($data["newUser"]["mail"]) { echo("value='" . $data["newUser"]["mail"] . "'"); } ?>>
-    <label for="birthdate">Date de naissance :</label>
+    <label for="birthdate">Birthdate :</label>
     <input id="birthdate" name="birthdate" type="date" <?php if($data["newUser"]["birthdate"]) { echo("value='" . $data["newUser"]["birthdate"] . "'"); } ?>>
     <label for="password">Password :</label>
-    <input id="password" name="password" type="password" placeholder="Mot de passe">
+    <input id="password" name="password" type="password" placeholder="Password">
     <label for="confpsd">Confirm Password :</label>
-    <input id="confpsd" name="confpsd" type="password" placeholder="Valider votre mot de passe">
+    <input id="confpsd" name="confpsd" type="password" placeholder="Confirm password">
     <input type="submit" value="Register">
 </form>
 <a href="./?p=login">Login !</a>

@@ -11,10 +11,10 @@
     <?php endforeach; ?>
 </head>
 <body>
-<?php require_once "../src/view/template/header.php"?>
+<?= $header ?>
 
 <?= $content ?>
 
-<?php require_once "../src/view/template/footer.php"?>
+<?= $footer ?>
 </body>
 </html>

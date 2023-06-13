@@ -7,18 +7,13 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'src\\' => array($baseDir . '/src'),
-    'Symfony\\Polyfill\\Php80\\' => array($vendorDir . '/symfony/polyfill-php80'),
     'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
-    'Symfony\\Polyfill\\Ctype\\' => array($vendorDir . '/symfony/polyfill-ctype'),
     'Symfony\\Component\\VarDumper\\' => array($vendorDir . '/symfony/var-dumper'),
     'Service\\' => array($baseDir . '/src/Service'),
     'Router\\' => array($baseDir . '/src/Router'),
     'Repository\\' => array($baseDir . '/src/Repository'),
-    'PhpOption\\' => array($vendorDir . '/phpoption/phpoption/src/PhpOption'),
     'Model\\' => array($baseDir . '/src/Model'),
-    'GrahamCampbell\\ResultType\\' => array($vendorDir . '/graham-campbell/result-type/src'),
     'Exception\\' => array($baseDir . '/src/Exception'),
-    'Dotenv\\' => array($vendorDir . '/vlucas/phpdotenv/src'),
     'Controller\\' => array($baseDir . '/src/Controller'),
     'App\\' => array($baseDir . '/src/App'),
 );
