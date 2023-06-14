@@ -25,4 +25,16 @@ class PublicController extends Controller {
             "request" => $request
         ]);
     }
+
+    public function search(Request $request, Route $route): void {
+        $this->updateStyles(['search.css']);
+
+        // $content = $this->HousingService->selectHousingSearch($request->getParams());
+
+        $this->render("searchHousing.php", $this->styles, [
+            // "start" => $content,
+            "route" => $route,
+            "request" => $request
+        ]);
+    }
 }
