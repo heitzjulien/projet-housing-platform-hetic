@@ -11,8 +11,10 @@
     <?php endforeach; ?>
 </head>
 <body>
+<?= $header ?>
 
 <?= $content ?>
 
+<?= $footer ?>
 </body>
 </html>

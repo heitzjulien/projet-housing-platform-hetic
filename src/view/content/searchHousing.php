@@ -1,7 +1,4 @@
-<h2>Home</h2>
-
-FOREACH DES IMAGES DE LA DB
-
+<h2>Search</h2>
 <?php foreach($data['start'] as $i => $c): ?>
     <?= $c->getName() ?>
     <?= $c->getPrice() ?>€/nuit

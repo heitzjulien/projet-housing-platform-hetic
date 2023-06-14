@@ -56,6 +56,14 @@ class Routes {
             (new Route("parametre/user", PrivateController::class, "dashboardUserParametre"))
             ->setTitle("Parametre")
         );
+        $this->addRoute(
+            (new Route("search", PublicController::class, "search"))
+            ->setTitle("Search")
+        );
+        $this->addRoute(
+            (new Route("productpage", PublicController::class, "productPage"))
+            ->setTitle("Product Page")
+        );
     }
 
     public function addRoute(Route $route): void{

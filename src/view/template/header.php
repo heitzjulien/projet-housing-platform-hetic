@@ -1,1 +1,1 @@
-<?php echo "salut" ?>
+<?= "Je suis le header :)" ?>

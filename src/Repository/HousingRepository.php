@@ -5,7 +5,7 @@ namespace Repository;
 use App\Database;
 use Model\HousingModel;
 use PDO;
-use PDOException;
+// use PDOException;
 
 class HousingRepository extends Repository{
 
@@ -20,7 +20,7 @@ class HousingRepository extends Repository{
         }
         return $housings;
     }
-//         INNER JOIN housing_images hi ON h.id = hi.housing_id;
+// PAS TOUCHER !!   INNER JOIN housing_images hi ON h.id = hi.housing_id;
     public function selectHousingForHome(): array {
         $stmt = $this->db->pdo->prepare("SELECT h.id, h.name, h.price, h.description, h.number_pieces, h.area
         FROM housing h;");
