@@ -1,6 +1,6 @@
-<h1>Votre espace</h1>
+<h1>Dashboard Administrateur</h1>
 <div class="container">
 
 </div>
 
-<script src="../public/scripts/dashboard_card.js"></script>
+<script src="../public/scripts/dashboardAdmin.js" type="module"></script>

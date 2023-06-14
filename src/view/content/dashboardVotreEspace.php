@@ -3,4 +3,4 @@
 
 </div>
 
-<script src="../public/scripts/dashboard_card.js"></script>
+<script src="../public/scripts/dashboardVotreEspace.js" type="module"></script>

@@ -1,4 +1,3 @@
-const jsonPath = './../src/Json/dashboard_card_content.json'
 export function createDashboardCard(jsonFilePath) {
     fetch(jsonFilePath)
         .then(response => response.json())
@@ -32,4 +31,3 @@ export function createDashboardCard(jsonFilePath) {
 
 }
 
-createDashboardCard(jsonPath)
