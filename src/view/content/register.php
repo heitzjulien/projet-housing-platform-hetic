@@ -17,4 +17,4 @@
     <input id="confpsd" name="confpsd" type="password" placeholder="Confirm password">
     <input type="submit" value="Register">
 </form>
-<a href="./?p=login">Login !</a>
+<a href="login">Login !</a>
