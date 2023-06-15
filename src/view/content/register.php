@@ -4,13 +4,13 @@
 <h2>Register :</h2>
 <form method="POST">
     <label for="firstname">Firstname :</label>
-    <input id="firstname" name="firstname" type="text" placeholder="Firstname" <?php if($data["newUser"]["firstname"]) { echo("value='" . $data["newUser"]["firstname"] . "'"); } ?>>
+    <input id="firstname" name="firstname" type="text" placeholder="Firstname" <?php if($data["user"]) { echo("value='" . $data["user"]->getFirstname() . "'"); } ?>>
     <label for="lastname">Lastname :</label>
-    <input id="lastname" name="lastname" type="text" placeholder="Lastname" <?php if($data["newUser"]["lastname"]) { echo("value='" . $data["newUser"]["lastname"] . "'"); } ?>>
+    <input id="lastname" name="lastname" type="text" placeholder="Lastname" <?php if($data["user"]) { echo("value='" . $data["user"]->getLastname() . "'"); } ?>>
     <label for="mail">Mail :</label>
-    <input id="mail" name="mail" type="text" placeholder="exemple@mail.com" <?php if($data["newUser"]["mail"]) { echo("value='" . $data["newUser"]["mail"] . "'"); } ?>>
+    <input id="mail" name="mail" type="text" placeholder="exemple@mail.com" <?php if($data["user"]) { echo("value='" . $data["user"]->getMail() . "'"); } ?>>
     <label for="birthdate">Birthdate :</label>
-    <input id="birthdate" name="birthdate" type="date" <?php if($data["newUser"]["birthdate"]) { echo("value='" . $data["newUser"]["birthdate"] . "'"); } ?>>
+    <input id="birthdate" name="birthdate" type="date" <?php if($data["user"]) { echo("value='" . $data["user"]->getBirthdate() . "'"); } ?>>
     <label for="password">Password :</label>
     <input id="password" name="password" type="password" placeholder="Password">
     <label for="confpsd">Confirm Password :</label>

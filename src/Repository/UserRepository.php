@@ -28,4 +28,26 @@ class UserRepository extends Repository{
 
         return $stmt->fetch(PDO::FETCH_ASSOC) ? true : false;
     }
+
+    public function getUserByMail(string $mail): UserModel{
+        $stmt = $this->db->pdo->prepare("SELECT id, firstname, lastname, mail, password, birthdate, roles, account_date, account_status, last_seen FROM users WHERE mail = :mail");
+        $stmt->execute([
+            ":mail" => $mail
+        ]);
+
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return new UserModel(
+            $user['id'],
+            $user['firstname'],
+            $user['lastname'],
+            $user['mail'],
+            $user['password'],
+            $user['birthdate'],
+            explode(',', $user['roles']),
+            $user['account_date'],
+            $user['account_status'],
+            $user['last_seen'],
+        );
+    }
 }

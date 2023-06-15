@@ -2,6 +2,8 @@
 
 namespace Model;
 
+use Model\Model;
+
 class TemplateModel extends Model{
     private readonly int $id;
     private ?string $content;

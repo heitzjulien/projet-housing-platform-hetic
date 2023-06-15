@@ -4,11 +4,13 @@ namespace Service;
 
 // Repository
 use Repository\UserRepository;
+use Repository\AuthRepository;
 
 // Model
 use Model\UserModel;
+use Model\AuthModel;
 
-class RegisterService{
+class AuthService{
 
     public function checkFirstname(string $firstname): array{
         $firstname = preg_match("`^((?:(?:[a-zA-ZáâàãçéêèëïíóôõúüÁÂÀÃÇÉÈÊËÏÍÓÔÕÚÜ]+)(?:-(?:[a-zA-ZáâàãçéêèëïíóôõúüÁÂÀÃÇÉÈÊËÏÍÓÔÕÚÜ]+))+)|(?:[a-zA-ZáâàãçéêèëïíóôõúüÁÂÀÃÇÉÈÊËÏÍÓÔÕÚÜ]+))$`", $firstname) ? $firstname : null ;
@@ -22,11 +24,19 @@ class RegisterService{
         return [null, $lastname];
     }
 
-    public function checkMail(string $mail): array{
+    public function checkMail(string $mail, string $status): array{
         $mail = filter_var($mail, FILTER_VALIDATE_EMAIL) ? $mail : null ;
         if(!$mail) { return ["Invalid mail", null]; }
-        if($this->isUse($mail)) { return ["Mail already used", null]; }
-        return [null, $mail];
+        switch($status){
+            case "register":
+                if($this->isUse($mail)) { return ["Mail already used", null]; }
+                return [null, $mail];
+                break;
+            case "login":
+                if($this->isUse($mail)) { return [null, $mail]; }
+                return ["Mail not used", null];
+                break;
+        }
     }
 
     public function checkBirthdate(string $birthdate): array{
@@ -37,13 +47,51 @@ class RegisterService{
         return [null, $birthdate];
     }
 
-    public function checkPassword(string $password, string $confpsd): array{
+    public function checkPasswords(string $password, string $confpsd): array{
         $password = preg_match("`^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,100}$`" , $password) ? $password : false;
         $confpsd = preg_match("`^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,100}$`" , $confpsd) ? $confpsd : false;
         if(!$password || !$confpsd) { return ["The password is invalid. Please choose a password between 8 and 100 characters long, containing at least one uppercase letter, one lowercase letter, one digit, and one special character", null]; }
         $password = $this->areSimilar($password, $confpsd);
         if(!$password) { return ["The passwords do not match", null]; }
         return [null, password_hash($password, PASSWORD_DEFAULT)];
+    }
+
+    public function checkPassword(string $password): array{
+        $password = preg_match("`^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,100}$`" , $password) ? $password : false;
+        if(!$password) { return ["The password is invalid. Please choose a password between 8 and 100 characters long, containing at least one uppercase letter, one lowercase letter, one digit, and one special character", null]; }
+        return [null, $password];
+    }
+
+    public function verifyPassword(?string $mail, ?string $password): ?string{
+        if(!$mail || !$password){
+            return null;
+        }
+
+        $hashedPassword = ((new UserRepository())->getUserByMail($mail))->getPassword();
+        if(password_verify($password, $hashedPassword)){
+            return null;
+        }
+        return "The password is incorrect";
+    }
+
+    public function loginUser(string $mail): UserModel{
+        $user = (new UserRepository())->getUserByMail($mail);
+        return $user;
+    }
+
+    public function registerUser(UserModel $user): void{
+        (new UserRepository())->addUser($user);
+    }
+
+    public function createToken(int $user_id, string $agent): string{
+        $token = bin2hex(random_bytes(15)) . time();
+        $authRepository = new AuthRepository();
+        if($authRepository->alreadyExist($user_id, $agent)){
+            $authRepository->deleteToken($user_id, $agent);
+        }
+        $authRepository->addToken($user_id, $agent, password_hash($token, PASSWORD_DEFAULT));
+
+        return $token;
     }
 
     private function isUse(string $mail): bool{
@@ -58,9 +106,5 @@ class RegisterService{
 
     private function areSimilar(string $password, string $confpsd): ?string{
         return ($password === $confpsd) ? $password : null;
-    }
-
-    public function registerUser(UserModel $user): void{
-        (new UserRepository())->addUser($user);
     }
 }
