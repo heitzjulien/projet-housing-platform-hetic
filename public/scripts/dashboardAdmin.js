@@ -1,4 +1,4 @@
 import { createDashboardCard } from './dashboard_card.js'
 
-const jsonPath = './../src/Json/dashboardAdmin.json'
+const jsonPath = './Json/dashboardAdmin.json'
 createDashboardCard(jsonPath)
