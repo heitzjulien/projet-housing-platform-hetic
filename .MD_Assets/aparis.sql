@@ -253,7 +253,7 @@ CREATE TABLE `users` (
   `mail` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `birthdate` datetime NOT NULL,
-  `roles` enum('client','management','maintenance','admin') NOT NULL DEFAULT 'client',
+  `roles` set('client','management','maintenance','admin') NOT NULL DEFAULT 'client',
   `account_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `account_status` enum('waiting','valid','disable') NOT NULL DEFAULT 'waiting',
   `last_seen` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
