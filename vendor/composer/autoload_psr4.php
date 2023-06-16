@@ -13,6 +13,7 @@ return array(
     'Router\\' => array($baseDir . '/src/Router'),
     'Repository\\' => array($baseDir . '/src/Repository'),
     'Model\\' => array($baseDir . '/src/Model'),
+    'Middleware\\' => array($baseDir . '/src/Middleware'),
     'Exception\\' => array($baseDir . '/src/Exception'),
     'Controller\\' => array($baseDir . '/src/Controller'),
     'App\\' => array($baseDir . '/src/App'),

@@ -2,12 +2,15 @@
 
 namespace Router;
 
+use Middleware\Middleware;
+use Middleware\AuthCheckMiddleware;
+
 class Route {
     private string $method = "GET";
     private ?string $url;
     private ?string $controller;
     private ?string $controllerMethod;
-    private string $middleware;
+    private Middleware $middleware;
     private string $title;
 
     public function __construct(?string $url = null, ?string $controller = null, ?string $controllerMethod = null){
@@ -21,7 +24,7 @@ class Route {
         return $this;
     }
 
-    public function setMiddleware(string $middleware): self{
+    public function setMiddleware(Middleware $middleware): self{
         $this->middleware = $middleware;
         return $this;
     }

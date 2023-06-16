@@ -31,6 +31,7 @@ class ComposerStaticInit11b978e8713049378c0c4e8869faac52
         'M' => 
         array (
             'Model\\' => 6,
+            'Middleware\\' => 11,
         ),
         'E' => 
         array (
@@ -74,6 +75,10 @@ class ComposerStaticInit11b978e8713049378c0c4e8869faac52
         'Model\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src/Model',
+        ),
+        'Middleware\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Middleware',
         ),
         'Exception\\' => 
         array (

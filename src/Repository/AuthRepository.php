@@ -29,18 +29,17 @@ class AuthRepository extends Repository{
         ]);
 
         $token = $stmt->fetch(PDO::FETCH_ASSOC);
-        return new AuthModel(
-            $token['id'],
-            $token['user_id'],
-            $token['agent'],
-            $token['token'],
-            $token['token_start'],
-            $token['token_end'],
-        );
-        // if(password_verify($token, $token['token'])){
-            
-        // }
-        // return null;
+        if(password_verify($token, $token['token'])){
+            return new AuthModel(
+                $token['id'],
+                $token['user_id'],
+                $token['agent'],
+                $token['token'],
+                $token['token_start'],
+                $token['token_end'],
+            ); 
+        }
+        return null;
     }
 
     public function alreadyExist(int $user_id, string $agent): bool{
@@ -59,5 +58,20 @@ class AuthRepository extends Repository{
             ":user_id" => $user_id,
             ":agent" => $agent
         ]);
+    }
+
+    public function getAuthUserId(?int $id, ?string $agent, ?string $token): ?int{
+        $stmt = $this->db->pdo->prepare("SELECT user_id, token, token_end FROM authentifications WHERE user_id = :user_id and agent = :agent");
+        $stmt->execute([
+            ":user_id" => $id,
+            ":agent" => $agent
+        ]);
+
+        $userAuth = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($userAuth && password_verify($token, $userAuth['token']) && date("Y-m-d G:i:s", time()) < $userAuth["token_end"]){
+            return $userAuth['user_id'];
+        }
+
+        return null;
     }
 }
