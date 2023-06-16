@@ -1,5 +1,5 @@
 <h2>Home</h2>
-
+<!-- Pas de JSON pour $data['images'] j'avais la flemme mais si nécessaire @Julien-->
 <?php foreach($data['images'] as $i => $p): ?>
     <img src="<?= $p->getImages()[0]->getImage() ?>" alt="">
 <?php endforeach; ?>

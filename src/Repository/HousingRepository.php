@@ -36,7 +36,13 @@ class HousingRepository extends Repository{
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $housing_array = [];
         foreach($results as $r){ 
-            $housing_array[] = (new HousingModel())->setId($r['id'])->setName($r['name'])->setCapacity($r['capacity'])->setPrice($r['price'])->setDescription($r['description'])->setNbr_pieces($r['number_pieces'])->setArea($r['area'])->setImages([new HousingImageModel($r['housing_id'], $r['images'])]);
+            $house = (new HousingModel())->setId($r['id'])->setName($r['name'])->setCapacity($r['capacity'])->setPrice($r['price'])->setDescription($r['description'])->setNbr_pieces($r['number_pieces'])->setArea($r['area']);
+            $houseImg = [];
+            foreach(explode(',', $r['images']) as $i) {
+                $houseImg[] = new HousingImageModel($r['housing_id'], $i);
+            }
+            $house->setImages($houseImg);
+            $housing_array[] = $house;
         }
         return $housing_array;
     }
