@@ -2,4 +2,4 @@
 <div class="container">
 </div>
 
-<script src="../public/scripts/dashboardVotreEspace.js" type="module"></script>
+<script src="<?= __ROOT_FILE__ ?>/scripts/dashboardVotreEspace.js" type="module"></script>

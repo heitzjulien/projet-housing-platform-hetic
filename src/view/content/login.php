@@ -9,4 +9,4 @@
     <input id="password" name="password" type="password" placeholder="Password">
     <input type="submit" value="Login">
 </form>
-<a href="register">Register !</a>
+<a href="<?= __ROOT_FILE__ ?>/public/register">Register !</a>

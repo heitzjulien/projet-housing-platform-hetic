@@ -1,27 +1,27 @@
 [
     {
-        "src": "./../public/assets/icons/paramètre.svg",
+        "src": "/projet-housing-platform-hetic/public/assets/icons/paramètre.svg",
         "alt": "rouage",
         "title": "Paramètres",
         "description": "Ajustez l'apparence et les fonctionnalités selon vos préférences",
         "href": "http://"
     },
     {
-        "src": "./../public/assets/icons/messagerie.svg",
+        "src": "/projet-housing-platform-hetic/public/assets/icons/messagerie.svg",
         "alt": "message icone",
         "title": "Messagerie",
         "description": "Contactez le concierge ou le service client et partagez vos besoins",
         "href": "http://"
     },
     {
-        "src": "./../public/assets/icons/reservation.svg",
+        "src": "/projet-housing-platform-hetic/public/assets/icons/reservation.svg",
         "alt": "calendrier",
         "title": "Modifier une réservation",
         "description": "Modifiez le jour et le nombre de voyageurs",
         "href": "http://"
     },
     {
-        "src": "./../public/assets/icons/avis.svg",
+        "src": "/projet-housing-platform-hetic/public/assets/icons/avis.svg",
         "alt": "Avis icone",
         "title": "Ajouter une avis",
         "description": "Partagez votre avis et évaluez votre expérience avec nous",

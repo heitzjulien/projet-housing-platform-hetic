@@ -1,6 +1,5 @@
 <h1>Paramètre</h1>
 <div class="container">
-
 </div>
 
-<script src="../public/scripts/dashboardParametre.js" type="module"></script>
+<script src="<?= __ROOT_FILE__ ?>/scripts/dashboardParametre.js" type="module"></script>
