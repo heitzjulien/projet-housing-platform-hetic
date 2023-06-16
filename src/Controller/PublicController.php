@@ -17,9 +17,11 @@ class PublicController extends Controller {
     public function home(Request $request, Route $route):void {
         $this->updateStyles(['home.css']);
 
-        $content = $this->HousingService->selectHousingHome();
+        $content = $this->HousingService->selectHousing(1);
+        $images = $this->HousingService->selectImageById(1);
 
         $this->render("home.php", $this->styles, [
+            "images" => $images,
             "start" => $content,
             "route" => $route,
             "request" => $request
@@ -31,7 +33,7 @@ class PublicController extends Controller {
 
         $content = $this->HousingService->selectHousingHome();
 
-        $this->render("searchHousing.php", $this->styles, [
+        $this->render("search.php", $this->styles, [
             "start" => $content,
             "route" => $route,
             "request" => $request
