@@ -7,6 +7,7 @@
             "App\\": "src/App/",
             "Controller\\": "src/Controller/",
             "Model\\": "src/Model/",
+            "Middleware\\": "src/Middleware/",
             "Router\\": "src/Router/",
             "Repository\\": "src/Repository/",
             "Service\\": "src/Service/",

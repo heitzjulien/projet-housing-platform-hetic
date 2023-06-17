@@ -94,6 +94,13 @@ class AuthService{
         return $token;
     }
 
+    public function clearSession(int $id, string $agent): void{
+        (new AuthRepository())->deleteToken($id, $agent);
+        setcookie('aparisCookieUserID', '', time()-(3600));
+        setcookie('aparisCookieAgent', '', time()-3600);
+        setcookie('aparisCookieToken', '', time()-3600);
+    }
+
     private function isUse(string $mail): bool{
         return (new UserRepository())->mailIsUse($mail);
     }

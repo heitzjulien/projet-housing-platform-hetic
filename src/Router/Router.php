@@ -5,6 +5,7 @@ namespace Router;
 use App\Request;
 use Router\Routes;
 use Router\Route;
+use Middleware\AuthCheckMiddleware;
 
 // Exception
 use Exception\NotFound;
@@ -35,7 +36,10 @@ class Router{
 
     // Call controller and controller method.
     private function build(string $controllerClass, string $methodName): void{
-        $controller = new $controllerClass();
+        $this->route->setMiddleware(new AuthCheckMiddleware($_COOKIE['aparisCookieUserID'] ?? null, $_COOKIE['aparisCookieAgent'] ?? null, $_COOKIE['aparisCookieToken'] ?? null));
+        $controller = (new $controllerClass())
+        ->setIsLoggedIn(($this->route->getMiddleware())->getIsLoggedIn())
+        ->setUserLoggedIn(($this->route->getMiddleware())->getUser());
         $controller->$methodName($this->request, $this->route);
     }
 
