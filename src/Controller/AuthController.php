@@ -93,6 +93,7 @@ class AuthController extends Controller{
                     setcookie('aparisCookieToken', $token, time()+(30*24*60*60));
 
                     header("Location: home");
+                    exit;
                     break;
                 }
                 $user = (new UserModel())->setMail($mail);
@@ -108,4 +109,10 @@ class AuthController extends Controller{
         ]);
     }
 
+    public function logout(Request $request, Route $route): void{
+        $authService = new AuthService();
+        $authService->clearSession($_COOKIE['aparisCookieUserID'], $_COOKIE['aparisCookieAgent']);
+        header("Location: login");
+        exit;
+    }
 }

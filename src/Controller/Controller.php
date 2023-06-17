@@ -2,14 +2,41 @@
 
 namespace Controller;
 
+use Model\UserModel;
+
 abstract class Controller{
     public array $styles = [];
+    public ?UserModel $userLoggedIn;
+    public bool $isLoggedIn;
+
+    public function setUserLoggedIn(?UserModel $userLoggedIn): self{
+        $this->userLoggedIn = $userLoggedIn;
+        return $this;
+    }
+
+    protected function getUserLoggedIn(): ?UserModel{
+        return $this->userLoggedIn;
+    }
+    
+    public function setIsLoggedIn(bool $isLoggedIn): self{
+        $this->isLoggedIn = $isLoggedIn;
+        return $this;
+    }
+
+    protected function getisLoggedIn(): bool{
+        return $this->isLoggedIn;
+    }
 
     protected function updateStyles(array $styles): void{
         $this->styles = $styles;
     }
     
     protected function render(string $view, array $styles, array $data): void{
+        $defaultData = [
+            "is_logged_in" => $this->getIsLoggedIn(),
+            "user_logged_in" => $this->getUserLoggedIn()
+        ];
+        $data = array_merge( $defaultData, $data);
         $header = $this->captureOutput('template', 'header.php', $data);
         $footer = $this->captureOutput('template', 'footer.php', $data);
         $content = $this->captureOutput('content', $view, $data);

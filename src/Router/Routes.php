@@ -40,6 +40,11 @@ class Routes {
             (new Route("register", AuthController::class, "register"))
             ->setMethod("POST")->setTitle("Register")
         );
+
+        $this->addRoute(
+            (new Route("logout", AuthController::class, "logout"))
+        );
+
         $this->addRoute(
             (new Route("dashboardclient", PrivateController::class, "dashboardClient"))
             ->setTitle("Dashboard Client")

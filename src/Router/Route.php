@@ -50,7 +50,7 @@ class Route {
         return $this->controllerMethod;
     }
 
-    public function getMiddleware():string{
+    public function getMiddleware(): Middleware{
         return $this->middleware;
     }
 

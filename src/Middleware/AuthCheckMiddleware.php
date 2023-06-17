@@ -12,7 +12,8 @@ use Model\UserModel;
 class AuthCheckMiddleware implements Middleware{
     private AuthRepository $authRepository;
     private UserRepository $userRepository;
-    private UserModel $user;
+    private ?UserModel $user;
+    private bool $isLoggedIn;
 
     public function __construct(
         private ?int $id = null,
@@ -27,10 +28,14 @@ class AuthCheckMiddleware implements Middleware{
 
         if($this->isLoggedIn($this->id, $this->agent, $this->token)){
             $this->user = (new UserRepository())->getUserById($_COOKIE['aparisCookieUserID']);
-            echo('Connectée en tant que ');
-            echo($this->user->getFirstname());
-            echo(' ' . $this->user->getLastname());
+            $this->isLoggedIn = true;
         } else {
+            // Clean Cookies
+            setcookie('aparisCookieUserID', '', time()-(3600));
+            setcookie('aparisCookieAgent', '', time()-3600);
+            setcookie('aparisCookieToken', '', time()-3600);
+            $this->user = null;
+            $this->isLoggedIn = false;
             echo('Déconnecté');
         }
     }
@@ -40,14 +45,14 @@ class AuthCheckMiddleware implements Middleware{
             $this->userRepository->updateLastSeen($id);
             return true;
         }
-        // Clean Cookies
-        setcookie('aparisCookieUserID', '', time()-(3600));
-        setcookie('aparisCookieAgent', '', time()-3600);
-        setcookie('aparisCookieToken', '', time()-3600);
         return false;
     }
 
-    public function getUser(): UserModel{
+    public function getUser(): ?UserModel{
         return $this->user;
+    }
+
+    public function getIsLoggedIn(): bool{
+        return $this->isLoggedIn;
     }
 }
