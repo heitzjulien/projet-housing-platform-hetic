@@ -76,7 +76,7 @@ class UserRepository extends Repository{
     public function updateLastSeen(int $id): void{
         $stmt = $this->db->pdo->prepare("UPDATE users SET last_seen = :time WHERE id = :id");
         $stmt->execute([
-            ":time" => date("Y-m-d G:i:s", time()),
+            ":time" => date("Y-m-d H:i:s", time()),
             ":id" => $id,
         ]);
     }

@@ -16,8 +16,8 @@ class AuthRepository extends Repository{
             ":user_id" => $user_id,
             ":agent" => $agent,
             ":token" => $token,
-            ":token_start" => date("Y-m-d G:i:s", time()),
-            ":token_end" => date("Y-m-d G:i:s", time() + (30*24*60*60))
+            ":token_start" => date("Y-m-d H:i:s", time()),
+            ":token_end" => date("Y-m-d H:i:s", time() + (30*24*60*60))
         ]);
     }
 
@@ -68,10 +68,9 @@ class AuthRepository extends Repository{
         ]);
 
         $userAuth = $stmt->fetch(PDO::FETCH_ASSOC);
-        if($userAuth && password_verify($token, $userAuth['token']) && date("Y-m-d G:i:s", time()) < $userAuth["token_end"]){
+        if($userAuth && password_verify($token, $userAuth['token']) && date("Y-m-d H:i:s", time()) < $userAuth["token_end"]){
             return $userAuth['user_id'];
         }
-
         return null;
     }
 }

@@ -30,7 +30,9 @@ class AuthCheckMiddleware implements Middleware{
             $this->user = (new UserRepository())->getUserById($_COOKIE['aparisCookieUserID']);
             $this->isLoggedIn = true;
         } else {
-            // Clean Cookies
+            if($this->id && $this->agent){
+                $this->authRepository->deleteToken($this->id, $this->agent);
+            }
             setcookie('aparisCookieUserID', '', time()-(3600));
             setcookie('aparisCookieAgent', '', time()-3600);
             setcookie('aparisCookieToken', '', time()-3600);

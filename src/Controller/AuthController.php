@@ -33,11 +33,6 @@ class AuthController extends Controller{
                 // Clean array (false indice)
                 $error = array_filter($error, function ($value) { return $value;});
                 if(!$error){
-                    // Clean Cookies
-                    setcookie('aparisCookieUserID', '', time()-(3600));
-                    setcookie('aparisCookieAgent', '', time()-3600);
-                    setcookie('aparisCookieToken', '', time()-3600);
-
                     // Register a user
                     $authService->registerUser($user);
                     $user = $authService->loginUser($user->getMail());
@@ -78,11 +73,6 @@ class AuthController extends Controller{
                 // Clean array (false indice)
                 $error = array_filter($error, function ($value) { return $value; });
                 if(!$error){
-                    // Clean Cookies
-                    setcookie('aparisCookieUserID', '', time()-(3600));
-                    setcookie('aparisCookieAgent', '', time()-3600);
-                    setcookie('aparisCookieToken', '', time()-3600);
-
                     // Login a user
                     $user = $authService->loginUser($mail);
                     $token = $authService->createToken($user->getId(), $request->getHeaders()['HTTP_USER_AGENT']);
@@ -110,8 +100,9 @@ class AuthController extends Controller{
     }
 
     public function logout(Request $request, Route $route): void{
-        $authService = new AuthService();
-        $authService->clearSession($_COOKIE['aparisCookieUserID'], $_COOKIE['aparisCookieAgent']);
+        if($_COOKIE['aparisCookieUserID'] && $_COOKIE['aparisCookieAgent']){
+            (new AuthService())->clearSession($_COOKIE['aparisCookieUserID'], $_COOKIE['aparisCookieAgent']);
+        }
         header("Location: login");
         exit;
     }
