@@ -17,6 +17,11 @@ class AuthController extends Controller{
         $error = [];
         $user = null;
 
+        if($this->userLoggedIn){
+            header("Location: home");
+            exit;
+        }
+
         switch($request->getMethod()){
             case "POST":
                 $authService = new AuthService();
@@ -59,6 +64,11 @@ class AuthController extends Controller{
     public function login(Request $request, Route $route): void{
         $error = [];
         $user = null;
+
+        if($this->userLoggedIn){
+            header("Location: home");
+            exit;
+        }
 
         switch($request->getMethod()){
             case "POST":
