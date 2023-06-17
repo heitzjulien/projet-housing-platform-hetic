@@ -31,7 +31,7 @@ class AuthController extends Controller{
                 $user = (new UserModel())->setFirstname($firstname)->setLastname($lastname)->setMail($mail)->setPassword($password)->setBirthdate($birthdate);
                 
                 // Clean array (false indice)
-                $error = array_filter($error, function ($value) { return $value;});
+                $error = array_filter($error, function ($value) { return $value; });
                 if(!$error){
                     // Register a user
                     $authService->registerUser($user);
@@ -39,9 +39,7 @@ class AuthController extends Controller{
                     $token = $authService->createToken($user->getId(), $request->getHeaders()['HTTP_USER_AGENT']);
                     
                     // Create Cookies
-                    setcookie('aparisCookieUserID', $user->getId(), time()+(30*24*60*60));
-                    setcookie('aparisCookieAgent', $request->getHeaders()['HTTP_USER_AGENT'], time()+(30*24*60*60));
-                    setcookie('aparisCookieToken', $token, time()+(30*24*60*60));
+                    $authService->setCookies($user->getId(), $request->getHeaders()['HTTP_USER_AGENT'], $token);
                     
                     header("Location: home");
                     exit();
@@ -78,10 +76,8 @@ class AuthController extends Controller{
                     $token = $authService->createToken($user->getId(), $request->getHeaders()['HTTP_USER_AGENT']);
 
                     // Create Cookies
-                    setcookie('aparisCookieUserID', $user->getId(), time()+(30*24*60*60));
-                    setcookie('aparisCookieAgent', $request->getHeaders()['HTTP_USER_AGENT'], time()+(30*24*60*60));
-                    setcookie('aparisCookieToken', $token, time()+(30*24*60*60));
-
+                    $authService->setCookies($user->getId(), $request->getHeaders()['HTTP_USER_AGENT'], $token);
+                    
                     header("Location: home");
                     exit;
                     break;
