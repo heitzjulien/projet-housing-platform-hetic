@@ -278,6 +278,10 @@ header #headerModal a {
     display: block;
 }
 
+header #headerModal a:hover {
+    text-decoration: underline;
+}
+
 header .hideModal {
     display: none;
 }
