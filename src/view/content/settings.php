@@ -1,6 +1,11 @@
 <?php foreach($data["error"] as $e): ?>
     <p><?= $e ?></p>
 <?php endforeach; ?>
+
+<?php if($data["valid"]): ?>
+    <p><?= $data["valid"] ?></p>
+<?php endif; ?>
+
 <h2>Settings</h2>
 <form method="POST">
     <label for="firstname">Firstname :</label>

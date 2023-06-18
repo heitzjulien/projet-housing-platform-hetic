@@ -91,4 +91,12 @@ class UserRepository extends Repository{
             ":id" => $user->getId(),
         ]);
     }
+
+    public function updateUserPassword(UserModel $user, string $password){
+        $stmt = $this->db->pdo->prepare("UPDATE users SET password = :password WHERE id = :id");
+        $stmt->execute([
+            ":password" => $password,
+            ":id" => $user->getId(),
+        ]);
+    }
 }

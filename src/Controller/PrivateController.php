@@ -51,6 +51,7 @@ class PrivateController extends Controller{
 
     public function dashboardParametre(Request $request, Route $route): void{
         $error = [];
+        $valid = null;
         
         if(!$this->userLoggedIn){
             header("Location:" . __ROOT_URL__ . "/home");
@@ -60,49 +61,48 @@ class PrivateController extends Controller{
         switch($request->getMethod()){
             case "POST":
                 $authService = new AuthService();
-                $amen = false;
+                $change = false;
                 // Check Informations
                 if(isset($request->getRawBody()['firstname'])){
                     if ($request->getRawBody()['firstname'] != $this->userLoggedIn->getFirstname()){ 
                         [$error[], $firstname] = $authService->checkFirstname($request->getRawBody()['firstname']);
-                        $this->userLoggedIn->setFirstname($firstname);
-                        $amen = true;
+                        if ($firstname){ $this->userLoggedIn->setFirstname($firstname); }
+                        $change = true;
                     }
                     if ($request->getRawBody()['lastname'] != $this->userLoggedIn->getLastname()){ 
                         [$error[], $lastname] = $authService->checkLastname($request->getRawBody()['lastname']);
-                        $this->userLoggedIn->setLastname($lastname);
-                        $amen = true;
+                        if ($lastname){ $this->userLoggedIn->setLastname($lastname); }
+                        $change = true;
                     }
                     if ($request->getRawBody()['mail'] != $this->userLoggedIn->getMail()){ 
                         [$error[], $mail] = $authService->checkMail($request->getRawBody()['mail'], 'register'); 
-                        $this->userLoggedIn->setMail($mail);
-                        $amen = true;
+                        if ($mail){ $this->userLoggedIn->setMail($mail); }
+                        $change = true;
                     }
                     if ($request->getRawBody()['birthdate'] != $this->userLoggedIn->getBirthdate()){ 
                         [$error[], $birthdate] = $authService->checkBirthdate($request->getRawBody()['birthdate']);
-                        $this->userLoggedIn->setBirthdate($birthdate);
-                        $amen = true;
+                        if ($birthdate){ $this->userLoggedIn->setBirthdate($birthdate); }
+                        $change = true;
                     }
 
                     $error = array_filter($error, function ($value) { return $value; });
-                    if(!$error && $amen){                        
-                        echo('test2');
+                    if(!$error && $change){                        
                         $authService->updateUser($this->userLoggedIn);
+                        $valid = "The information has been successfully modified";
                     }
                 }
-                if(isset($request->getRawBody()['newPsd'])){
-                    $error[] = $authService->verifyPassword($user->getMail(), $request->getRawBody()['currentPsd']);
+
+                if(isset($request->getRawBody()['currentPsd'])){
+                    $error[] = $authService->verifyPassword($this->userLoggedIn->getMail(), $request->getRawBody()['currentPsd']);
                     [$error[], $password] = $authService->checkPasswords($request->getRawBody()['newPsd'], $request->getRawBody()['confNewPsd']);
 
                     $error = array_filter($error, function ($value) { return $value; });
                     if(!$error){
-                        echo('je fais les changements');
+                        $authService->updateUser($this->userLoggedIn, $password);
+                        $valid = "Password changed successfully";
                     }
                 }
-
-                // Clean array (false indice)
-                $error = array_filter($error, function ($value) { return $value; });
-
+                
                 break; 
         }
         
@@ -111,6 +111,7 @@ class PrivateController extends Controller{
             "route" => $route,
             "request" => $request,
             "error" => $error,
+            "valid" => $valid,
         ]);
     }
     
