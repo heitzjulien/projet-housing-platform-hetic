@@ -112,10 +112,9 @@ class AuthService{
 
     public function updateUser(UserModel $user, ?string $password = null): void{
         if(!$password){
-            echo('ici');
             (new UserRepository())->updateUserInformation($user);
         } else {
-            (new UserRepository())->updateUserPassword($user->getId(), $password);
+            (new UserRepository())->updateUserPassword($user, $password);
         }
     }
 
