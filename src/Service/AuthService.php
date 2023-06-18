@@ -110,6 +110,15 @@ class AuthService{
         setcookie('aparisCookieToken', '', time()-3600);
     }
 
+    public function updateUser(UserModel $user, ?string $password = null): void{
+        if(!$password){
+            echo('ici');
+            (new UserRepository())->updateUserInformation($user);
+        } else {
+            (new UserRepository())->updateUserPassword($user->getId(), $password);
+        }
+    }
+
     private function isUse(string $mail): bool{
         return (new UserRepository())->mailIsUse($mail);
     }
