@@ -66,6 +66,10 @@ class Routes {
             ->setTitle("Search")
         );
         $this->addRoute(
+            (new Route("search", PublicController::class, "search"))
+            ->setMethod("POST")->setTitle("Search")
+        );
+        $this->addRoute(
             (new Route("productpage", PublicController::class, "productPage"))
             ->setTitle("Product Page")
         );

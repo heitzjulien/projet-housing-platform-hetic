@@ -27,10 +27,10 @@ class PublicController extends Controller {
                 "capacity" => $c->getCapacity(),
                 "price" => $c->getPrice(),
                 "description" => $c->getDescription(),
-                "number_pieces" => $c->getNbr_pieces(),
+                "number_pieces" => $c->getNumberPieces(),
                 "area" => $c->getArea(),
-                "images" => $c->getImages()[0]->getImage(),
-                "test" => $c->getName() . " " . $c->getNbr_pieces() . "pièces " . $c->getArea() . "m²"
+                "images" => $c->getImage()[0]->getImage(),
+                "test" => $c->getName() . " " . $c->getNumberPieces() . "pièces " . $c->getArea() . "m²"
             ]);
         }
         $this->render("home.php", $this->styles, [
@@ -44,28 +44,52 @@ class PublicController extends Controller {
 
     public function search(Request $request, Route $route): void {
         $this->updateStyles(['search.css']);
-
-        $content = $this->HousingService->selectHousing(0);
-        $json = [];
-        foreach($content as $c) {
-            $json[] = json_encode([
-                "id" => $c->getId(),
-                "name" => $c->getName(),
-                "capacity" => $c->getCapacity(),
-                "price" => $c->getPrice(),
-                "description" => $c->getDescription(),
-                "number_pieces" => $c->getNbr_pieces(),
-                "area" => $c->getArea(),
-                "images" => $c->getImages()[0]->getImage()
-            ]);
+        switch($request->getMethod()) {
+            case 'GET':
+                $get = $this->HousingService->selectHousing(0);
+                $json = [];
+                foreach($get as $c) {
+                    $json[] = json_encode([
+                        "id" => $c->getId(),
+                        "name" => $c->getName(),
+                        "capacity" => $c->getCapacity(),
+                        "price" => $c->getPrice(),
+                        "description" => $c->getDescription(),
+                        "number_pieces" => $c->getNumberPieces(),
+                        "area" => $c->getArea(), 
+                        "images" => $c->getImage()[0]->getImage()
+                    ]);
+                }
+                $this->render("search.php", $this->styles, [
+                    "get" => $get,
+                    "json_get" => $json,
+                    "route" => $route,
+                    "request" => $request
+                ]);
+                break;
+            case 'POST':
+                $post = $this->HousingService->selectHousingForSearch($request->getRawBody()['date_start'], $request->getRawBody()['date_end'], ($request->getRawBody()['district'] !== '') ? (int)$request->getRawBody()['district'] : null, ($request->getRawBody()['number_pieces'] !== '') ? (int)$request->getRawBody()['number_pieces'] : null, ($request->getRawBody()['capacity'] !== '') ? (int)$request->getRawBody()['capacity'] : null);
+                $json = [];
+                foreach($post as $c) {
+                    $json[] = json_encode([
+                        "id" => $c->getId(),
+                        "name" => $c->getName(),
+                        "capacity" => $c->getCapacity(),
+                        "price" => $c->getPrice(),
+                        "description" => $c->getDescription(),
+                        "number_pieces" => $c->getNumberPieces(),
+                        "area" => $c->getArea(), 
+                        "images" => $c->getImage()[0]->getImage()
+                    ]);
+                }
+                $this->render("search.php", $this->styles, [
+                    "post" => $post,
+                    "json_post" => $json,
+                    "route" => $route,
+                    "request" => $request
+                ]);
+                break;
         }
- 
-        $this->render("search.php", $this->styles, [
-            "json" => $json,
-            "start" => $content,
-            "route" => $route,
-            "request" => $request
-        ]);
     }
 
     public function productPage(Request $request, Route $route): void {

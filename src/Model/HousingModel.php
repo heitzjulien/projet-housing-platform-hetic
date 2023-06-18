@@ -21,7 +21,6 @@ class HousingModel {
      * @param ?string $car_park Housing car park
      * @param ?int $area Housing area
      * @param ?string $image Housing image
-     * @param ?int $housing_id Housing id
      */
 
     public function __construct(
@@ -39,7 +38,14 @@ class HousingModel {
         private ?string $car_park = null,
         private ?int $area = null,
         private ?array $image = null,
-        private ?int $housing_id = null,
+        private ?string $unavailability_start = null,
+        private ?string $unavailability_end = null,
+        private ?string $unavailability_status = null,
+        private ?string $country = null,
+        private ?string $city = null,
+        private ?string $zip = null,
+        private ?string $district = null,
+        private ?string $address = null
     ){
         $this->id = $id;
         $this->name = $name;
@@ -55,7 +61,14 @@ class HousingModel {
         $this->car_park = $car_park;
         $this->area = $area;
         $this->image = $image;
-        $this->housing_id = $housing_id;
+        $this->unavailability_start = $unavailability_start;
+        $this->unavailability_end = $unavailability_end;
+        $this->unavailability_status = $unavailability_status;
+        $this->country = $country;
+        $this->city = $city;
+        $this->zip = $zip;
+        $this->district = $district;
+        $this->address = $address;
     }
 
     public function setId(int $id): self{
@@ -83,8 +96,38 @@ class HousingModel {
         return $this;
     }
 
-    public function setNbr_pieces(int $number_pieces): self{
+    public function setNote(string $note): self{
+        $this->note = $note;
+        return $this;
+    }
+
+    public function setInstruction(string $instruction): self{
+        $this->instruction = $instruction;
+        return $this;
+    }
+
+    public function setNumberPieces(int $number_pieces): self{
         $this->number_pieces = $number_pieces;
+        return $this;
+    }
+
+    public function setNumberRooms(int $number_rooms): self{
+        $this->number_rooms = $number_rooms;
+        return $this;
+    }
+
+    public function setNumberBathroom(int $number_bathroom): self{
+        $this->number_bathroom = $number_bathroom;
+        return $this;
+    }
+
+    public function setExterior(?string $exterior): self{
+        $this->exterior = $exterior;
+        return $this;
+    }
+
+    public function setCarPark(?string $car_park): self{
+        $this->car_park = $car_park;
         return $this;
     }
 
@@ -93,8 +136,48 @@ class HousingModel {
         return $this;
     }
 
-    public function setImages(array $image): self{
+    public function setImage(array $image): self{
         $this->image = $image;
+        return $this;
+    }
+
+    public function setUnavailabilityStart(string $unavailability_start): self{
+        $this->unavailability_start = $unavailability_start;
+        return $this;
+    }
+
+    public function setUnavailabilityEnd(string $unavailability_end): self{
+        $this->unavailability_end = $unavailability_end;
+        return $this;
+    }
+
+    public function setUnavailabilityStatus(string $unavailability_status): self{
+        $this->unavailability_status = $unavailability_status;
+        return $this;
+    }
+
+    public function setCountry(string $country): self{
+        $this->country = $country;
+        return $this;
+    }
+
+    public function setCity(string $city): self{
+        $this->city = $city;
+        return $this;
+    }
+
+    public function setZip(string $zip): self{
+        $this->zip = $zip;
+        return $this;
+    }
+
+    public function setDistrict(string $district): self{
+        $this->district = $district;
+        return $this;
+    }
+
+    public function setAddress(string $address): self{
+        $this->address = $address;
         return $this;
     }
 
@@ -118,16 +201,67 @@ class HousingModel {
         return $this->description;
     }
 
-    public function getNbr_pieces(): int{
+    public function getNote(): string{
+        return $this->note;
+    }
+
+    public function getInstruction(): string{
+        return $this->instruction;
+    }
+
+    public function getNumberPieces(): int{
         return $this->number_pieces;
+    }
+
+    public function getNumberRooms(): int{
+        return $this->number_rooms;
+    }
+
+    public function getNumberBathroom(): int{
+        return $this->number_bathroom;
+    }
+
+    public function getExterior(): string{
+        return $this->exterior;
+    }
+
+    public function getCarPark(): string{
+        return $this->car_park;
     }
 
     public function getArea(): int{
         return $this->area;
     }
 
-    public function getImages(): array{
+    public function getImage(): array{
         return $this->image;
     }
 
+    public function getUnavailabilityStart(): string{
+        return $this->unavailability_start;
+    }
+
+    public function getUnavailabilityEnd(): string{
+        return $this->unavailability_end;
+    }
+
+    public function getUnavailabilityStatus(): string{
+        return $this->unavailability_status;
+    }
+
+    public function getCountry(): string{
+        return $this->country;
+    }
+
+    public function getCity(): string{
+        return $this->city;
+    }
+
+    public function getZip(): string{
+        return $this->zip;
+    }
+
+    public function getDistrict(): string{
+        return $this->district;
+    }
 }
