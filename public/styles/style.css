@@ -8,6 +8,8 @@
     --p-button: 32px 64px;
     --p-section: 32px 90px;
 
+    --flex-gap: 32px;
+
     --fs-title: 3.125rem;
     --fs-subtitle: 2.125rem;
     --fs-body-small: 1.125rem;
@@ -18,7 +20,9 @@
     :root {
         --p-button: 16px 32px;
         --p-section: 32px 16px;
-    
+
+        --flex-gap: 16px;
+
         --fs-title: 2.125rem;
         --fs-subtitle: 1.125rem;
         --fs-body-small: 1.125rem;
@@ -26,15 +30,23 @@
     }
 }
 
-*{
+* {
     box-sizing: border-box;
-}
-
-body, html{
     margin: 0;
     padding: 0;
 }
 
+body, html{
+    /* whoever did this ce code ne fait rien */
+    margin: 0;
+    padding: 0;
+}
+
+section {
+    padding: var(--p-section);
+}
+
+/* on utilise pas la moitié de tout ça, 25mo ça part vite */
 @font-face {
     font-family: 'Satoshi-Variable';
     src: url('/projet-housing-platform-hetic/public/assets/fonts/Satoshi-Variable.woff2') format('woff2'),
@@ -169,19 +181,24 @@ body {
     margin: 0;
     box-sizing: border-box;
     background-color: var(--clr-white);
+    font-family: 'Satoshi-Regular';
 }
 
 footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+    /* position absolute crée un bug quand la page à du contenu qui prend toute la hauteur,
+    vu qu'on construit de haut en bas on a pas besoin de ça pour un footer whatsoever*/
+    /*position: absolute;*/
+    /*bottom: 0;*/
+    /* un footer est un élément de type block, il prend forcément 100% de width, à l'instar des div ou des sections */
+    /*width: 100%;*/
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 32px 0;
-    gap: 10px;
-    font-family: 'Satoshi-Regular';
-    font-size: 16px;
+    /*padding: 32px 0;*/
+    padding: var(--p-section);
+    gap: var(--flex-gap);
+    /*font-family: 'Satoshi-Regular';*/
+    font-size: var(--fs-body-small);
 }
 
 .footer-top {
@@ -210,7 +227,6 @@ header {
     padding-bottom: 16px;
     justify-content: space-between;
     align-items: center;
-    font-family: 'Satoshi-Regular';
 }
 
 header a {
@@ -253,6 +269,7 @@ header #headerModal {
     margin-bottom: 0;
     background-color: var(--clr-regular-blue);
     font-size: var(--fs-body-big);
+    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.25);
 }
 
 header #headerModal a {
