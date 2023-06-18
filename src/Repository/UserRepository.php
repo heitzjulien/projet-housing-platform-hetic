@@ -80,4 +80,15 @@ class UserRepository extends Repository{
             ":id" => $id,
         ]);
     }
+
+    public function updateUserInformation(UserModel $user): void{
+        $stmt = $this->db->pdo->prepare("UPDATE users SET firstname = :firstname, lastname = :lastname, mail = :mail, birthdate = :birthdate WHERE id = :id");
+        $stmt->execute([
+            ":firstname" => $user->getFirstname(),
+            ":lastname" => $user->getLastname(),
+            ":mail" => $user->getMail(),
+            ":birthdate" => $user->getBirthdate(),
+            ":id" => $user->getId(),
+        ]);
+    }
 }

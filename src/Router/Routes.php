@@ -46,29 +46,45 @@ class Routes {
         );
 
         $this->addRoute(
-            (new Route("dashboardclient", PrivateController::class, "dashboardClient"))
+            (new Route("dashboard/client", PrivateController::class, "dashboardClient"))
             ->setTitle("Dashboard Client")
         );
+        
         $this->addRoute(
             (new Route("home", PublicController::class, "home"))
             ->setTitle("Home")
         );
+
         $this->addRoute(
             (new Route("dashboard/admin", PrivateController::class, "dashboardAdmin"))
             ->setTitle("Dashboard Admin")
         );
+
         $this->addRoute(
             (new Route("parametre/user", PrivateController::class, "dashboardUserParametre"))
             ->setTitle("Parametre")
         );
+
+        $this->addRoute(
+            (new Route("dashboard/parametre", PrivateController::class, "dashboardParametre"))
+            ->setTitle("Parametre")
+        );
+
+        $this->addRoute(
+            (new Route("dashboard/parametre", PrivateController::class, "dashboardParametre"))
+            ->setMethod("POST")->setTitle("Parametre")
+        );
+
         $this->addRoute(
             (new Route("search", PublicController::class, "search"))
             ->setTitle("Search")
         );
+
         $this->addRoute(
             (new Route("search", PublicController::class, "search"))
             ->setMethod("POST")->setTitle("Search")
         );
+
         $this->addRoute(
             (new Route("productpage", PublicController::class, "productPage"))
             ->setTitle("Product Page")
