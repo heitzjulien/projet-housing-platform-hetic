@@ -1,3 +1,31 @@
+:root {
+    --clr-regular-blue: #435188;
+    --clr-light-blue: #7A8AA4;
+    --clr-white: #FAFAFA;
+    --clr-black: #050505;
+    --clr-beige: #D7D0C3;
+
+    --p-button: 32px 64px;
+    --p-section: 32px 90px;
+
+    --fs-title: 3.125rem;
+    --fs-subtitle: 2.125rem;
+    --fs-body-small: 1.125rem;
+    --fs-body-big: 2.125rem;
+}
+
+@media only screen and (max-width: 780px) {
+    :root {
+        --p-button: 16px 32px;
+        --p-section: 32px 16px;
+    
+        --fs-title: 2.125rem;
+        --fs-subtitle: 1.125rem;
+        --fs-body-small: 1.125rem;
+        --fs-body-big: 1.125rem;    
+    }
+}
+
 *{
     box-sizing: border-box;
 }
@@ -140,6 +168,7 @@ body, html{
 body {
     margin: 0;
     box-sizing: border-box;
+    background-color: var(--clr-white);
 }
 
 footer {
@@ -172,4 +201,66 @@ footer {
     align-items: flex-start;
     padding: 32px 0;
     gap: 10px;
+}
+
+header {
+    display: flex;
+    padding: var(--p-section);
+    padding-top: 16px;
+    padding-bottom: 16px;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Satoshi-Regular';
+}
+
+header a {
+    text-decoration: none;
+    font-size: var(--fs-subtitle);
+    color: var(--clr-black);
+    margin: 16px;
+}
+
+header a:first-of-type {
+    margin: 0;
+}
+
+header span {
+    color: var(--clr-regular-blue);
+    font-size: var(--fs-body-small);
+}
+
+header a:hover {
+    text-decoration: underline;
+}
+
+header button {
+    padding: 8px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    background-color: var(--clr-white);
+    border: 1px var(--clr-regular-blue) solid ;
+    cursor: pointer;
+}
+
+header #headerModal {
+    padding: 8px;
+    position: absolute;
+    right: 0;
+    margin: var(--p-section);
+    margin-top: 0;
+    margin-bottom: 0;
+    background-color: var(--clr-regular-blue);
+    font-size: var(--fs-body-big);
+}
+
+header #headerModal a {
+    text-decoration: none;
+    color: var(--clr-white);
+    display: block;
+}
+
+header .hideModal {
+    display: none;
 }
