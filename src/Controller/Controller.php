@@ -6,11 +6,9 @@ use Model\UserModel;
 
 abstract class Controller{
     public array $styles = [];
-    public ?UserModel $userLoggedIn;
 
-    public function setUserLoggedIn(?UserModel $userLoggedIn): self{
+    public function __construct(public ?UserModel $userLoggedIn = null){
         $this->userLoggedIn = $userLoggedIn;
-        return $this;
     }
 
     protected function getUserLoggedIn(): ?UserModel{

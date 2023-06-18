@@ -37,12 +37,12 @@ class Router{
     // Call controller and controller method.
     private function build(string $controllerClass, string $methodName): void{
         $this->route->setMiddleware(new AuthCheckMiddleware($_COOKIE['aparisCookieUserID'] ?? null, $_COOKIE['aparisCookieAgent'] ?? null, $_COOKIE['aparisCookieToken'] ?? null));
-        $controller = (new $controllerClass())
-        ->setUserLoggedIn(($this->route->getMiddleware())->getUser());
+        $controller = new $controllerClass(($this->route->getMiddleware())->getUser());
         $controller->$methodName($this->request, $this->route);
     }
 
     private function buildError(\Exception $e){
-        $controller = new ExceptionController($e);
+        $this->route = (new Route())->setMiddleware(new AuthCheckMiddleware($_COOKIE['aparisCookieUserID'] ?? null, $_COOKIE['aparisCookieAgent'] ?? null, $_COOKIE['aparisCookieToken'] ?? null));
+        $controller = new ExceptionController($e, ($this->route->getMiddleware())->getUser());
     }
 }

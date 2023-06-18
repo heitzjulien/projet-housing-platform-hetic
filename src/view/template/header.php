@@ -22,6 +22,6 @@
             <a href="<?= __ROOT_URL__ ?>/register">Inscription</a>
         <?php endif; ?>
         </div>
-
     </div>
  </header>
+ 

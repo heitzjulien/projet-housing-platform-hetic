@@ -8,18 +8,21 @@ use Router\Route;
 // Services
 use Service\TemplateService;
 
+use Model\UserModel;
+
 class TemplateController extends Controller{
     private TemplateService $templateService;
 
-    public function __construct(){
-        $this->templateService = new TemplateService();
+    public function __construct(?UserModel $userLoggedIn){
+        parent::__construct($userLoggedIn);
     }
-
+    
     // Call Models and View for the main page : "/index.php" || "/"
     public function template(Request $request, Route $route): void{
+        $templateService = new TemplateService();
         $this->updateStyles(['template.css']);
 
-        $content = $this->templateService->selectContent();
+        $content = $templateService->selectContent();
         
         $this->render("TemplateView.php",  $this->styles ,[
             "start" => $content,

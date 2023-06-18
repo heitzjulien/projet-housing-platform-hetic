@@ -7,6 +7,8 @@
 <?php endif; ?>
 
 <h2>Settings</h2>
+
+<h3>User settings</h3>
 <form method="POST">
     <label for="firstname">Firstname :</label>
     <input id="firstname" name="firstname" type="text" placeholder="Firstname" value="<?= $data["user_logged_in"]->getFirstname() ?>">
@@ -19,6 +21,21 @@
     <input type="submit" value="Update">
 </form>
 
+<br>
+
+<h3>Account validation</h3>
+<p>Your accoun't is <?= $data["user_logged_in"]->getAccountStatus() ?></p>
+<?php if($data["user_logged_in"]->getAccountStatus() == 'waiting'): ?>
+    <p>Please validate your email. <a href="">Resend the confirmation</a></p>
+<?php elseif($data["user_logged_in"]->getAccountStatus() == 'valid'): ?>
+    <p><a href="">Disable account</a></p>
+<?php elseif($data["user_logged_in"]->getAccountStatus() == 'disable'): ?>
+    <p><a href="">Reactivate account</a></p>
+<?php endif; ?>
+
+<br>
+
+<h3>Security settings</h3>
 <form method="POST">
     <label for="currentPsd">Current Password :</label>
     <input id="currentPsd" name="currentPsd" type="password" placeholder="Password">

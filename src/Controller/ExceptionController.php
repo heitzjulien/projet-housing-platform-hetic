@@ -6,10 +6,13 @@ use Controller\Controller;
 use Exception\AbstractException;
 use Router\Route;
 
+use Model\UserModel;
+
 class ExceptionController extends Controller{
     private \Exception $error;
 
-    public function __construct(\Exception $error){
+    public function __construct(\Exception $error, ?UserModel $userLoggedIn){
+        parent::__construct($userLoggedIn);
         $this->error = $error;
 
         http_response_code($error->getCode());

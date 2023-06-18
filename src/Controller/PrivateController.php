@@ -8,9 +8,12 @@ use Router\Route;
 
 use Service\AuthService;
 
+use Model\UserModel;
+
 
 class PrivateController extends Controller{
-    public function __construct() {
+    public function __construct(?UserModel $userLoggedIn){
+        parent::__construct($userLoggedIn);
     }
 
     public function dashboardClient(Request $request, Route $route): void {

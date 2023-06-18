@@ -8,17 +8,19 @@ use Router\Route;
 
 use Service\HousingService;
 
+use Model\UserModel;
+
 class PublicController extends Controller {
-    private HousingService $HousingService;
-    public function __construct() {
-        $this->HousingService = new HousingService();
+    public function __construct(?UserModel $userLoggedIn){
+        parent::__construct($userLoggedIn);
     }
 
     public function home(Request $request, Route $route): void {
         $this->updateStyles(['home.css']);
+        $HousingService = new HousingService();
 
-        $content = $this->HousingService->selectHousing(1);
-        $images = $this->HousingService->selectImageById(1);
+        $content = $HousingService->selectHousing(1);
+        $images = $HousingService->selectImageById(1);
         $json = [];
         foreach($content as $c) {
             $json[] = json_encode([ 
@@ -44,9 +46,11 @@ class PublicController extends Controller {
 
     public function search(Request $request, Route $route): void {
         $this->updateStyles(['search.css']);
+        $HousingService = new HousingService();
+
         switch($request->getMethod()) {
             case 'GET':
-                $get = $this->HousingService->selectHousing(0);
+                $get = $HousingService->selectHousing(0);
                 $json = [];
                 foreach($get as $c) {
                     $json[] = json_encode([
@@ -68,7 +72,7 @@ class PublicController extends Controller {
                 ]);
                 break;
             case 'POST':
-                $post = $this->HousingService->selectHousingForSearch($request->getRawBody()['date_start'], $request->getRawBody()['date_end'], ($request->getRawBody()['district'] !== '') ? (int)$request->getRawBody()['district'] : null, ($request->getRawBody()['number_pieces'] !== '') ? (int)$request->getRawBody()['number_pieces'] : null, ($request->getRawBody()['capacity'] !== '') ? (int)$request->getRawBody()['capacity'] : null);
+                $post = $HousingService->selectHousingForSearch($request->getRawBody()['date_start'], $request->getRawBody()['date_end'], ($request->getRawBody()['district'] !== '') ? (int)$request->getRawBody()['district'] : null, ($request->getRawBody()['number_pieces'] !== '') ? (int)$request->getRawBody()['number_pieces'] : null, ($request->getRawBody()['capacity'] !== '') ? (int)$request->getRawBody()['capacity'] : null);
                 $json = [];
                 foreach($post as $c) {
                     $json[] = json_encode([
@@ -94,9 +98,10 @@ class PublicController extends Controller {
 
     public function productPage(Request $request, Route $route): void {
         $this->updateStyles(['productPage.css']);
+        $HousingService = new HousingService();
 
-        $content = $this->HousingService->selectHousingHome();
-
+        $content = $HousingService->selectHousingHome();
+        
         $this->render("productPage.php", $this->styles, [
             "start" => $content,
             "route" => $route,

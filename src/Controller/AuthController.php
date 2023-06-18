@@ -13,6 +13,10 @@ use Model\UserModel;
 
 class AuthController extends Controller{
 
+    public function __construct(?UserModel $userLoggedIn){
+        parent::__construct($userLoggedIn);
+    }
+    
     public function register(Request $request, Route $route): void{
         $error = [];
         $user = null;

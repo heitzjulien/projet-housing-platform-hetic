@@ -67,6 +67,10 @@ class UserModel extends Model{
         return $this->birthdate;
     }
 
+    public function getAccountStatus(): ?string{
+        return $this->account_status;
+    }
+
     public function setFirstname($firstname): self{
         $this->firstname = $firstname;
         return $this;
