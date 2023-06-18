@@ -6,3 +6,5 @@
         <span>© 2023 . </span><span>Tous droits réservés .</span>
     </div>
 </footer>
+
+<script src="<?= __ROOT_URL__ ?>/scripts/header.js"></script>

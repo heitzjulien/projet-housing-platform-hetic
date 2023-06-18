@@ -1,15 +1,60 @@
-<h2>Home</h2>
-<!-- Pas de JSON pour $data['images'] j'avais la flemme mais si nécessaire @Julien-->
-<?php foreach($data['images'] as $i => $p): ?>
-    <img src="<?= $p->getImage()[0]->getImage() ?>" alt="">
-<?php endforeach; ?>
+<main>
+    <section id="homeHero">
+        <div class="heroTextContainer">
+            <h1>Profitez de nos logements premiums parisiens</h1>
+            <p>Des localisations attractives et un service de compétition</p>
+            <a href="<?= __ROOT_URL__ ?>/search" class="button transparentBtn">
+                Découvrir
+            </a>
+        </div>
+        <div class="heroImgContainer">
+            <?php foreach($data['images'] as $i => $p): ?>
+                <img src="<?= $p->getImage()[0]->getImage() ?>" alt="Appartment interior image" width="400px" class="mainImage">
+                <img src="<?= $p->getImage()[1]->getImage() ?>" alt="Appartment interior image" width="400px" class="secondaryImage">
+            <?php endforeach; ?>
+        </div>
+    </section>
+    <section id="homeRecommandations">
+        <h2>Nos recommandations</h2>
+        <div class="recommandationsImgContainer">
+            <div class="cardContainer">
+                <img src="#" alt="Appartment interior image" width="590px" class="cardImage">
+                <div class="imageCardFooter">
 
-<?php foreach($data['start'] as $h => $c): ?>
-    <p><?= $c->getName() ?></p>
-    <p><?= $c->getCapacity() ?> personnes</p>
-    <p><?= $c->getPrice() ?> €</p>
-    <p><?= $c->getDescription() ?></p>
-    <p><?= $c->getNumberPieces() ?> pièces</p>
-    <p><?= $c->getArea() ?> m²</p>
-    <img src="<?= $c->getImage()[0]->getImage() ?>" alt="">
-<?php endforeach; ?>
+                    <?php //foreach($data['start'] as $h => $c): ?>
+                    <!--    <p>--><?php //= $c->getName() ?><!--</p>-->
+                    <!--    <p>--><?php //= $c->getCapacity() ?><!-- personnes</p>-->
+                    <!--    <p>--><?php //= $c->getPrice() ?><!-- €</p>-->
+                    <!--    <p>--><?php //= $c->getDescription() ?><!--</p>-->
+                    <!--    <p>--><?php //= $c->getNumberPieces() ?><!-- pièces</p>-->
+                    <!--    <p>--><?php //= $c->getArea() ?><!-- m²</p>-->
+                    <!--    <img src="--><?php //= $c->getImage()[0]->getImage() ?><!--" alt="">-->
+                    <?php //endforeach; ?>
+
+
+                    <div class="leftInfos"></div>
+                    <div class="dividingLine"></div>
+                    <div class="rightInfos"></div>
+                </div>
+            </div>
+        </div>
+        <a href="<?= __ROOT_URL__ ?>/search" class="button fullBtn">
+            En voir plus
+        </a>
+    </section>
+    <section id="homeServices">
+        <div>
+            <img src="./assets/images/washing.service.svg" alt="Cleaning service">
+            <h3>Laverie</h3>
+        </div>
+        <div>
+            <img src="./assets/images/taxi.service.svg" alt="Cleaning service">
+            <h3>Taxi</h3>
+        </div>
+        <div>
+            <img src="./assets/images/cleaning.service.svg" alt="Cleaning service">
+            <h3>Nettoyage</h3>
+        </div>
+    </section>
+</main>
+
