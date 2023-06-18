@@ -44,9 +44,14 @@
     border: none;
 }
 
+.fullBtn:hover {
+    color: var(--clr-white);
+    background-color: var(--clr-black);
+}
+
 .transparentBtn:hover {
     background-color: var(--clr-beige);
-    color: var(--clr-white);
+    color: var(--clr-black);
 }
 
 #homeRecommandations {
@@ -60,9 +65,39 @@
 h2 {
     font-size: var(--fs-title);
 }
+#homeServices {
+    display: flex;
+    gap: var(--flex-gap);
+    align-items: center;
+    justify-content: center;
+    background-color: var(--clr-light-blue);
+}
+
+#homeServices h3 {
+    color: var(--clr-white);
+    font-size: var(--fs-subtitle);
+}
+
+
+#homeServices > * {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+@media only screen and (max-width: 1320px) {
+    #homeServices {
+        flex-flow: column;
+    }
+
+}
 
 @media only screen and (max-width: 780px) {
     .heroImgContainer {
         display: none;
     }
+    #homeServices img {
+        width: 150px;
+    }
+
 }
