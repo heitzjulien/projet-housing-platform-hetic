@@ -1,12 +1,3 @@
-
-<?php foreach($data['images'] as $i): ?>
-    <img src="<?= $i->getImage() ?>" alt="Image de présentation">
-<?php endforeach; ?>
-
-<?php foreach($data['housing'] as $h):?>
-    <h1>Id appartement : <?= $h->getId() ?></h1>
-<?php endforeach; ?>
-
 <main>
     <section id="homeHero">
         <div class="heroTextContainer">
@@ -17,8 +8,9 @@
             </a>
         </div>
         <div class="heroImgContainer">
-            <img src="<?= $data['images'][0]->getImage()[0]->getImage() ?>" alt="Appartment interior image" width="400px" class="mainImage" />
-            <img src="<?= $data['images'][1]->getImage()[0]->getImage() ?>" alt="Appartment interior image" width="400px" class="mainImage" />
+        <?php foreach($data['images'] as $i): ?>
+            <img src="<?= $i->getImage() ?>" alt="Appartment interior image" width="400px" class="mainImage">
+        <?php endforeach; ?>
         </div>
     </section>
     <section id="homeRecommandations">
@@ -27,18 +19,9 @@
             <div class="cardContainer">
 <!--                <img src="#" alt="Appartment interior image" width="590px" class="cardImage">-->
                 <div class="imageCardFooter">
-                    <?php var_dump($data["start"]);?>
-                    <?php //foreach($data['start'] as $h => $c): ?>
-                    <!--    <p>--><?php //= $c->getName() ?><!--</p>-->
-                    <!--    <p>--><?php //= $c->getCapacity() ?><!-- personnes</p>-->
-                    <!--    <p>--><?php //= $c->getPrice() ?><!-- €</p>-->
-                    <!--    <p>--><?php //= $c->getDescription() ?><!--</p>-->
-                    <!--    <p>--><?php //= $c->getNumberPieces() ?><!-- pièces</p>-->
-                    <!--    <p>--><?php //= $c->getArea() ?><!-- m²</p>-->
-                    <!--    <img src="--><?php //= $c->getImage()[0]->getImage() ?><!--" alt="">-->
-                    <?php //endforeach; ?>
-
-
+                <?php foreach($data['housing'] as $h):?>
+                    <h1>Id appartement : <?= $h->getId() ?></h1>
+                <?php endforeach; ?>
                     <div class="leftInfos"></div>
                     <div class="dividingLine"></div>
                     <div class="rightInfos"></div>

@@ -23,8 +23,9 @@ class PublicController extends Controller {
         $housing = $HousingService->selectRandomHousing(3);
 
         $this->render("home.php", $this->styles, [
-            "images" => $images,
             "route" => $route,
+            "request" => $request,
+            "images" => $images,
             "housing" => $housing
         ]);
     }
