@@ -230,11 +230,11 @@ header {
 header a {
     text-decoration: none;
     font-size: var(--fs-subtitle);
-    color: var(--clr-black);
+    color: var(--clr-white);
     margin: 16px 0;
 }
 
-header a:first-of-type {
+header > a:first-of-type {
     margin: 0;
     position: absolute;
     right: 50%;
@@ -274,7 +274,6 @@ header #headerModal {
 
 header #headerModal a {
     text-decoration: none;
-    color: var(--clr-white);
     display: block;
 }
 
