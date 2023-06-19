@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>APARIS | <?= $data["route"]->getTitle() ?></title>
     <link rel="stylesheet" href="<?= __ROOT_URL__ ?>/styles/style.css">
+    <link rel="stylesheet" href="https://use.typekit.net/mbn8obv.css">
     <?php foreach($styles as $style): ?>
     <link rel="stylesheet" href="<?= __ROOT_URL__ ?>/styles/<?= $style ?>">
     <?php endforeach; ?>

@@ -1,15 +1,16 @@
-
 #homeHero {
     background-color: var(--clr-regular-blue);
     color: var(--clr-beige);
     font-size: var(--fs-body-big);
     display: flex;
     justify-content: space-between;
+    font-family: "arpona", serif;
 }
 
 #homeHero h1 {
     font-size: var(--fs-title);
     color: var(--clr-white);
+    font-weight: 400;
 }
 
 .heroTextContainer {
@@ -30,6 +31,7 @@
     font-size: var(--fs-body-big);
     border-radius: 4px;
     text-decoration: none;
+    font-family: "arpona", serif;
 }
 
 .transparentBtn {
@@ -67,6 +69,8 @@
 
 h2 {
     font-size: var(--fs-title);
+    font-family: "arpona", serif;
+    font-weight: 400;
 }
 #homeServices {
     display: flex;
@@ -79,6 +83,8 @@ h2 {
 #homeServices h3 {
     color: var(--clr-white);
     font-size: var(--fs-subtitle);
+    font-family: "arpona", serif;
+    font-weight: 400;
 }
 
 
