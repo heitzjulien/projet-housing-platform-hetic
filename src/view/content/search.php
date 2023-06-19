@@ -18,7 +18,7 @@
     <form method="POST" class="filterForm">
         <div class="input-row">
             <label for="date_start">Date d'arrivé :</label>
-            <input id="date_start" type="date" name="date_start" value="<?php if($data['filter']['date_start']) { echo(date("Y-m-d", $data['filter']['date_start'])); } ?>" required>
+            <input id="date_start" type="date" name="date_start" value="<?php if($data['filter']['date_start']) { echo(date("Y-m-d", $data['filter']['date_start'])); } ?>">
         </div>
 
         <div class="input-row">
