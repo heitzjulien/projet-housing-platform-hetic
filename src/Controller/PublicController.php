@@ -37,7 +37,7 @@ class PublicController extends Controller {
         $error = ['', '', '', ''];
         $filter = [
             "date_start" => time()+24*60*60,
-            "date_end" => time()+30*24*60*60,
+            "date_end" => null,
             "district" => null,
             "number_pieces" => null,
             "area" => null
