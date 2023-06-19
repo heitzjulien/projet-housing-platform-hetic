@@ -24,6 +24,7 @@ class PublicController extends Controller {
 
         $this->render("home.php", $this->styles, [
             "images" => $images,
+            "route" => $route,
             "housing" => $housing
         ]);
     }
