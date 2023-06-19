@@ -8,6 +8,7 @@
             </a>
         </div>
         <div class="heroImgContainer">
+            <?php var_dump($data['images']) ?>
             <?php foreach($data['images'] as $i => $p): ?>
                 <img src="<?= $p->getImage()[0]->getImage() ?>" alt="Appartment interior image" width="400px" class="mainImage">
                 <img src="<?= $p->getImage()[1]->getImage() ?>" alt="Appartment interior image" width="400px" class="secondaryImage">
@@ -18,9 +19,9 @@
         <h2>Nos recommandations</h2>
         <div class="recommandationsImgContainer">
             <div class="cardContainer">
-                <img src="#" alt="Appartment interior image" width="590px" class="cardImage">
+<!--                <img src="#" alt="Appartment interior image" width="590px" class="cardImage">-->
                 <div class="imageCardFooter">
-
+                    <?php var_dump($data["start"]);?>
                     <?php //foreach($data['start'] as $h => $c): ?>
                     <!--    <p>--><?php //= $c->getName() ?><!--</p>-->
                     <!--    <p>--><?php //= $c->getCapacity() ?><!-- personnes</p>-->
