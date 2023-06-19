@@ -53,7 +53,7 @@ class PublicController extends Controller {
             case 'GET':
                 $get = $HousingService->selectHousing(0);
                 foreach($get as $c) {
-                    $json[] = json_encode([
+                    $json[] = [
                         "id" => $c->getId(),
                         "name" => $c->getName(),
                         "capacity" => $c->getCapacity(),
@@ -62,13 +62,13 @@ class PublicController extends Controller {
                         "number_pieces" => $c->getNumberPieces(),
                         "area" => $c->getArea(), 
                         "images" => $c->getImage()[0]->getImage()
-                    ]);
+                    ];
                 }
                 break;
             case 'POST':
                 $post = $HousingService->selectHousingForSearch($request->getRawBody()['date_start'], $request->getRawBody()['date_end'], ($request->getRawBody()['district'] !== '') ? (int)$request->getRawBody()['district'] : null, ($request->getRawBody()['number_pieces'] !== '') ? (int)$request->getRawBody()['number_pieces'] : null, ($request->getRawBody()['capacity'] !== '') ? (int)$request->getRawBody()['capacity'] : null);
                 foreach($post as $c) {
-                    $json[] = json_encode([
+                    $json[] = [
                         "id" => $c->getId(),
                         "name" => $c->getName(),
                         "capacity" => $c->getCapacity(),
@@ -77,7 +77,7 @@ class PublicController extends Controller {
                         "number_pieces" => $c->getNumberPieces(),
                         "area" => $c->getArea(), 
                         "images" => $c->getImage()[0]->getImage()
-                    ]);
+                    ];
                 }
                 break;
         }
