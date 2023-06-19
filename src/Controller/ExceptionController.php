@@ -15,7 +15,7 @@ class ExceptionController extends Controller{
         parent::__construct($userLoggedIn);
         $this->error = $error;
 
-        http_response_code($error->getCode());
+        http_response_code(intval($error->getCode()));
 
         switch($error->getCode()){
             case "404":
