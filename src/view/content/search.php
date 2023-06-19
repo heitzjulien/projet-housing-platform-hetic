@@ -55,20 +55,23 @@
             let divDescription = document.createElement('div')
             let divName = document.createElement('div')
             let spanName = document.createElement('span')
-            let spanPlace = document.createElement('span')
+            let area = document.createElement('p')
             let pDescription = document.createElement('p')
+            let piece = document.createElement('p')
 
             a.setAttribute('href', arrayAsso[i].href)
             a.classList.add('cardLogement')
 
-            img.setAttribute('src', arrayAsso[i].src)
+            img.setAttribute('src', arrayAsso[i].images)
             img.setAttribute('alt', arrayAsso[i].alt)
 
             spanName.textContent = arrayAsso[i].name
 
-            spanPlace.textContent = arrayAsso[i].place
+            area.textContent = arrayAsso[i].area + 'm²'
 
             pDescription.textContent = arrayAsso[i].description
+
+            piece.textContent = arrayAsso[i].number_pieces + ' pièces'
 
             divDescription.classList.add('description')
             divName.classList.add('name')
@@ -78,7 +81,8 @@
             divDescription.appendChild(divName)
             divDescription.appendChild(pDescription)
             divName.appendChild(spanName)
-            divName.appendChild(spanPlace)
+            divName.appendChild(area)
+            divName.appendChild(piece)
 
             document.querySelector(".container").appendChild(a)
         }

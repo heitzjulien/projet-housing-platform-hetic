@@ -1,0 +1,100 @@
+@import url("https://use.typekit.net/olo1pvf.css");
+
+@font-face {
+    font-family: 'Satoshi-Bold';
+    src: url('../font/Satoshi-Bold.woff2') format('woff2'),
+        url('../font/Satoshi-Bold.woff') format('woff'),
+        url('../font/Satoshi-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-display: swap;
+    font-style: normal;
+}
+
+h2 {
+    font-family: "arpona", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 66px;
+}
+
+h2,
+label,
+a,
+a>span,
+input::placeholder {
+    color: #435188
+}
+
+a {
+    text-decoration: none;
+    ;
+}
+
+#firstname {
+    margin-top: 10%;
+
+}
+
+label,
+input::placeholder,
+a>span {
+
+    font-family: 'Satoshi-Bold';
+}
+
+.form,
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px
+}
+
+input {
+    width: 30vw;
+    height: 2vw;
+    border: none;
+    background-color: inherit;
+    border-bottom: #435188 1px solid;
+}
+
+form {
+    align-items: flex-start;
+}
+
+
+main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+aside {
+    width: 45vw;
+
+}
+
+.form {
+    width: 55vw;
+}
+
+.register {
+    border: none;
+    width: 15vw;
+    background-color: #435188;
+    color: #f1f1f1;
+    margin: auto;
+    margin-top: 10%;
+
+}
+
+.error {
+    background-color: #AD2D2D;
+    color: #f1f1f1;
+
+    padding: 1%;
+    display: flex;
+    flex-direction: row;
+}
