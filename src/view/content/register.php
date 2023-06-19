@@ -1,15 +1,22 @@
 <link rel="stylesheet" href="https://use.typekit.net/olo1pvf.css">
+
 <main>
+
 
     <aside>
         <img src="../public/assets/images/register.svg" alt="">
     </aside>
+
     <div class="form">
-        <?php foreach ($data["error"] as $e): ?>
-            <p class='error'>
-                <?= $e ?>
-            </p>
-        <?php endforeach; ?>
+        <div class="error">
+
+            <?php foreach ($data["error"] as $e): ?>
+                <p>
+                    <?= $e ?>
+                </p>
+
+            <?php endforeach; ?>
+        </div>
         <h2>Register </h2>
         <form method="POST">
 
