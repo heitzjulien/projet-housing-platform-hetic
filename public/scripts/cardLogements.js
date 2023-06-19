@@ -34,7 +34,7 @@ let test = [{
 
 ]
 
-function createCardLogement(arrayAsso) {
+export function createCardLogement(arrayAsso) {
     for (let i = 0; i < arrayAsso.length; i++) {
 
         let a = document.createElement('a')
@@ -70,5 +70,3 @@ function createCardLogement(arrayAsso) {
         document.querySelector(".container").appendChild(a)
     }
 }
-
-createCardLogement(test)
