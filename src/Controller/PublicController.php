@@ -46,7 +46,7 @@ class PublicController extends Controller {
 
     public function search(Request $request, Route $route): void {
         $this->updateStyles(['search.css']);
-        $json = []
+        $json = [];
         $HousingService = new HousingService();
 
         switch($request->getMethod()) {
