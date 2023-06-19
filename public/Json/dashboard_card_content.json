@@ -4,14 +4,14 @@
         "alt": "rouage",
         "title": "Paramètres",
         "description": "Ajustez l'apparence et les fonctionnalités selon vos préférences",
-        "href": "http://"
+        "href": "http://localhost/projet-housing-platform-hetic/public/dashboard/parametre"
     },
     {
         "src": "/projet-housing-platform-hetic/public/assets/icons/messagerie.svg",
         "alt": "message icone",
         "title": "Messagerie",
         "description": "Contactez le concierge ou le service client et partagez vos besoins",
-        "href": "http://"
+        "href": "http://google.com"
     },
     {
         "src": "/projet-housing-platform-hetic/public/assets/icons/reservation.svg",
