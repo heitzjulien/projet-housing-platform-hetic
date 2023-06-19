@@ -15,30 +15,30 @@
 </div> -->
 
 <div class="filter">
-    <form action="" class="filterForm">
+    <form method="POST" class="filterForm">
         <div class="input-row">
             <label for="date_start">Date d'arrivé :</label>
-            <input id="date_start" type="date" name="date_start" value="<?= date("Y-m-d", time()) ?>" required>
+            <input id="date_start" type="date" name="date_start" value="<?= date("Y-m-d", $data['filter']['date_start']) ?>" required>
         </div>
 
         <div class="input-row">
             <label for="date_end">Date de départ :</label>
-            <input id="date_end" type="date" name="date_end" required>
+            <input id="date_end" type="date" name="date_end" value="<?= date("Y-m-d", $data['filter']['date_end']) ?>" required>
         </div>
 
         <div class="input-row">
             <label for="district">Arrondissement :</label>
-            <input id="district" type="int" name="district" placeholder="16e">
+            <input id="district" type="number" name="district" value="<?= $data['filter']['district'] ?>" placeholder="16e">
         </div>
         
         <div class="input-row">
             <label for="number_pieces">Pièces :</label>
-            <input id="number_pieces" type="int" name="number_pieces" placeholder="7 pièces">
+            <input id="number_pieces" type="number" name="number_pieces" value="<?= $data['filter']['number_pieces'] ?>" placeholder="7 pièces">
         </div>
 
         <div class="input-row">
             <label for="area">Surface en m² :</label>
-            <input id="area" type="int" name="area" placeholder="100m²">
+            <input id="area" type="number" name="area" value="<?= $data['filter']['area'] ?>" placeholder="100m²">
         </div>
 
         <button type="submit">Filtrer</button>

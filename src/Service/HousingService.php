@@ -46,8 +46,42 @@ class HousingService {
         return $allHousing;
     }
 
-    public function checkDate(?string $dateStart, ?string $dateEnd): ?string{
-        
-        return "Erreur";
+    public function checkDate(?string $dateStart, ?string $dateEnd): array{
+        if(strtotime($dateStart) && strtotime($dateEnd)){
+            if (strtotime($dateStart) < time()){
+                return ["Departure date not possible", null, null];
+            } elseif (strtotime($dateEnd) < time()){
+                return ["Return date not possible", null, null];
+            }
+
+            if (strtotime($dateStart) > strtotime($dateEnd)){
+                return ['inverse', strtotime($dateEnd), strtotime($dateStart)];
+            }
+
+            return ['good', strtotime($dateStart), strtotime($dateEnd)];
+        }
+
+        return ["The dates are invalid", null, null];
+    }
+
+    public function checkDistrict(?int $district): array{
+        if($district <= 0 || $district > 20){
+            return ["The district is invalid", null];
+        }
+        return ["good district", $district];
+    }
+
+    public function checkNbPiece(?int $nbPiece): array{
+        if($nbPiece <= 0){
+            return ["The number of piece is invalid", null];
+        }
+        return ["good piece", $nbPiece];
+    }
+
+    public function checkArea(?int $area): array{
+        if($area <= 0){
+            return ["The area is invalid", null];
+        }
+        return ["good area", $area];
     }
 }

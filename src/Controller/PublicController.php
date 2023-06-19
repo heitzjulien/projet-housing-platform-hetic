@@ -35,6 +35,14 @@ class PublicController extends Controller {
         $housingService = new HousingService();
         $housing = [];
         $error = [];
+        $filter = [
+            "date_start" => time()+24*60*60,
+            "date_end" => time()+30*24*60*60,
+            "district" => null,
+            "number_pieces" => null,
+            "area" => null
+        ];
+
         foreach($housingService->selectHousing() as $h) {
             $housing_images = [];
             foreach($h->getImage() as $i){ 
@@ -55,7 +63,24 @@ class PublicController extends Controller {
 
         switch($request->getMethod()) {
             case 'POST':
-                $error[] = $housingService->checkDate($request->getRawBody()['date_start'], $request->getRawBody()['date_end']);
+                [$error[], $filter['date_start'], $filter['date_end']] = $housingService->checkDate($request->getRawBody()['date_start'], $request->getRawBody()['date_end']);
+                
+                if($request->getRawBody()['district']) { [$error[], $filter['district']] = $housingService->checkDistrict($request->getRawBody()['district']); }
+                
+                if($request->getRawBody()['number_pieces']) { [$error[], $filter['number_pieces']] = $housingService->checkNbPiece($request->getRawBody()['number_pieces']); }
+                
+                if($request->getRawBody()['area']) { [$error[], $filter['area']] = $housingService->checkArea($request->getRawBody()['area']); }
+                // $test1 = [serialize($housingService->selectHousing()[0]), serialize($housingService->selectHousing()[1]), serialize($housingService->selectHousing()[3])];
+                // $test2 = [serialize($housingService->selectHousing()[1]), serialize($housingService->selectHousing()[0]), serialize($housingService->selectHousing()[2])];
+
+                // $intersection = array_intersect($test1, $test2);
+                // $finale = [];
+                // foreach($intersection as $i){
+                //     $finale[] = unserialize($i);
+                // }
+
+                // dump($finale);
+                
                 if(!$error){
                     $housing = [];
                     $post = $housingService->selectHousingForSearch($request->getRawBody()['date_start'], $request->getRawBody()['date_end'], ($request->getRawBody()['district'] !== '') ? (int)$request->getRawBody()['district'] : null, ($request->getRawBody()['number_pieces'] !== '') ? (int)$request->getRawBody()['number_pieces'] : null, ($request->getRawBody()['capacity'] !== '') ? (int)$request->getRawBody()['capacity'] : null);
@@ -75,14 +100,15 @@ class PublicController extends Controller {
                 break;
         }
 
-        dump($housing);
-        dump(json_encode($housing));
+        // dump($housing);
+        // dump(json_encode($housing));
 
         $this->render("search.php", $this->styles, [
             "route" => $route,
             "request" => $request,
             "error" => $error,
             "housing" => $housing,
+            "filter" => $filter,
         ]);
     }
 
