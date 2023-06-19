@@ -47,18 +47,18 @@ class HousingService {
     }
 
     public function checkDate(?string $dateStart, ?string $dateEnd): array{
-        if(strtotime($dateStart) && strtotime($dateEnd)){
+        if(strtotime($dateStart) && strtotime($dateEnd) and $dateStart != $dateEnd){
             if (strtotime($dateStart) < time()){
-                return ["Departure date not possible", null, null];
+                return ["Departure date not possible", null, strtotime($dateEnd)];
             } elseif (strtotime($dateEnd) < time()){
-                return ["Return date not possible", null, null];
+                return ["Return date not possible", strtotime($dateStart), null];
             }
 
             if (strtotime($dateStart) > strtotime($dateEnd)){
-                return ['inverse', strtotime($dateEnd), strtotime($dateStart)];
+                return [null, strtotime($dateEnd), strtotime($dateStart)];
             }
 
-            return ['good', strtotime($dateStart), strtotime($dateEnd)];
+            return [null, strtotime($dateStart), strtotime($dateEnd)];
         }
 
         return ["The dates are invalid", null, null];
@@ -68,20 +68,69 @@ class HousingService {
         if($district <= 0 || $district > 20){
             return ["The district is invalid", null];
         }
-        return ["good district", $district];
+        return [null, $district];
     }
 
     public function checkNbPiece(?int $nbPiece): array{
         if($nbPiece <= 0){
             return ["The number of piece is invalid", null];
         }
-        return ["good piece", $nbPiece];
+        return [null, $nbPiece];
     }
 
     public function checkArea(?int $area): array{
         if($area <= 0){
             return ["The area is invalid", null];
         }
-        return ["good area", $area];
+        return [null, $area];
+    }
+
+    public function getHousingFilter(array $housing, string $key, mixed $value): array{
+        $filterHousing = [];
+        switch($key){
+            case "date":
+                $filterHousing = $this->housingRepository->getHousingDateFilter($value['date_start'], $value['date_end']);
+                break;
+            case "district":
+                if($value < 10){
+                    $value = '0' . $value;
+                }
+                $filterHousing = $this->housingRepository->getHousingDistrictFilter($value);
+                break;
+            case "number_pieces":
+                $filterHousing = $this->housingRepository->getHousingNbPieceFilter($value);
+                break;
+            case "area":
+                $filterHousing = $this->housingRepository->getHousingAreaFilter($value);
+                break;
+        }
+
+        foreach ($filterHousing as $h){
+            $h->setImage($this->housingRepository->selectHousingImage($h->getId()));
+        }
+        $filterHousing = $this->serializeAll($filterHousing);
+
+        $housing = $this->serializeAll($housing);
+        $housing = array_intersect($housing, $filterHousing);
+        $housing = $this->unserializeAll($housing);
+        return $housing;
+    }
+
+    private function serializeAll(array $array): array{
+        $tempArray = [];
+        foreach ($array as $a){
+            $tempArray[] = serialize($a);
+        }
+
+        return $tempArray;
+    }
+
+    private function unserializeAll(array $array): array{
+        $tempArray = [];
+        foreach ($array as $a){
+            $tempArray[] = unserialize($a);
+        }
+
+        return $tempArray;
     }
 }

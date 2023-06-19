@@ -34,7 +34,7 @@ class PublicController extends Controller {
         $this->updateStyles(['search.css']);
         $housingService = new HousingService();
         $housing = [];
-        $error = [];
+        $error = ['', '', '', ''];
         $filter = [
             "date_start" => time()+24*60*60,
             "date_end" => time()+30*24*60*60,
@@ -43,65 +43,32 @@ class PublicController extends Controller {
             "area" => null
         ];
 
-        foreach($housingService->selectHousing() as $h) {
-            $housing_images = [];
-            foreach($h->getImage() as $i){ 
-                $housing_images[] = $i->getImage();
-            }
-
-            $housing[] = [
-                "id" => $h->getId(),
-                "name" => $h->getName(),
-                "capacity" => $h->getCapacity(),
-                "price" => $h->getPrice(),
-                "description" => $h->getDescription(),
-                "number_pieces" => $h->getNumberPieces(),
-                "area" => $h->getArea(), 
-                "images" => $housing_images[0]
-            ];
-        }
+        $housing = $housingService->selectHousing();
 
         switch($request->getMethod()) {
             case 'POST':
-                [$error[], $filter['date_start'], $filter['date_end']] = $housingService->checkDate($request->getRawBody()['date_start'], $request->getRawBody()['date_end']);
-                
-                if($request->getRawBody()['district']) { [$error[], $filter['district']] = $housingService->checkDistrict($request->getRawBody()['district']); }
-                
-                if($request->getRawBody()['number_pieces']) { [$error[], $filter['number_pieces']] = $housingService->checkNbPiece($request->getRawBody()['number_pieces']); }
-                
-                if($request->getRawBody()['area']) { [$error[], $filter['area']] = $housingService->checkArea($request->getRawBody()['area']); }
-                // $test1 = [serialize($housingService->selectHousing()[0]), serialize($housingService->selectHousing()[1]), serialize($housingService->selectHousing()[3])];
-                // $test2 = [serialize($housingService->selectHousing()[1]), serialize($housingService->selectHousing()[0]), serialize($housingService->selectHousing()[2])];
-
-                // $intersection = array_intersect($test1, $test2);
-                // $finale = [];
-                // foreach($intersection as $i){
-                //     $finale[] = unserialize($i);
-                // }
-
-                // dump($finale);
-                
-                if(!$error){
-                    $housing = [];
-                    $post = $housingService->selectHousingForSearch($request->getRawBody()['date_start'], $request->getRawBody()['date_end'], ($request->getRawBody()['district'] !== '') ? (int)$request->getRawBody()['district'] : null, ($request->getRawBody()['number_pieces'] !== '') ? (int)$request->getRawBody()['number_pieces'] : null, ($request->getRawBody()['capacity'] !== '') ? (int)$request->getRawBody()['capacity'] : null);
-                    foreach($post as $c) {
-                        $housing[] = [
-                            "id" => $c->getId(),
-                            "name" => $c->getName(),
-                            "capacity" => $c->getCapacity(),
-                            "price" => $c->getPrice(),
-                            "description" => $c->getDescription(),
-                            "number_pieces" => $c->getNumberPieces(),
-                            "area" => $c->getArea(), 
-                            "images" => $c->getImage()[0]->getImage()
-                        ];
-                    }
+                [$error[0], $filter['date_start'], $filter['date_end']] = $housingService->checkDate($request->getRawBody()['date_start'], $request->getRawBody()['date_end']);
+                if(!$error[0]){
+                    $housing = $housingService->getHousingFilter($housing, 'date', ['date_start' => $filter['date_start'], 'date_end' => $filter['date_end']]);
                 }
-                break;
+                
+                if($request->getRawBody()['district']) { [$error[1], $filter['district']] = $housingService->checkDistrict($request->getRawBody()['district']); }
+                if(!$error[1] && $request->getRawBody()['district'] != false){
+                    $housing = $housingService->getHousingFilter($housing, 'district', $filter['district']);
+                }
+                
+                if($request->getRawBody()['number_pieces']) { [$error[2], $filter['number_pieces']] = $housingService->checkNbPiece($request->getRawBody()['number_pieces']); }
+                if(!$error[2] && $request->getRawBody()['number_pieces'] != false){
+                    $housing = $housingService->getHousingFilter($housing, 'number_pieces', $filter['number_pieces']);
+                }
+                
+                if($request->getRawBody()['area']) { [$error[3], $filter['area']] = $housingService->checkArea($request->getRawBody()['area']); }
+                if(!$error[3] && $request->getRawBody()['area'] != false){
+                    $housing = $housingService->getHousingFilter($housing, 'area', $filter['area']);
+                }
         }
 
-        // dump($housing);
-        // dump(json_encode($housing));
+        $housing = $this->prepareHousing($housing);
 
         $this->render("search.php", $this->styles, [
             "route" => $route,
@@ -124,5 +91,29 @@ class PublicController extends Controller {
             "route" => $route,
             "request" => $request
         ]);
+    }
+
+    private function prepareHousing(array $housingArray): array{
+        $housing = [];
+
+        foreach($housingArray as $h) {
+            $housing_images = [];
+            foreach($h->getImage() as $i){ 
+                $housing_images[] = $i->getImage();
+            }
+
+            $housing[] = [
+                "id" => $h->getId(),
+                "name" => $h->getName(),
+                "capacity" => $h->getCapacity(),
+                "price" => $h->getPrice(),
+                "description" => $h->getDescription(),
+                "number_pieces" => $h->getNumberPieces(),
+                "area" => $h->getArea(), 
+                "images" => $housing_images[0]
+            ];
+        }
+
+        return $housing;
     }
 }

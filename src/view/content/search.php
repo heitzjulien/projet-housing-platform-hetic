@@ -18,12 +18,12 @@
     <form method="POST" class="filterForm">
         <div class="input-row">
             <label for="date_start">Date d'arrivé :</label>
-            <input id="date_start" type="date" name="date_start" value="<?= date("Y-m-d", $data['filter']['date_start']) ?>" required>
+            <input id="date_start" type="date" name="date_start" value="<?php if($data['filter']['date_start']) { echo(date("Y-m-d", $data['filter']['date_start'])); } ?>" required>
         </div>
 
         <div class="input-row">
             <label for="date_end">Date de départ :</label>
-            <input id="date_end" type="date" name="date_end" value="<?= date("Y-m-d", $data['filter']['date_end']) ?>" required>
+            <input id="date_end" type="date" name="date_end" value="<?php if($data['filter']['date_end']) { echo(date("Y-m-d", $data['filter']['date_end'])); } ?>">
         </div>
 
         <div class="input-row">
