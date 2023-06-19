@@ -64,12 +64,6 @@ class PublicController extends Controller {
                         "images" => $c->getImage()[0]->getImage()
                     ]);
                 }
-                $this->render("search.php", $this->styles, [
-                    "get" => $get,
-                    "json_get" => $json,
-                    "route" => $route,
-                    "request" => $request
-                ]);
                 break;
             case 'POST':
                 $post = $HousingService->selectHousingForSearch($request->getRawBody()['date_start'], $request->getRawBody()['date_end'], ($request->getRawBody()['district'] !== '') ? (int)$request->getRawBody()['district'] : null, ($request->getRawBody()['number_pieces'] !== '') ? (int)$request->getRawBody()['number_pieces'] : null, ($request->getRawBody()['capacity'] !== '') ? (int)$request->getRawBody()['capacity'] : null);
@@ -86,14 +80,14 @@ class PublicController extends Controller {
                         "images" => $c->getImage()[0]->getImage()
                     ]);
                 }
-                $this->render("search.php", $this->styles, [
-                    "post" => $post,
-                    "json_post" => $json,
-                    "route" => $route,
-                    "request" => $request
-                ]);
                 break;
         }
+        dump($json);
+        $this->render("search.php", $this->styles, [
+            "json" => $json,
+            "route" => $route,
+            "request" => $request
+        ]);
     }
 
     public function productPage(Request $request, Route $route): void {
