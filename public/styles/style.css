@@ -223,9 +223,7 @@ footer {
 header {
     display: flex;
     padding: var(--p-section);
-    padding-top: 16px;
-    padding-bottom: 16px;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
 }
 
@@ -238,6 +236,8 @@ header a {
 
 header a:first-of-type {
     margin: 0;
+    position: absolute;
+    right: 50%;
 }
 
 header span {
