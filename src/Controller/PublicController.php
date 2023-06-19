@@ -79,17 +79,20 @@ class PublicController extends Controller {
         ]);
     }
 
-    public function productPage(Request $request, Route $route): void {
+    public function apartment(Request $request, Route $route): void {
         $this->updateStyles(['productPage.css']);
-        $HousingService = new HousingService();
+        $error = [];
 
-        // /!\ SELECTHOUSING
-        $content = $HousingService->selectHousingHome();
-        
-        $this->render("productPage.php", $this->styles, [
-            "start" => $content,
+        $housingService = new HousingService();
+
+        [$error[], $housing] = $housingService->getHousingById($request->getQueryParams()['housing_id']);
+
+        $error = array_filter($error, function ($value) { return $value; });
+        $this->render("apartment.php", $this->styles, [
             "route" => $route,
-            "request" => $request
+            "request" => $request,
+            "error" => $error,
+            "housing" => $housing
         ]);
     }
 

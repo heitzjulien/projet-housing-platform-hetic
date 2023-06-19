@@ -116,6 +116,20 @@ class HousingService {
         return $housing;
     }
 
+    public function getHousingById(?string $id): ?array{
+        $id = intval($id);
+        if(!$id || $id <= 0){
+            return ["Invalid apartment id", null];
+        }
+        
+        $housing = $this->housingRepository->getHousingById($id);
+        if($housing){
+            $housing->setImage($this->housingRepository->selectHousingImage($id));
+            return [null, $housing];
+        }
+        return ["Apartment not found", $housing];
+    }
+
     private function serializeAll(array $array): array{
         $tempArray = [];
         foreach ($array as $a){

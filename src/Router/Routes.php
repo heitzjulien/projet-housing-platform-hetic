@@ -89,6 +89,16 @@ class Routes {
             (new Route("productpage", PublicController::class, "productPage"))
             ->setTitle("Product Page")
         );
+
+        $this->addRoute(
+            (new Route("apartment", PublicController::class, "apartment"))
+            ->setTitle("Apartment")
+        );
+
+        $this->addRoute(
+            (new Route("apartment", PublicController::class, "apartment"))
+            ->setMethod("POST")->setTitle("Apartment")
+        );
     }
 
     public function addRoute(Route $route): void{

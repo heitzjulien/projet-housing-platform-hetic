@@ -38,9 +38,6 @@ class HousingModel {
         private ?array $car_park = null,
         private ?int $area = null,
         private ?array $image = null,
-        private ?string $unavailability_start = null,
-        private ?string $unavailability_end = null,
-        private ?string $unavailability_status = null,
         private ?string $country = null,
         private ?string $city = null,
         private ?string $zip = null,
@@ -61,9 +58,6 @@ class HousingModel {
         $this->car_park = $car_park;
         $this->area = $area;
         $this->image = $image;
-        $this->unavailability_start = $unavailability_start;
-        $this->unavailability_end = $unavailability_end;
-        $this->unavailability_status = $unavailability_status;
         $this->country = $country;
         $this->city = $city;
         $this->zip = $zip;
@@ -142,21 +136,6 @@ class HousingModel {
 
     public function setImage(array $image): self{
         $this->image = $image;
-        return $this;
-    }
-
-    public function setUnavailabilityStart(string $unavailability_start): self{
-        $this->unavailability_start = $unavailability_start;
-        return $this;
-    }
-
-    public function setUnavailabilityEnd(string $unavailability_end): self{
-        $this->unavailability_end = $unavailability_end;
-        return $this;
-    }
-
-    public function setUnavailabilityStatus(string $unavailability_status): self{
-        $this->unavailability_status = $unavailability_status;
         return $this;
     }
 
@@ -241,18 +220,6 @@ class HousingModel {
         return $this->image;
     }
 
-    public function getUnavailabilityStart(): ?string{
-        return $this->unavailability_start;
-    }
-
-    public function getUnavailabilityEnd(): ?string{
-        return $this->unavailability_end;
-    }
-
-    public function getUnavailabilityStatus(): ?string{
-        return $this->unavailability_status;
-    }
-
     public function getCountry(): ?string{
         return $this->country;
     }
@@ -267,5 +234,9 @@ class HousingModel {
 
     public function getDistrict(): ?string{
         return $this->district;
+    }
+
+    public function getAddress(): ?string{
+        return $this->address;
     }
 }
