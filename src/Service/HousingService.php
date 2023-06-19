@@ -45,4 +45,9 @@ class HousingService {
 
         return $allHousing;
     }
+
+    public function checkDate(?string $dateStart, ?string $dateEnd): ?string{
+        
+        return "Erreur";
+    }
 }

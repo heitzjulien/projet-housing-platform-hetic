@@ -52,12 +52,10 @@ class PublicController extends Controller {
                 "images" => $housing_images[0]
             ];
         }
-        dump($housing);
-        dump(json_encode($housing));
 
         switch($request->getMethod()) {
             case 'POST':
-                $error[] = "Il y a une erreur";
+                $error[] = $housingService->checkDate($request->getRawBody()['date_start'], $request->getRawBody()['date_end']);
                 if(!$error){
                     $housing = [];
                     $post = $housingService->selectHousingForSearch($request->getRawBody()['date_start'], $request->getRawBody()['date_end'], ($request->getRawBody()['district'] !== '') ? (int)$request->getRawBody()['district'] : null, ($request->getRawBody()['number_pieces'] !== '') ? (int)$request->getRawBody()['number_pieces'] : null, ($request->getRawBody()['capacity'] !== '') ? (int)$request->getRawBody()['capacity'] : null);
@@ -76,6 +74,9 @@ class PublicController extends Controller {
                 }
                 break;
         }
+
+        dump($housing);
+        dump(json_encode($housing));
 
         $this->render("search.php", $this->styles, [
             "route" => $route,

@@ -1,41 +1,44 @@
 <?php foreach ($data["error"] as $e): ?>
-            <p class='error'>
-                <?= $e ?>
-            </p>
-        <?php endforeach; ?>
+    <p class='error'>
+        <?= $e ?>
+    </p>
+<?php endforeach; ?>
 <h2>Search</h2>
-<form method="post">
-    <input type="date" name="date_start" id="date_start">
-    <input type="date" name="date_end" id="date_end">
-    <input type="string" name="district" id="district" placeholder="district">
-    <input type="int" name="number_pieces" id="number_pieces" placeholder="nbr piece">
-    <input type="int" name="capacity" id="capacity" placeholder="capacity">
-    <input type="submit" value="submit">
-</form>
 
-<div class="searchBar">
-    <form action="" class="searchBarForm">
+<!-- <div class="searchBar">
+     <form action="" class="searchBarForm">
         <input type="text" placeholder="Arrondissement">
         <input type="text" placeholder="Arrivé">
         <input type="text" placeholder="Départ">
         <button type="submit">Chercher</button>
-    </form>
-</div>
+    </form> 
+</div> -->
+
 <div class="filter">
     <form action="" class="filterForm">
         <div class="input-row">
-            <label for="pièces">Pièces :</label>
-            <input type="text" name="pièces" placeholder="">
+            <label for="date_start">Date d'arrivé :</label>
+            <input id="date_start" type="date" name="date_start" value="<?= date("Y-m-d", time()) ?>" required>
         </div>
 
         <div class="input-row">
-            <label for="surface">Surface en m² :</label>
-            <input type="text" name="surface" placeholder="">
+            <label for="date_end">Date de départ :</label>
+            <input id="date_end" type="date" name="date_end" required>
         </div>
 
         <div class="input-row">
-            <label for="Arrondissement">Arrondissement :</label>
-            <input type="text" name="Arrondissement" placeholder="">
+            <label for="district">Arrondissement :</label>
+            <input id="district" type="int" name="district" placeholder="16e">
+        </div>
+        
+        <div class="input-row">
+            <label for="number_pieces">Pièces :</label>
+            <input id="number_pieces" type="int" name="number_pieces" placeholder="7 pièces">
+        </div>
+
+        <div class="input-row">
+            <label for="area">Surface en m² :</label>
+            <input id="area" type="int" name="area" placeholder="100m²">
         </div>
 
         <button type="submit">Filtrer</button>
