@@ -83,8 +83,8 @@
             document.querySelector(".container").appendChild(a)
         }
     }
-    let json = <?php $data['json'] ?>
-    <?php dump($data['json']) ?>
-    console.log(json)
-    // createCardLogement(json)
+
+    let json = <?php echo json_encode($data['json']); ?>;
+    console.log(json);
+    createCardLogement(json)
 </script>
