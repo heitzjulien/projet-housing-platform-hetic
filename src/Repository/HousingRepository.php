@@ -128,7 +128,7 @@ class HousingRepository extends Repository{
     }
 
     public function selectRandomHousing(int $nb): array{
-        $stmt = $this->db->pdo->prepare("SELECT id, name, capacity, price, description, note, instruction, number_pieces, number_rooms, number_bathroom, exterior, car_park, area FROM housing ORDER BY RAND() LIMIT :limit");
+        $stmt = $this->db->pdo->prepare("SELECT h.id, h.name, h.capacity, h.price, h.description, h.note, h.instruction, h.number_pieces, h.number_rooms, h.number_bathroom, h.exterior, h.car_park, h.area, hl.country, hl.city, hl.zip, hl.district, hl.address FROM housing h JOIN housing_location hl ON h.id = hl.housing_id ORDER BY RAND() LIMIT :limit");
         $stmt->bindParam(':limit', $nb, PDO::PARAM_INT);
         $stmt->execute();
 
