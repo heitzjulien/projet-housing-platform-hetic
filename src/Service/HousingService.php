@@ -23,8 +23,17 @@ class HousingService {
         return $this->housingRepository->selectHousingForSearch($unavailability_start, $unavailability_end, $district, $nbr_rooms, $capacity);
     }
 
-    public function getRandomImg(int $nb): array {
-        $img = $this->housingRepository->getRandomImg($nb);
+    public function getRandomImg(int $housingId, int $nbImg): array {
+        $img = $this->housingRepository->getRandomImg($housingId, $nbImg);
         return $img;
+    }
+
+    public function selectRandomHousing(int $nbImg): array {
+        $housing = $this->housingRepository->selectRandomHousing($nbImg);
+        foreach ($housing as $h){
+            $h->setImage($this->housingRepository->selectHousingImage($h->getId()));
+        }
+
+        return $housing;
     }
 }

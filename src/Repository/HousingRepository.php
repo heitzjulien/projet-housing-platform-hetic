@@ -111,18 +111,64 @@ class HousingRepository extends Repository{
         return $housing_array;
     }
 
-    public function getRandomImg(int $nb): array{
-        $stmt = $this->db->pdo->prepare("SELECT image FROM housing_images ORDER BY RAND() LIMIT :limit");
+    public function getRandomImg(int $id, int $nb): array{
+        $stmt = $this->db->pdo->prepare("SELECT housing_id, image FROM housing_images WHERE housing_id = :id ORDER BY RAND() LIMIT :limit");
         $stmt->bindParam(':limit', $nb, PDO::PARAM_INT);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
 
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $arrayImg = [];
 
         foreach($results as $r){
-            $arrayImg[] = new HousingImageModel(null, $r['image']);
+            $arrayImg[] = new HousingImageModel($r['housing_id'], $r['image']);
         }
 
         return $arrayImg;
+    }
+
+    public function selectRandomHousing(int $nb): array{
+        $stmt = $this->db->pdo->prepare("SELECT id, name, capacity, price, description, note, instruction, number_pieces, number_rooms, number_bathroom, exterior, car_park, area FROM housing ORDER BY RAND() LIMIT :limit");
+        $stmt->bindParam(':limit', $nb, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $arrayHousing = [];
+
+        foreach ($results as $r){
+            $arrayHousing[] = (new HousingModel())
+            ->setId($r['id'])
+            ->setName($r['name'])
+            ->setCapacity($r['capacity'])
+            ->setPrice($r['price'])
+            ->setDescription($r['description'])
+            ->setNote($r['note'])
+            ->setInstruction($r['instruction'])
+            ->setNumberPieces($r['number_pieces'])
+            ->setNumberRooms($r['number_rooms'])
+            ->setNumberBathroom($r['number_bathroom'])
+            ->setExterior($r['exterior'])
+            ->setCarPark($r['car_park'])
+            ->setArea($r['area']);
+        }
+
+        return $arrayHousing;
+    }
+
+    public function selectHousingImage(int $id): array{
+        $stmt = $this->db->pdo->prepare("SELECT housing_id, image FROM housing_images WHERE housing_id = :id");
+        $stmt->execute([
+            ":id" => $id,
+        ]);
+
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $images = [];
+        foreach ($results as $r){
+            $images[] = (new HousingImageModel())
+            ->setHousingId($r['housing_id'])
+            ->setImage($r['image']);
+        }
+
+        return $images;
     }
 }

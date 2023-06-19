@@ -1,3 +1,12 @@
+
+<?php foreach($data['images'] as $i): ?>
+    <img src="<?= $i->getImage() ?>" alt="Image de présentation">
+<?php endforeach; ?>
+
+<?php foreach($data['housing'] as $h):?>
+    <h1>Id appartement : <?= $h->getId() ?></h1>
+<?php endforeach; ?>
+
 <main>
     <section id="homeHero">
         <div class="heroTextContainer">

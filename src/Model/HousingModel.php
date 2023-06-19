@@ -181,35 +181,35 @@ class HousingModel {
         return $this;
     }
 
-    public function getId(): int{
+    public function getId(): ?int{
         return $this->id;
     }
 
-    public function getName(): string{
+    public function getName(): ?string{
         return $this->name;
     }
 
-    public function getCapacity(): int{
+    public function getCapacity(): ?int{
         return $this->capacity;
     }
 
-    public function getPrice(): int{
+    public function getPrice(): ?int{
         return $this->price;
     }
 
-    public function getDescription(): string{
+    public function getDescription(): ?string{
         return $this->description;
     }
 
-    public function getNote(): string{
+    public function getNote(): ?string{
         return $this->note;
     }
 
-    public function getInstruction(): string{
+    public function getInstruction(): ?string{
         return $this->instruction;
     }
 
-    public function getNumberPieces(): int{
+    public function getNumberPieces(): ?int{
         return $this->number_pieces;
     }
 
@@ -221,47 +221,47 @@ class HousingModel {
         return $this->number_bathroom;
     }
 
-    public function getExterior(): string{
+    public function getExterior(): ?string{
         return $this->exterior;
     }
 
-    public function getCarPark(): string{
+    public function getCarPark(): ?string{
         return $this->car_park;
     }
 
-    public function getArea(): int{
+    public function getArea(): ?int{
         return $this->area;
     }
 
-    public function getImage(): array{
+    public function getImage(): ?array{
         return $this->image;
     }
 
-    public function getUnavailabilityStart(): string{
+    public function getUnavailabilityStart(): ?string{
         return $this->unavailability_start;
     }
 
-    public function getUnavailabilityEnd(): string{
+    public function getUnavailabilityEnd(): ?string{
         return $this->unavailability_end;
     }
 
-    public function getUnavailabilityStatus(): string{
+    public function getUnavailabilityStatus(): ?string{
         return $this->unavailability_status;
     }
 
-    public function getCountry(): string{
+    public function getCountry(): ?string{
         return $this->country;
     }
 
-    public function getCity(): string{
+    public function getCity(): ?string{
         return $this->city;
     }
 
-    public function getZip(): string{
+    public function getZip(): ?string{
         return $this->zip;
     }
 
-    public function getDistrict(): string{
+    public function getDistrict(): ?string{
         return $this->district;
     }
 }

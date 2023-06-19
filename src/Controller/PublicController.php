@@ -19,30 +19,12 @@ class PublicController extends Controller {
         $this->updateStyles(['home.css']);
         $HousingService = new HousingService();
 
-        $images = $HousingService->getRandomImg(3);
-        dump($images);
-        $content = $HousingService->selectHousing(1);
-        // $images = $HousingService->selectImageById(1);
-        $json = [];
-        foreach($content as $c) {
-            $json[] = json_encode([ 
-                "id" => $c->getId(),
-                "name" => $c->getName(),
-                "capacity" => $c->getCapacity(),
-                "price" => $c->getPrice(),
-                "description" => $c->getDescription(),
-                "number_pieces" => $c->getNumberPieces(),
-                "area" => $c->getArea(),
-                "images" => $c->getImage()[0]->getImage(),
-                "test" => $c->getName() . " " . $c->getNumberPieces() . "pièces " . $c->getArea() . "m²"
-            ]);
-        }
+        $images = $HousingService->getRandomImg(1, 3);
+        $housing = $HousingService->selectRandomHousing(3);
+
         $this->render("home.php", $this->styles, [
             "images" => $images,
-            "start" => $content,
-            "json" => $json,
-            "route" => $route,
-            "request" => $request
+            "housing" => $housing
         ]);
     }
 
