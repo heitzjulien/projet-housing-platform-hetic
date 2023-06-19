@@ -63,7 +63,7 @@ class AuthService{
 
     public function verifyPassword(?string $mail, ?string $password): ?string{
         if(!$mail || !$password){
-            return null;
+            return "The password is incorrect";
         }
 
         $hashedPassword = ((new UserRepository())->getUserByMail($mail))->getPassword();

@@ -110,7 +110,6 @@ class PrivateController extends Controller{
         }
         
         $this->render("settings.php", $this->styles, [
-            // "start" => $content,
             "route" => $route,
             "request" => $request,
             "error" => $error,
