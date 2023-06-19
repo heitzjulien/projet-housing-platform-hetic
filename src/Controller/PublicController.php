@@ -46,12 +46,12 @@ class PublicController extends Controller {
 
     public function search(Request $request, Route $route): void {
         $this->updateStyles(['search.css']);
+        $json = []
         $HousingService = new HousingService();
 
         switch($request->getMethod()) {
             case 'GET':
                 $get = $HousingService->selectHousing(0);
-                $json = [];
                 foreach($get as $c) {
                     $json[] = json_encode([
                         "id" => $c->getId(),
@@ -67,7 +67,6 @@ class PublicController extends Controller {
                 break;
             case 'POST':
                 $post = $HousingService->selectHousingForSearch($request->getRawBody()['date_start'], $request->getRawBody()['date_end'], ($request->getRawBody()['district'] !== '') ? (int)$request->getRawBody()['district'] : null, ($request->getRawBody()['number_pieces'] !== '') ? (int)$request->getRawBody()['number_pieces'] : null, ($request->getRawBody()['capacity'] !== '') ? (int)$request->getRawBody()['capacity'] : null);
-                $json = [];
                 foreach($post as $c) {
                     $json[] = json_encode([
                         "id" => $c->getId(),
