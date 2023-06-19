@@ -32,38 +32,47 @@ class PublicController extends Controller {
 
     public function search(Request $request, Route $route): void {
         $this->updateStyles(['search.css']);
-        $json = [];
-        $HousingService = new HousingService();
+        $housingService = new HousingService();
+        $housing = [];
+        $error = [];
+        foreach($housingService->selectHousing() as $h) {
+            $housing_images = [];
+            foreach($h->getImage() as $i){ 
+                $housing_images[] = $i->getImage();
+            }
+
+            $housing[] = [
+                "id" => $h->getId(),
+                "name" => $h->getName(),
+                "capacity" => $h->getCapacity(),
+                "price" => $h->getPrice(),
+                "description" => $h->getDescription(),
+                "number_pieces" => $h->getNumberPieces(),
+                "area" => $h->getArea(), 
+                "images" => $housing_images[0]
+            ];
+        }
+        dump($housing);
+        dump(json_encode($housing));
 
         switch($request->getMethod()) {
-            case 'GET':
-                $get = $HousingService->selectHousing(0);
-                foreach($get as $c) {
-                    $json[] = [
-                        "id" => $c->getId(),
-                        "name" => $c->getName(),
-                        "capacity" => $c->getCapacity(),
-                        "price" => $c->getPrice(),
-                        "description" => $c->getDescription(),
-                        "number_pieces" => $c->getNumberPieces(),
-                        "area" => $c->getArea(), 
-                        "images" => $c->getImage()[0]->getImage()
-                    ];
-                }
-                break;
             case 'POST':
-                $post = $HousingService->selectHousingForSearch($request->getRawBody()['date_start'], $request->getRawBody()['date_end'], ($request->getRawBody()['district'] !== '') ? (int)$request->getRawBody()['district'] : null, ($request->getRawBody()['number_pieces'] !== '') ? (int)$request->getRawBody()['number_pieces'] : null, ($request->getRawBody()['capacity'] !== '') ? (int)$request->getRawBody()['capacity'] : null);
-                foreach($post as $c) {
-                    $json[] = [
-                        "id" => $c->getId(),
-                        "name" => $c->getName(),
-                        "capacity" => $c->getCapacity(),
-                        "price" => $c->getPrice(),
-                        "description" => $c->getDescription(),
-                        "number_pieces" => $c->getNumberPieces(),
-                        "area" => $c->getArea(), 
-                        "images" => $c->getImage()[0]->getImage()
-                    ];
+                $error[] = "Il y a une erreur";
+                if(!$error){
+                    $housing = [];
+                    $post = $housingService->selectHousingForSearch($request->getRawBody()['date_start'], $request->getRawBody()['date_end'], ($request->getRawBody()['district'] !== '') ? (int)$request->getRawBody()['district'] : null, ($request->getRawBody()['number_pieces'] !== '') ? (int)$request->getRawBody()['number_pieces'] : null, ($request->getRawBody()['capacity'] !== '') ? (int)$request->getRawBody()['capacity'] : null);
+                    foreach($post as $c) {
+                        $housing[] = [
+                            "id" => $c->getId(),
+                            "name" => $c->getName(),
+                            "capacity" => $c->getCapacity(),
+                            "price" => $c->getPrice(),
+                            "description" => $c->getDescription(),
+                            "number_pieces" => $c->getNumberPieces(),
+                            "area" => $c->getArea(), 
+                            "images" => $c->getImage()[0]->getImage()
+                        ];
+                    }
                 }
                 break;
         }
@@ -71,7 +80,8 @@ class PublicController extends Controller {
         $this->render("search.php", $this->styles, [
             "route" => $route,
             "request" => $request,
-            "json" => $json,
+            "error" => $error,
+            "housing" => $housing,
         ]);
     }
 
@@ -79,6 +89,7 @@ class PublicController extends Controller {
         $this->updateStyles(['productPage.css']);
         $HousingService = new HousingService();
 
+        // /!\ SELECTHOUSING
         $content = $HousingService->selectHousingHome();
         
         $this->render("productPage.php", $this->styles, [

@@ -22,30 +22,30 @@ class HousingRepository extends Repository{
         return $housings;
     }
 
-    public function selectHousing($id): array {
-        $stmt = $this->db->pdo->prepare("SELECT housing.id, housing.name, housing.capacity, housing.price, housing.description, housing.number_pieces, housing.area,  housing_id, GROUP_CONCAT(housing_images.image) AS images
-        FROM housing
-        INNER JOIN housing_images ON housing.id = housing_images.housing_id
-        WHERE housing.id != :id AND housing_images.housing_id != :id
-        GROUP BY housing.id
-        ORDER BY RAND()
-        LIMIT 5;");
-        $stmt->execute([
-            "id" => $id
-        ]);
-        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $housing_array = [];
-        foreach($results as $r){ 
-            $house = (new HousingModel())->setId($r['id'])->setName($r['name'])->setCapacity($r['capacity'])->setPrice($r['price'])->setDescription($r['description'])->setNumberPieces($r['number_pieces'])->setArea($r['area']);
-            $houseImg = [];
-            foreach(explode(',', $r['images']) as $i) {
-                $houseImg[] = new HousingImageModel($r['housing_id'], $i);
-            }
-            $house->setImage($houseImg);
-            $housing_array[] = $house;
-        }
-        return $housing_array;
-    }
+    // public function selectHousing($id): array {
+    //     $stmt = $this->db->pdo->prepare("SELECT housing.id, housing.name, housing.capacity, housing.price, housing.description, housing.number_pieces, housing.area,  housing_id, GROUP_CONCAT(housing_images.image) AS images
+    //     FROM housing
+    //     INNER JOIN housing_images ON housing.id = housing_images.housing_id
+    //     WHERE housing.id != :id AND housing_images.housing_id != :id
+    //     GROUP BY housing.id
+    //     ORDER BY RAND()
+    //     LIMIT 5;");
+    //     $stmt->execute([
+    //         "id" => $id
+    //     ]);
+    //     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    //     $housing_array = [];
+    //     foreach($results as $r){ 
+    //         $house = (new HousingModel())->setId($r['id'])->setName($r['name'])->setCapacity($r['capacity'])->setPrice($r['price'])->setDescription($r['description'])->setNumberPieces($r['number_pieces'])->setArea($r['area']);
+    //         $houseImg = [];
+    //         foreach(explode(',', $r['images']) as $i) {
+    //             $houseImg[] = new HousingImageModel($r['housing_id'], $i);
+    //         }
+    //         $house->setImage($houseImg);
+    //         $housing_array[] = $house;
+    //     }
+    //     return $housing_array;
+    // }
 
     public function selectImageById($housing_id): array {
         $stmt = $this->db->pdo->prepare("SELECT image, housing_id FROM housing_images WHERE housing_id = :housing_id;");
@@ -170,5 +170,32 @@ class HousingRepository extends Repository{
         }
 
         return $images;
+    }
+
+    public function selectHousing(){
+        $stmt = $this->db->pdo->prepare("SELECT id, name, capacity, price, description, note, instruction, number_pieces, number_rooms, number_bathroom, exterior, car_park, area FROM housing");
+        $stmt->execute();
+
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $arrayHousing = [];
+
+        foreach ($results as $r){
+            $arrayHousing[] = (new HousingModel())
+            ->setId($r['id'])
+            ->setName($r['name'])
+            ->setCapacity($r['capacity'])
+            ->setPrice($r['price'])
+            ->setDescription($r['description'])
+            ->setNote($r['note'])
+            ->setInstruction($r['instruction'])
+            ->setNumberPieces($r['number_pieces'])
+            ->setNumberRooms($r['number_rooms'])
+            ->setNumberBathroom($r['number_bathroom'])
+            ->setExterior($r['exterior'])
+            ->setCarPark($r['car_park'])
+            ->setArea($r['area']);
+        }
+
+        return $arrayHousing;
     }
 }

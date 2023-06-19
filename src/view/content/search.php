@@ -1,5 +1,9 @@
+<?php foreach ($data["error"] as $e): ?>
+            <p class='error'>
+                <?= $e ?>
+            </p>
+        <?php endforeach; ?>
 <h2>Search</h2>
-
 <form method="post">
     <input type="date" name="date_start" id="date_start">
     <input type="date" name="date_end" id="date_end">
@@ -43,9 +47,7 @@
 
 <div class="container">
 </div>
-<!-- <script src="<= __ROOT_URL__ ?>/scripts/cardLogements.js" type="module">
 
-</script> -->
 <script>
     function createCardLogement(arrayAsso) {
         for (let i = 0; i < arrayAsso.length; i++) {
@@ -88,7 +90,6 @@
         }
     }
 
-    let json = <?php echo json_encode($data['json']); ?>;
-    console.log(json);
+    let json = <?php echo json_encode($data['housing']); ?>;
     createCardLogement(json)
 </script>

@@ -11,9 +11,9 @@ class HousingService {
         $this->housingRepository = new HousingRepository();
     }
 
-    public function selectHousing($id) {
-        return $this->housingRepository->selectHousing($id);
-    }
+    // public function selectHousing($id) {
+    //     return $this->housingRepository->selectHousing($id);
+    // }
 
     public function selectImageById($housing_id) {
         return $this->housingRepository->selectImageById($housing_id);
@@ -35,5 +35,14 @@ class HousingService {
         }
 
         return $housing;
+    }
+
+    public function selectHousing(): array {
+        $allHousing = $this->housingRepository->selectHousing();
+        foreach ($allHousing as $h){
+            $h->setImage($this->housingRepository->selectHousingImage($h->getId()));
+        }
+
+        return $allHousing;
     }
 }
