@@ -8,11 +8,8 @@
             </a>
         </div>
         <div class="heroImgContainer">
-            <?php var_dump($data['images']) ?>
-            <?php foreach($data['images'] as $i => $p): ?>
-                <img src="<?= $p->getImage()[0]->getImage() ?>" alt="Appartment interior image" width="400px" class="mainImage">
-                <img src="<?= $p->getImage()[1]->getImage() ?>" alt="Appartment interior image" width="400px" class="secondaryImage">
-            <?php endforeach; ?>
+            <img src="<?= $data['images'][0]->getImage()[0]->getImage() ?>" alt="Appartment interior image" width="400px" class="mainImage" />
+            <img src="<?= $data['images'][1]->getImage()[0]->getImage() ?>" alt="Appartment interior image" width="400px" class="mainImage" />
         </div>
     </section>
     <section id="homeRecommandations">
