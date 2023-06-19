@@ -41,17 +41,20 @@
 .fullBtn {
     color: var(--clr-black);
     background-color: var(--clr-beige);
-    border: none;
+    border: 2px var(--clr-beige) solid;
+
 }
 
 .fullBtn:hover {
-    color: var(--clr-white);
-    background-color: var(--clr-black);
+    color: var(--clr-black);
+    background-color: var(--clr-white);
 }
 
 .transparentBtn:hover {
-    background-color: var(--clr-beige);
-    color: var(--clr-black);
+    background-color: var(--clr-black);
+    color: var(--clr-white);
+    border: 2px var(--clr-black) solid;
+
 }
 
 #homeRecommandations {
