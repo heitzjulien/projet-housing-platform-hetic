@@ -1,0 +1,203 @@
+@font-face {
+    font-family: 'Satoshi';
+    src: url('../font/Satoshi-Regular.woff2') format('woff2'),
+        url('../font/Satoshi-Regular.woff') format('woff'),
+        url('../font/Satoshi-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-display: swap;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Satoshi-Bold';
+    src: url('../font/Satoshi-Bold.woff2') format('woff2'),
+        url('../font/Satoshi-Bold.woff') format('woff'),
+        url('../font/Satoshi-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-display: swap;
+    font-style: normal;
+}
+
+.searchBar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+::placeholder {
+    text-align: center;
+}
+
+.searchBarForm {
+    border: #050505 1px solid;
+    width: fit-content;
+
+}
+
+.searchBarForm>input {
+    height: 10px;
+    padding: 20px;
+}
+
+.searchBarForm>button,
+.searchBarForm>input,
+.filterForm>button {
+
+    border: none;
+    padding: none;
+    color: none;
+    background: none;
+
+    font-family: 'Satoshi';
+    font-size: 1.75rem;
+
+    width: fit-content;
+
+}
+
+.searchBarForm>input {
+    border-right: #050505 solid 1px;
+}
+
+.searchBarForm>button {
+    background-color: #435188;
+    color: #FAFAFA;
+    margin: 10px;
+    padding: 5px 15px;
+
+}
+
+.cardLogement {
+    height: 420px;
+    text-decoration: none;
+    color: #050505;
+    height: max-content;
+}
+
+.cardLogement,
+.cardLogement>.description,
+.cardLogement>img {
+    width: 590px;
+}
+
+.cardLogement>img {
+    height: 300px;
+    display: flex;
+}
+
+.cardLogement>.description {
+    border: solid 1px #050505;
+    height: 120px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+
+.name {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    width: fit-content;
+    height: 80px;
+    border-right: 1px solid black;
+    width: 200px;
+
+}
+
+.cardLogement span:first-child {
+    font-family: 'Satoshi-Bold';
+    padding-right: 20px;
+    margin-bottom: 10px;
+}
+
+.cardLogement p {
+    padding-left: 20px;
+
+}
+
+
+.name span:last-child,
+.description>p {
+    font-family: 'Satoshi';
+}
+
+.container {
+    gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.filterForm {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #050505;
+    width: 80%;
+    height: 180px;
+}
+
+.filterForm input {
+    width: 260px;
+    height: 40px;
+}
+
+.filter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 40px;
+}
+
+.filterForm button {
+    background-color: #435188;
+    color: #FAFAFA;
+    margin: 10px;
+    margin-top: 30px;
+    padding: 5px 15px;
+
+}
+
+.input-row {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+
+@media screen and (max-width: 1400px) {
+    body {
+        margin: 0;
+    }
+
+    .description {
+        flex-direction: column;
+        height: 180px;
+
+    }
+
+    .name {
+        border: none;
+        border-bottom: 1px solid black;
+        height: 90px;
+        width: 550px;
+    }
+
+
+
+    .cardLogement p {
+        padding: 20px;
+    }
+
+}
