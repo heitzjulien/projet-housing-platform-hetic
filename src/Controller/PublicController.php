@@ -67,10 +67,11 @@ class PublicController extends Controller {
                 }
                 break;
         }
+
         $this->render("search.php", $this->styles, [
-            "json" => $json,
             "route" => $route,
-            "request" => $request
+            "request" => $request,
+            "json" => $json,
         ]);
     }
 
