@@ -22,4 +22,9 @@ class HousingService {
     public function selectHousingForSearch(?string $unavailability_start, ?string $unavailability_end, ?string $district, ?int $nbr_rooms, ?int $capacity) {
         return $this->housingRepository->selectHousingForSearch($unavailability_start, $unavailability_end, $district, $nbr_rooms, $capacity);
     }
+
+    public function getRandomImg(int $nb): array {
+        $img = $this->housingRepository->getRandomImg($nb);
+        return $img;
+    }
 }

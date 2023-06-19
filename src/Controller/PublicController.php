@@ -19,8 +19,10 @@ class PublicController extends Controller {
         $this->updateStyles(['home.css']);
         $HousingService = new HousingService();
 
+        $images = $HousingService->getRandomImg(3);
+        dump($images);
         $content = $HousingService->selectHousing(1);
-        $images = $HousingService->selectImageById(1);
+        // $images = $HousingService->selectImageById(1);
         $json = [];
         foreach($content as $c) {
             $json[] = json_encode([ 

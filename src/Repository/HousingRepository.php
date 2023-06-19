@@ -110,4 +110,19 @@ class HousingRepository extends Repository{
         }
         return $housing_array;
     }
+
+    public function getRandomImg(int $nb): array{
+        $stmt = $this->db->pdo->prepare("SELECT image FROM housing_images ORDER BY RAND() LIMIT :limit");
+        $stmt->bindParam(':limit', $nb, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $arrayImg = [];
+
+        foreach($results as $r){
+            $arrayImg[] = new HousingImageModel(null, $r['image']);
+        }
+
+        return $arrayImg;
+    }
 }
