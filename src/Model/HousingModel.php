@@ -17,8 +17,8 @@ class HousingModel {
      * @param ?int $number_pieces Housing number pieces
      * @param ?int $number_rooms Housing number rooms
      * @param ?int $number_bathroom Housing number bathroom
-     * @param ?string $exterior Housing exterior
-     * @param ?string $car_park Housing car park
+     * @param ?array $exterior Housing exterior
+     * @param ?array $car_park Housing car park
      * @param ?int $area Housing area
      * @param ?string $image Housing image
      */
@@ -34,8 +34,8 @@ class HousingModel {
         private ?int $number_pieces = null,
         private ?int $number_rooms = null,
         private ?int $number_bathroom = null,
-        private ?string $exterior = null,
-        private ?string $car_park = null,
+        private ?array $exterior = null,
+        private ?array $car_park = null,
         private ?int $area = null,
         private ?array $image = null,
         private ?string $unavailability_start = null,
@@ -122,12 +122,16 @@ class HousingModel {
     }
 
     public function setExterior(?string $exterior): self{
-        $this->exterior = $exterior;
+        if($exterior){
+            $this->exterior = explode(',', $exterior);
+        }
         return $this;
     }
 
     public function setCarPark(?string $car_park): self{
-        $this->car_park = $car_park;
+        if($car_park){
+            $this->car_park = explode(',', $car_park);
+        }
         return $this;
     }
 
@@ -221,11 +225,11 @@ class HousingModel {
         return $this->number_bathroom;
     }
 
-    public function getExterior(): ?string{
+    public function getExterior(): ?array{
         return $this->exterior;
     }
 
-    public function getCarPark(): ?string{
+    public function getCarPark(): ?array{
         return $this->car_park;
     }
 

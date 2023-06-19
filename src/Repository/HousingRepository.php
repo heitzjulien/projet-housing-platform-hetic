@@ -149,7 +149,12 @@ class HousingRepository extends Repository{
             ->setNumberBathroom($r['number_bathroom'])
             ->setExterior($r['exterior'])
             ->setCarPark($r['car_park'])
-            ->setArea($r['area']);
+            ->setArea($r['area'])
+            ->setCountry($r['country'])
+            ->setCity($r['city'])
+            ->setZip($r['zip'])
+            ->setDistrict($r['district'])
+            ->setAddress($r['address']);
         }
 
         return $arrayHousing;

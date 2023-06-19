@@ -109,8 +109,13 @@ class PublicController extends Controller {
                 "price" => $h->getPrice(),
                 "description" => $h->getDescription(),
                 "number_pieces" => $h->getNumberPieces(),
+                "exterior" => $h->getExterior(),
+                "car_park" => $h->getCarPark(),
                 "area" => $h->getArea(), 
-                "images" => $housing_images[0]
+                "images" => $housing_images[0],
+                "city" => $h->getCity(),
+                "zip" => $h->getZip(),
+                "district" => $h->getDistrict(),
             ];
         }
 
