@@ -70,6 +70,10 @@
             let area = document.createElement('p')
             let pDescription = document.createElement('p')
             let piece = document.createElement('p')
+            let city = document.createElement('p')
+            let district = document.createElement('p')
+            let size = document.createElement('div')
+            let location = document.createElement('div')
 
             a.setAttribute('href', "<?= __ROOT_URL__ ?>/apartment?housing_id=" + arrayAsso[i].id)
             a.classList.add('cardLogement')
@@ -80,6 +84,10 @@
             spanName.textContent = arrayAsso[i].name
 
             area.textContent = arrayAsso[i].area + 'm²'
+
+            city.textContent = arrayAsso[i].city
+
+            district.textContent = arrayAsso[i].district
 
             pDescription.textContent = arrayAsso[i].description
 
@@ -95,6 +103,9 @@
             divName.appendChild(spanName)
             divName.appendChild(area)
             divName.appendChild(piece)
+            divName.appendChild(size)
+            divName.appendChild(location)
+
 
             document.querySelector(".container").appendChild(a)
         }
