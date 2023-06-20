@@ -57,7 +57,49 @@
 <div class="container">
 </div>
 
-<script src="./../public/scripts/cardLogements.js" type="module">
+<!-- <script src="./../public/scripts/cardLogements.js" type="module"> -->
+<script>
+    function createCardLogement(arrayAsso) {
+        for (let i = 0; i < arrayAsso.length; i++) {
+
+            let a = document.createElement('a')
+            let img = document.createElement('img')
+            let divDescription = document.createElement('div')
+            let divName = document.createElement('div')
+            let spanName = document.createElement('span')
+            let area = document.createElement('p')
+            let pDescription = document.createElement('p')
+            let piece = document.createElement('p')
+
+            // a.setAttribute('href', arrayAsso[i].href)
+            a.setAttribute('href', "<?= __ROOT_URL__ ?>/apartment?housing_id=" + arrayAsso[i].id)
+            a.classList.add('cardLogement')
+
+            img.setAttribute('src', arrayAsso[i].images)
+            img.setAttribute('alt', arrayAsso[i].alt)
+
+            spanName.textContent = arrayAsso[i].name
+
+            area.textContent = arrayAsso[i].area + 'm²'
+
+            pDescription.textContent = arrayAsso[i].description
+
+            piece.textContent = arrayAsso[i].number_pieces + ' pièces'
+
+            divDescription.classList.add('description')
+            divName.classList.add('name')
+
+            a.appendChild(img)
+            a.appendChild(divDescription)
+            divDescription.appendChild(divName)
+            divDescription.appendChild(pDescription)
+            divName.appendChild(spanName)
+            divName.appendChild(area)
+            divName.appendChild(piece)
+
+            document.querySelector(".container").appendChild(a)
+        }
+    }
     let json = <?php echo json_encode($data['housing']); ?>;
     createCardLogement(json)
 </script>
