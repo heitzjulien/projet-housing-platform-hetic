@@ -45,3 +45,10 @@
     <input id="confNewPsd" name="confNewPsd" type="password" placeholder="Confirm password">
     <input type="submit" value="Update">
 </form>
+
+<br>
+
+<h3>Logout and Delete Account</h3>
+<a href="<?= __ROOT_URL__ ?>/logout?device=current">Logout</a>
+<a href="<?= __ROOT_URL__ ?>/logout?device=all">Logout All Device</a>
+<a href="<?= __ROOT_URL__ ?>/delete">Delete Account</a>

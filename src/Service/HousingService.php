@@ -3,6 +3,8 @@
 namespace Service;
 
 use Repository\HousingRepository;
+use Model\HousingModel;
+use Model\UserModel;
 
 class HousingService {
     private HousingRepository $housingRepository;
@@ -61,6 +63,7 @@ class HousingService {
     }
 
     public function checkDate(?string $dateStart, ?string $dateEnd): array{
+
         if(strtotime($dateStart) && strtotime($dateEnd) and $dateStart != $dateEnd){
             if (strtotime($dateStart) < time()){
                 return ["Departure date not possible", null, strtotime($dateEnd)];
@@ -130,6 +133,16 @@ class HousingService {
         return $housing;
     }
 
+    public function checkDateDisponibility(?string $dateStart, ?string $dateEnd, ?HousingModel $housing, ?UserModel $user): array{
+        if($this->housingRepository->checkHousingDisponibility($dateStart, $dateEnd, $housing->getId())){
+            return ["The apartment is not available on the desired dates", null];
+        }
+        $period = $this->getDateDiff(date("Y-m-d", $dateStart), date("Y-m-d", $dateEnd));
+
+        $this->housingRepository->createHousingReservation($user->getId(), $housing, ["date_start" => date("Y-m-d", $dateStart), "date_end" => date("Y-m-d", $dateEnd), "date_diff" => $period]);
+        return [null, "Reservation made successfully"];
+    }
+
     private function serializeAll(array $array): array{
         $tempArray = [];
         foreach ($array as $a){
@@ -146,5 +159,12 @@ class HousingService {
         }
 
         return $tempArray;
+    }
+
+    private function getDateDiff(string $dateStart, string $dateEnd): int{
+        $date1 = new \DateTime($dateStart);
+        $date2 = new \DateTime($dateEnd);
+        
+        return ($date2->diff($date1))->days;
     }
 }

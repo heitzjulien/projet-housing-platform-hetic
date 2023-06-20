@@ -98,6 +98,16 @@ class AuthService{
         $this->clearCookies();
     }
 
+    public function clearAllSession(int $id): void{
+        (new AuthRepository())->deleteAllToken($id);
+        $this->clearCookies();
+    }
+
+    public function deleteAccount(int $id): void{
+        (new AuthRepository())->deleteAccount($id);
+        $this->clearCookies();
+    }
+
     public function setCookies(int $user_id, string $agent, string $token): void{
         setcookie('aparisCookieUserID', $user_id, time()+(30*24*60*60));
         setcookie('aparisCookieAgent', $agent, time()+(30*24*60*60));

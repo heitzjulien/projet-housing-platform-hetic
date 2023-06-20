@@ -46,6 +46,10 @@ class Routes {
         );
 
         $this->addRoute(
+            (new Route("delete", AuthController::class, "delete"))
+        );
+
+        $this->addRoute(
             (new Route("dashboard/client", PrivateController::class, "dashboardClient"))
             ->setTitle("Dashboard Client")
         );

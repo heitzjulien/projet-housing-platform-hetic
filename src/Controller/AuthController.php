@@ -110,10 +110,28 @@ class AuthController extends Controller{
     }
 
     public function logout(Request $request, Route $route): void{
-        if($_COOKIE['aparisCookieUserID'] && $_COOKIE['aparisCookieAgent']){
-            (new AuthService())->clearSession($_COOKIE['aparisCookieUserID'], $_COOKIE['aparisCookieAgent']);
-        }
+        switch($request->getQueryParams()['device']){
+            case 'all':
+                if($this->userLoggedIn){
+                    (new AuthService())->clearAllSession($this->userLoggedIn->getId());
+                }
+                break;
+            case 'current':
+                if($this->userLoggedIn){
+                    (new AuthService())->clearSession($this->userLoggedIn->getId(), $_COOKIE['aparisCookieAgent']);
+                }
+                break;
+            }
+
         header("Location: login");
         exit;
     }
+
+    public function delete(Request $request, Route $route): void{
+        (new AuthService())->deleteAccount($this->userLoggedIn->getId());
+
+        header("Location: login");
+        exit;
+    }
+        
 }

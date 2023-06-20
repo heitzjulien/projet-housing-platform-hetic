@@ -11,6 +11,9 @@
             <?= $e ?>
         </p>
     <?php endforeach; ?>
+    <?php if($data["valid"]): ?>
+        <p><?= $data["valid"] ?></p>
+    <?php endif; ?>
     <?php if($data["user_logged_in"]): ?>
         <form method="POST">
             <label for="date_start">Date d'arrivé :</label>

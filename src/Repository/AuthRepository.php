@@ -36,6 +36,20 @@ class AuthRepository extends Repository{
         ]);
     }
 
+    public function deleteAllToken(int $user_id): void{
+        $stmt = $this->db->pdo->prepare("DELETE FROM authentifications WHERE user_id = :user_id");
+        $stmt->execute([
+            ":user_id" => $user_id
+        ]);
+    }
+
+    public function deleteAccount(int $user_id): void{
+        $stmt = $this->db->pdo->prepare("DELETE FROM users WHERE id = :user_id");
+        $stmt->execute([
+            ":user_id" => $user_id
+        ]);
+    }
+
     public function getAuthUserId(?int $id, ?string $agent, ?string $token): ?int{
         $stmt = $this->db->pdo->prepare("SELECT user_id, token, token_end FROM authentifications WHERE user_id = :user_id and agent = :agent");
         $stmt->execute([

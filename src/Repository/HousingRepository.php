@@ -328,4 +328,44 @@ class HousingRepository extends Repository{
 
         return $arrayHousing;
     }
+
+    public function checkHousingDisponibility(string $date_start, string $date_end, int $id): bool{
+        $stmt = $this->db->pdo->prepare("SELECT h.id FROM housing h
+        WHERE EXISTS (
+            SELECT 1
+            FROM housing_unavailability hu
+            WHERE hu.housing_id = h.id
+            AND hu.unavailability_start <= :date_end
+            AND hu.unavailability_end >= :date_start
+            AND hu.housing_id = :housing_id
+        )");
+        $stmt->execute([
+            ":date_start" => date('Y-m-d', $date_start),
+            ":date_end" => date('Y-m-d', $date_end),
+            ":housing_id" => $id
+        ]);
+
+        return ($stmt->fetchAll(PDO::FETCH_ASSOC)) ? true : false;
+    }
+
+    public function createHousingReservation(int $user_id, HousingModel $housing, array $period): void{
+        $stmt = $this->db->pdo->prepare("INSERT INTO reservations (user_id, housing_id, reservation_period, reservation_total_price) VALUES (:user_id, :housing_id, :reservation_period, :reservation_total_price)");
+        $stmt->execute([
+            ":user_id" => $user_id,
+            ":housing_id" => $housing->getId(),
+            ":reservation_period" => $period["date_diff"],
+            ":reservation_total_price" => $period["date_diff"] * $housing->getPrice(),
+        ]);
+        $reservationId = $this->db->pdo->lastInsertId();
+        
+        $stmt = $this->db->pdo->prepare("INSERT INTO housing_unavailability (housing_id, unavailability_start, unavailability_end, unavailability_status, reservation_id) VALUES (:housing_id, :unavailability_start, :unavailability_end, :unavailability_status, :reservation_id)");
+        $stmt->execute([
+            ":housing_id" => $housing->getId(),
+            ":unavailability_start" => $period["date_start"],
+            ":unavailability_end" => $period["date_end"],
+            ":unavailability_status" => 'booked',
+            ":reservation_id" => $reservationId
+        ]);        
+
+    }
 }

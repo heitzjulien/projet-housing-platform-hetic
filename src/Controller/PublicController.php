@@ -86,6 +86,7 @@ class PublicController extends Controller {
         $housingService = new HousingService();
         $error = [];
         $filterError = [];
+        $valid = null;
         $services = [];
         $opinion = [];
         $filter = [
@@ -97,7 +98,18 @@ class PublicController extends Controller {
 
         switch($request->getMethod()) {
             case 'POST':
+                if(!$this->userLoggedIn){
+                    header("Location:" . __ROOT_URL__ . "/home");
+                    exit;
+                }
+                
                 [$filterError[], $filter['date_start'], $filter['date_end']] = $housingService->checkDate($request->getRawBody()['date_start'], $request->getRawBody()['date_end']);
+                $filterError = array_filter($filterError, function ($value) { return $value; });
+                if($filterError){
+                    break;
+                }
+
+                [$filterError[], $valid] = $housingService->checkDateDisponibility($filter['date_start'], $filter['date_end'], $housing, $this->userLoggedIn);
                 break;
         }
 
@@ -107,6 +119,7 @@ class PublicController extends Controller {
             "request" => $request,
             "error" => $error,
             "filter_error" => $filterError,
+            "valid" => $valid,
             "housing" => $housing,
             "filter" => $filter
         ]);

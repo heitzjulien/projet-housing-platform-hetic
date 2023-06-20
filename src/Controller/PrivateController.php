@@ -14,6 +14,11 @@ use Model\UserModel;
 class PrivateController extends Controller{
     public function __construct(?UserModel $userLoggedIn){
         parent::__construct($userLoggedIn);
+
+        if(!$this->userLoggedIn){
+            header("Location:" . __ROOT_URL__ . "/home");
+            exit;
+        }
     }
 
     public function dashboardClient(Request $request, Route $route): void {
@@ -55,11 +60,6 @@ class PrivateController extends Controller{
     public function dashboardParametre(Request $request, Route $route): void{
         $error = [];
         $valid = null;
-        
-        if(!$this->userLoggedIn){
-            header("Location:" . __ROOT_URL__ . "/home");
-            exit;
-        }
 
         switch($request->getMethod()){
             case "POST":
