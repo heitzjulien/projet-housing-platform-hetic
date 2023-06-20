@@ -20,7 +20,9 @@ class HousingModel {
      * @param ?array $exterior Housing exterior
      * @param ?array $car_park Housing car park
      * @param ?int $area Housing area
-     * @param ?string $image Housing image
+     * @param ?array $image Housing image
+     * @param ?array $service Housing service
+     * @param ?array $opinion Housing opinion
      */
 
     public function __construct(
@@ -38,6 +40,8 @@ class HousingModel {
         private ?array $car_park = null,
         private ?int $area = null,
         private ?array $image = null,
+        private ?array $service = null,
+        private ?array $opinion = null,
         private ?string $country = null,
         private ?string $city = null,
         private ?string $zip = null,
@@ -58,6 +62,8 @@ class HousingModel {
         $this->car_park = $car_park;
         $this->area = $area;
         $this->image = $image;
+        $this->service = $service;
+        $this->service = $opinion;
         $this->country = $country;
         $this->city = $city;
         $this->zip = $zip;
@@ -126,6 +132,16 @@ class HousingModel {
         if($car_park){
             $this->car_park = explode(',', $car_park);
         }
+        return $this;
+    }
+
+    public function setService(?array $service): self{
+        $this->service = $service;
+        return $this;
+    }
+
+    public function setOpinion(?array $opinion): self{
+        $this->opinion = $opinion;
         return $this;
     }
 
@@ -214,6 +230,14 @@ class HousingModel {
 
     public function getArea(): ?int{
         return $this->area;
+    }
+
+    public function getService(): ?array{
+        return $this->service;
+    }
+
+    public function getOpinion(): ?array{
+        return $this->opinion;
     }
 
     public function getImage(): ?array{

@@ -50,5 +50,13 @@
     <span><?= $data["housing"]->getZip() ?></span>
     <span><?= $data["housing"]->getDistrict() ?></span>
     <span><?= $data["housing"]->getAddress() ?></span>
+
+    <h3>Services</h3>
+    <?php foreach($data["housing"]->getService() as $s): ?>
+        <span><?= $s->getIcon() ?></span>
+        <span><?= $s->getName() ?></span>
+        <span><?= $s->getDescription() ?></span>
+        <br>
+    <?php endforeach; ?>
 <?php endif; ?>
 </main>

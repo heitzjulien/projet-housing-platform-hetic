@@ -5,6 +5,8 @@ namespace Repository;
 use App\Database;
 use Model\HousingModel;
 use Model\HousingImageModel;
+use Model\ServiceModel;
+use Model\OpinionModel;
 use PDO;
 // use PDOException;
 
@@ -74,6 +76,46 @@ class HousingRepository extends Repository{
         }
 
         return $images;
+    }
+
+    public function selectHousingService(int $id): array{
+        $stmt = $this->db->pdo->prepare("SELECT s.id, s.icon, s.name, s.description FROM services s JOIN housing_services hs ON s.id = hs.service_id WHERE hs.housing_id = :id");
+        $stmt->execute([
+            ":id" => $id,
+        ]);
+
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $services = [];
+        foreach ($results as $r){
+            $services[] = (new ServiceModel())
+            ->setId($r['id'])
+            ->setIcon($r['icon'])
+            ->setName($r['name'])
+            ->setDescription($r['description']);
+        }
+
+        return $services;
+    }
+
+    public function selectHousingOpinion(int $id): array{
+        $stmt = $this->db->pdo->prepare("SELECT id, user_id, housing_id, reservation_id, content, display FROM opinions WHERE housing_id = :id");
+        $stmt->execute([
+            ":id" => $id,
+        ]);
+
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $opinions = [];
+        foreach ($results as $r){
+            $opinions[] = (new OpinionModel())
+            ->setId($r['id'])
+            ->setUserId($r['user_id'])
+            ->setHousingId($r['housing_id'])
+            ->setReservationId($r['reservation_id'])
+            ->setContent($r['content'])
+            ->setDisplay($r['display']);
+        }
+
+        return $opinions;
     }
 
     public function getHousingById(string $id): ?HousingModel{

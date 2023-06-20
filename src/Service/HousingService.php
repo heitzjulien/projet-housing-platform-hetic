@@ -11,10 +11,6 @@ class HousingService {
         $this->housingRepository = new HousingRepository();
     }
 
-    // public function selectHousing($id) {
-    //     return $this->housingRepository->selectHousing($id);
-    // }
-
     public function selectImageById($housing_id) {
         return $this->housingRepository->selectImageById($housing_id);
     }
@@ -41,9 +37,27 @@ class HousingService {
         $allHousing = $this->housingRepository->selectHousing();
         foreach ($allHousing as $h){
             $h->setImage($this->housingRepository->selectHousingImage($h->getId()));
+            $h->setService($this->housingRepository->selectHousingService($h->getId()));
+            $h->setOpinion($this->housingRepository->selectHousingOpinion($h->getId()));
         }
 
         return $allHousing;
+    }
+
+    public function getHousingById(?string $id): ?array{
+        $id = intval($id);
+        if(!$id || $id <= 0){
+            return ["Invalid apartment id", null];
+        }
+        
+        $housing = $this->housingRepository->getHousingById($id);
+        if($housing){
+            $housing->setImage($this->housingRepository->selectHousingImage($id));
+            $housing->setService($this->housingRepository->selectHousingService($id));
+            $housing->setOpinion($this->housingRepository->selectHousingOpinion($id));
+            return [null, $housing];
+        }
+        return ["Apartment not found", $housing];
     }
 
     public function checkDate(?string $dateStart, ?string $dateEnd): array{
@@ -114,20 +128,6 @@ class HousingService {
         $housing = array_intersect($housing, $filterHousing);
         $housing = $this->unserializeAll($housing);
         return $housing;
-    }
-
-    public function getHousingById(?string $id): ?array{
-        $id = intval($id);
-        if(!$id || $id <= 0){
-            return ["Invalid apartment id", null];
-        }
-        
-        $housing = $this->housingRepository->getHousingById($id);
-        if($housing){
-            $housing->setImage($this->housingRepository->selectHousingImage($id));
-            return [null, $housing];
-        }
-        return ["Apartment not found", $housing];
     }
 
     private function serializeAll(array $array): array{

@@ -22,6 +22,8 @@ class PublicController extends Controller {
         $images = $HousingService->getRandomImg(1, 3);
         $housing = $HousingService->selectRandomHousing(3);
 
+        $housing = $this->prepareHousing($housing);
+
         $this->render("home.php", $this->styles, [
             "route" => $route,
             "request" => $request,
@@ -84,6 +86,8 @@ class PublicController extends Controller {
         $housingService = new HousingService();
         $error = [];
         $filterError = [];
+        $services = [];
+        $opinion = [];
         $filter = [
             "date_start" => time()+24*60*60,
             "date_end" => null,

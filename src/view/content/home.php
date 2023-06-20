@@ -19,9 +19,6 @@
             <div class="cardContainer">
 <!--                <img src="#" alt="Appartment interior image" width="590px" class="cardImage">-->
                 <div class="imageCardFooter">
-                <?php foreach($data['housing'] as $h):?>
-                    <h1>Id appartement : <?= $h->getId() ?></h1>
-                <?php endforeach; ?>
                     <div class="leftInfos"></div>
                     <div class="dividingLine"></div>
                     <div class="rightInfos"></div>
@@ -47,4 +44,48 @@
         </div>
     </section>
 </main>
+<script>
+    function createCardLogement(arrayAsso) {
+        for (let i = 0; i < arrayAsso.length; i++) {
+
+            let a = document.createElement('a')
+            let img = document.createElement('img')
+            let divDescription = document.createElement('div')
+            let divName = document.createElement('div')
+            let spanName = document.createElement('span')
+            let area = document.createElement('p')
+            let pDescription = document.createElement('p')
+            let piece = document.createElement('p')
+
+            a.setAttribute('href', "<?= __ROOT_URL__ ?>/apartment?housing_id=" + arrayAsso[i].id)
+            a.classList.add('cardLogement')
+
+            img.setAttribute('src', arrayAsso[i].images)
+            img.setAttribute('alt', arrayAsso[i].alt)
+
+            spanName.textContent = arrayAsso[i].name
+
+            area.textContent = arrayAsso[i].area + 'm²'
+
+            pDescription.textContent = arrayAsso[i].description
+
+            piece.textContent = arrayAsso[i].number_pieces + ' pièces'
+
+            divDescription.classList.add('description')
+            divName.classList.add('name')
+
+            a.appendChild(img)
+            a.appendChild(divDescription)
+            divDescription.appendChild(divName)
+            divDescription.appendChild(pDescription)
+            divName.appendChild(spanName)
+            divName.appendChild(area)
+            divName.appendChild(piece)
+
+            document.querySelector(".container").appendChild(a)
+        }
+    }
+    let json = <?php echo json_encode($data['housing']); ?>;
+    createCardLogement(json)
+</script>
 
