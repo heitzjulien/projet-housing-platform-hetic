@@ -81,18 +81,30 @@ class PublicController extends Controller {
 
     public function apartment(Request $request, Route $route): void {
         $this->updateStyles(['productPage.css']);
-        $error = [];
-
         $housingService = new HousingService();
+        $error = [];
+        $filterError = [];
+        $filter = [
+            "date_start" => time()+24*60*60,
+            "date_end" => null,
+        ];
 
         [$error[], $housing] = $housingService->getHousingById($request->getQueryParams()['housing_id']);
+
+        switch($request->getMethod()) {
+            case 'POST':
+                [$filterError[], $filter['date_start'], $filter['date_end']] = $housingService->checkDate($request->getRawBody()['date_start'], $request->getRawBody()['date_end']);
+                break;
+        }
 
         $error = array_filter($error, function ($value) { return $value; });
         $this->render("apartment.php", $this->styles, [
             "route" => $route,
             "request" => $request,
             "error" => $error,
-            "housing" => $housing
+            "filter_error" => $filterError,
+            "housing" => $housing,
+            "filter" => $filter
         ]);
     }
 

@@ -6,6 +6,21 @@
         </p>
     <?php endforeach; ?>
 <?php else: ?>
+    <?php foreach ($data["filter_error"] as $e): ?>
+        <p>
+            <?= $e ?>
+        </p>
+    <?php endforeach; ?>
+    <?php if($data["user_logged_in"]): ?>
+        <form method="POST">
+            <label for="date_start">Date d'arrivé :</label>
+            <input id="date_start" type="date" name="date_start" value="<?php if($data['filter']['date_start']) { echo(date("Y-m-d", $data['filter']['date_start'])); } ?>">
+            <label for="date_end">Date de départ :</label>
+            <input id="date_end" type="date" name="date_end" value="<?php if($data['filter']['date_end']) { echo(date("Y-m-d", $data['filter']['date_end'])); } ?>">
+            <input type="submit" value="Réserver">
+        </form>
+    <?php endif; ?>
+    <span></span>
     <span><?= $data["housing"]->getId() ?></span>
     <span><?= $data["housing"]->getName() ?></span>
     <span><?= $data["housing"]->getCapacity() ?></span>
