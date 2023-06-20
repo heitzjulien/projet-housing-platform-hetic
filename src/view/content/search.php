@@ -64,7 +64,8 @@
             let pDescription = document.createElement('p')
             let piece = document.createElement('p')
 
-            a.setAttribute('href', arrayAsso[i].href)
+            // a.setAttribute('href', arrayAsso[i].href)
+            a.setAttribute('href', "<?= __ROOT_URL__ ?>/apartment?housing_id=" + arrayAsso[i].id)
             a.classList.add('cardLogement')
 
             img.setAttribute('src', arrayAsso[i].images)
