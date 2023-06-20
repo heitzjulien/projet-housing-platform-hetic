@@ -104,6 +104,11 @@
             divName.appendChild(area)
             divName.appendChild(piece)
             divName.appendChild(size)
+            size.appendChild(piece)
+            size.appendChild(area)
+            location.appendChild(city)
+            location.appendChild(district)
+            divName.appendChild(location)
             divName.appendChild(location)
 
 
