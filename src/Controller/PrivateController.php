@@ -71,9 +71,13 @@ class PrivateController extends Controller{
                     $authService->updateAccountStatus($this->userLoggedIn->getId(), 'valid');
                     header("Location: http://localhost/projet-housing-platform-hetic/public/dashboard/parametre");
                 }
-                if(isset($request->getQueryParams()['action']) && $request->getQueryParams()['action'] == 'disable'){
+                if (isset($request->getQueryParams()['action']) && $request->getQueryParams()['action'] == 'disable'){
                     $authService->updateAccountStatus($this->userLoggedIn->getId(), "disable");
                     header("Location: http://localhost/projet-housing-platform-hetic/public/dashboard/parametre");
+                }
+                if (isset($request->getQueryParams()['action']) && $request->getQueryParams()['action'] == 'waiting' && $this->userLoggedIn->getAccountStatus() == 'waiting'){
+                    $authService->updateAccountStatus($this->userLoggedIn->getId(), 'valid');
+                    header("Location: http://localhost/projet-housing-platform-hetic/public/home");
                 }
                 break;
             case "POST":
