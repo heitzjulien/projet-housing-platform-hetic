@@ -9,8 +9,9 @@ use Router\Route;
 use Service\AuthService;
 use Service\ReservationService;
 use Service\OpinionService;
-use Model\UserModel;
+use Service\HousingService;
 
+use Model\UserModel;
 
 class PrivateController extends Controller{
 
@@ -144,11 +145,14 @@ class PrivateController extends Controller{
         $this->updateStyles(['dashboard_card.css', 'dashboardReservation.css ']);
 
         $reservation = (new ReservationService)->selectReservation($this->userLoggedIn->getId());
+        foreach($reservation as $r){
+            [$error, $housing] = (new HousingService)->getHousingById($r->getHousingId());
+            $r->setHousing($housing);
+        }
 
         // A CHANGER DE PAGE
         $opinionService = new OpinionService();
         $content = $opinionService->selectOpinionsByUserId($this->userLoggedIn->getId());
-        
 
         $this->render("reservation.php", $this->styles, [
             "route" => $route,
@@ -161,10 +165,7 @@ class PrivateController extends Controller{
     public function gestion(Request $request, Route $route): void {
         $this->updateStyles(['dashboard_card.css', 'gestion.css ']);
 
-        // $content = $this->templateService->selectContent();
-
         $this->render("gestion.php", $this->styles, [
-            // "start" => $content,
             "route" => $route,
             "request" => $request
         ]);
