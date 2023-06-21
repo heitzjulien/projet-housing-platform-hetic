@@ -281,6 +281,7 @@ header button {
 header #headerModal {
     padding: 8px;
     position: absolute;
+    z-index: 3;
     right: 0;
     margin: var(--p-section);
     margin-top: 0;
