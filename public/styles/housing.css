@@ -5,7 +5,6 @@
     display: flex;
     flex-flow: column;
     width: 343px;
-
 }
 .housingTitle {
     font-weight: 700;
@@ -14,6 +13,11 @@
 .housingCardFooter {
     border: 1px solid var(--clr-black);
     padding: 20px 32px;
+}
+
+.housingCard a {
+    text-decoration: none;
+    color: var(--clr-black);
 }
 
 .descDivider {
@@ -61,7 +65,6 @@
         display: flex;
         gap: 10px;
     }
-
 }
 
 @media only screen and (min-width: 781px) {

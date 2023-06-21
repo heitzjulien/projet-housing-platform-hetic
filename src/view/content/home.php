@@ -32,18 +32,20 @@ $cardCount = 0;
         <div class="housingContainer">
             <?php foreach($data['housing'] as $datum): ?>
                 <div class="housingCard" id="card<?= $cardCount ?>">
-                    <img src="<?= $datum['images']?>" alt="Image du logement"/>
-                    <div class="housingCardFooter">
-                        <div class="primaryDesc">
-                            <p class="housingTitle"><?=$datum["name"]?></p>
-                            <p class="housingTitle"><?=$datum["number_pieces"]?> pièce(s) • <?= $datum["area"]?> m²</p>
-                            <p><?= $datum["city"] ?> • <?= (int)$datum["district"] == 1 ? (int)$datum["district"] . "er" : (int)$datum["district"] . "ème" ?> </p>
+                        <img src="<?= $datum['images']?>" alt="Image du logement"/>
+                    <a href="<?= __ROOT_URL__ . "/apartment?housing_id=" . $datum["id"]?>">
+                        <div class="housingCardFooter">
+                            <div class="primaryDesc">
+                                <p class="housingTitle"><?=$datum["name"]?></p>
+                                <p class="housingTitle"><?=$datum["number_pieces"]?> pièce(s) • <?= $datum["area"]?> m²</p>
+                                <p><?= $datum["city"] ?> • <?= (int)$datum["district"] == 1 ? (int)$datum["district"] . "er" : (int)$datum["district"] . "ème" ?> </p>
+                            </div>
+                            <div class="descDivider"></div>
+                            <div class="secondaryDesc">
+                                <p><?= $datum["description"]?></p>
+                            </div>
                         </div>
-                        <div class="descDivider"></div>
-                        <div class="secondaryDesc">
-                            <p><?= $datum["description"]?></p>
-                        </div>
-                    </div>
+                    </a>
                 </div>
             <?php $cardCount++ ?>
             <?php endforeach; ?>
