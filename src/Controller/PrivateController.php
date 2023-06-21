@@ -24,7 +24,7 @@ class PrivateController extends Controller{
         }
     }
 
-    public function dashboardClient(Request $request, Route $route): void {
+    public function dashboard(Request $request, Route $route): void {
         $this->updateStyles(['dashboard_card.css', 'dashboardVotreEspace.css ']);
 
         // $content = $this->templateService->selectContent();
