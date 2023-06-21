@@ -1,0 +1,64 @@
+.housingCard img{
+    height: 300px;
+    width: 100%;
+}
+.housingCard {
+    display: flex;
+    flex-flow: column;
+    width: 343px;
+
+}
+.housingTitle {
+    font-weight: 700;
+}
+
+.housingCardFooter {
+    border: 1px solid var(--clr-black);
+    padding: 20px 32px;
+}
+
+.descDivider {
+    width: 1px;
+    background-color: var(--clr-regular-blue);
+    height: 80px;
+    display: none;
+}
+
+.hideCard {
+    display: block;
+}
+
+@media only screen and (max-width: 780px) {
+    #homeRecommandations {
+        align-items: center;
+        justify-content: center;
+    }
+
+    #homeRecommandations h2 {
+        width: 100%;
+    }
+    .hideCard {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 781px) {
+
+    .housingCardFooter {
+        display: flex;
+        gap: 32px;
+    }
+
+    .housingCard {
+        width: 590px;
+    }
+
+    .descDivider {
+        display: block;
+    }
+
+    .secondaryDesc {
+        display: flex;
+        align-items: center;
+    }
+}

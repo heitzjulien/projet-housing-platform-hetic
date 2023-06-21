@@ -22,6 +22,8 @@
     max-width: 653px;
 }
 
+
+
 .heroImgContainer {
     height: 591px;
 }
@@ -67,6 +69,13 @@
     gap: var(--flex-gap);
 }
 
+.housingContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+}
+
 h2 {
     font-size: var(--fs-title);
     font-family: "arpona", serif;
@@ -108,5 +117,6 @@ h2 {
     #homeServices img {
         width: 150px;
     }
+
 
 }
