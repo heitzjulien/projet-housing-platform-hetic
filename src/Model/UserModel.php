@@ -43,6 +43,13 @@ class UserModel extends Model{
         $this->last_seen = $last_seen;
     }
 
+    public function isAdmin(): bool {
+        if ($this->roles[0] === "admin" ||$this->roles[1] === "admin") {
+            return true;
+        } else {
+            return false;
+        }
+    }
     public function getId(): int{
         return $this->id;
     }

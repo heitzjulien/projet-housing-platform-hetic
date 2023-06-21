@@ -1,4 +1,4 @@
- <header>
+<header>
     <a href="<?= __ROOT_URL__ ?>/home">
         <img  src="<?= __ROOT_URL__ ?>/assets/icons/logo.svg"/>
     </a>
@@ -12,8 +12,10 @@
         <?php endif; ?>
         </button>
         <div id="headerModal" class="hideModal">
+        <?php if($data['user_logged_in']->isAdmin()):?>
+            <a href="<?= __ROOT_URL__ ?>/dashboard/admin">Admin</a>
+        <?php endif; ?>
         <?php if($data['user_logged_in']): ?>
-            <!-- besoin de différencier admin et client pour emmener au bon dashboard -->
             <a href="<?= __ROOT_URL__ ?>/dashboard/client">Dashboard</a>
             <a href="<?= __ROOT_URL__ ?>/settings">Réglages</a>
             <a href="<?= __ROOT_URL__ ?>/logout?device=current">Logout</a>
