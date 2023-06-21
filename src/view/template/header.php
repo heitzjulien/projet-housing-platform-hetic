@@ -14,8 +14,7 @@
         <div id="headerModal" class="hideModal">
         <?php if($data['user_logged_in']): ?>
             <!-- besoin de différencier admin et client pour emmener au bon dashboard -->
-            <a href="<?= __ROOT_URL__ ?>/dashboard/client">Dashboard</a>
-            <a href="<?= __ROOT_URL__ ?>/settings">Réglages</a>
+            <a href="<?= __ROOT_URL__ ?>/dashboard">Dashboard</a>
             <a href="<?= __ROOT_URL__ ?>/logout?device=current">Logout</a>
         <?php else: ?>
             <a href="<?= __ROOT_URL__ ?>/login">Connexion</a>

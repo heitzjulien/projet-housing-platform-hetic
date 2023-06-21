@@ -17,11 +17,6 @@ class Routes {
 
     public function __construct(){
         $this->addRoute(
-            (new Route("template", TemplateController::class, "template"))
-            ->setTitle("Template")
-        );
-        
-        $this->addRoute(
             (new Route("login", AuthController::class, "login"))
             ->setTitle("Login")
         );
@@ -48,11 +43,6 @@ class Routes {
         $this->addRoute(
             (new Route("delete", AuthController::class, "delete"))
         );
-
-        $this->addRoute(
-            (new Route("dashboard/client", PrivateController::class, "dashboardClient"))
-            ->setTitle("Dashboard Client")
-        );
         
         $this->addRoute(
             (new Route("home", PublicController::class, "home"))
@@ -60,18 +50,18 @@ class Routes {
         );
 
         $this->addRoute(
-            (new Route("dashboard/admin", PrivateController::class, "dashboardAdmin"))
-            ->setTitle("Dashboard Admin")
-        );
-
-        $this->addRoute(
-            (new Route("parametre/user", PrivateController::class, "dashboardUserParametre"))
-            ->setTitle("Parametre")
+            (new Route("dashboard", PrivateController::class, "dashboard"))
+            ->setTitle("Dashboard")
         );
 
         $this->addRoute(
             (new Route("dashboard/parametre", PrivateController::class, "dashboardParametre"))
             ->setTitle("Parametre")
+        );
+
+        $this->addRoute(
+            (new Route("dashboard/parametre", PrivateController::class, "dashboardParametre"))
+            ->setMethod("POST")->setTitle("Parametre")
         );
 
         $this->addRoute(
@@ -85,8 +75,8 @@ class Routes {
         );
 
         $this->addRoute(
-            (new Route("dashboard/parametre", PrivateController::class, "dashboardParametre"))
-            ->setMethod("POST")->setTitle("Parametre")
+            (new Route("dashboard/reservation/delete", PrivateController::class, "dashboardReservationDelete"))
+            ->setTitle("Reservation")
         );
 
         $this->addRoute(

@@ -9,8 +9,9 @@ use Router\Route;
 use Service\AuthService;
 use Service\ReservationService;
 use Service\OpinionService;
-use Model\UserModel;
+use Service\HousingService;
 
+use Model\UserModel;
 
 class PrivateController extends Controller{
 
@@ -23,7 +24,7 @@ class PrivateController extends Controller{
         }
     }
 
-    public function dashboardClient(Request $request, Route $route): void {
+    public function dashboard(Request $request, Route $route): void {
         $this->updateStyles(['dashboard_card.css', 'dashboardVotreEspace.css ']);
 
         // $content = $this->templateService->selectContent();
@@ -144,11 +145,14 @@ class PrivateController extends Controller{
         $this->updateStyles(['dashboard_card.css', 'dashboardReservation.css ']);
 
         $reservation = (new ReservationService)->selectReservation($this->userLoggedIn->getId());
+        foreach($reservation as $r){
+            [$error, $housing] = (new HousingService)->getHousingById($r->getHousingId());
+            $r->setHousing($housing);
+        }
 
         // A CHANGER DE PAGE
         $opinionService = new OpinionService();
         $content = $opinionService->selectOpinionsByUserId($this->userLoggedIn->getId());
-        
 
         $this->render("reservation.php", $this->styles, [
             "route" => $route,
@@ -158,13 +162,21 @@ class PrivateController extends Controller{
         ]);
     }
 
+    public function dashboardReservationDelete(Request $request, Route $route): void{
+        $reservationId = $request->getQueryParams()['id'] ?? null;
+
+        if($reservationId){
+            (new ReservationService)->deleteReservation($this->userLoggedIn->getId(), $reservationId);
+        }
+
+        header("Location: http://localhost/projet-housing-platform-hetic/public/dashboard/reservation");
+        exit;
+    }
+
     public function gestion(Request $request, Route $route): void {
         $this->updateStyles(['dashboard_card.css', 'gestion.css ']);
 
-        // $content = $this->templateService->selectContent();
-
         $this->render("gestion.php", $this->styles, [
-            // "start" => $content,
             "route" => $route,
             "request" => $request
         ]);

@@ -2,6 +2,8 @@
 
 namespace Model;
 
+use Model\HousingModel;
+
 class ReservationModel {
 
     /**
@@ -13,6 +15,9 @@ class ReservationModel {
      * @param ?int $reservation_period Reservation period
      * @param ?int $reservation_total_price Reservation total price
      * @param ?string $reservation_status Reservation status
+     * @param ?string $unavailabilityStart Unavailability Start
+     * @param ?string $unavailabilityEnd Unavailability End
+     * @param ?HousingModel $housing Housing
      */
 
     public function __construct(
@@ -22,6 +27,9 @@ class ReservationModel {
         private ?int $reservation_period = null,
         private ?int $reservation_total_price = null,
         private ?string $reservation_status = null,
+        private ?string $unavailabilityStart = null,
+        private ?string $unavailabilityEnd = null,
+        private ?HousingModel $housing = null,
     ){
         $this->id = $id;
         $this->user_id = $user_id;
@@ -29,6 +37,9 @@ class ReservationModel {
         $this->reservation_period = $reservation_period;
         $this->reservation_total_price = $reservation_total_price;
         $this->reservation_status = $reservation_status;
+        $this->unavailabilityStart = $unavailabilityStart;
+        $this->unavailabilityEnd = $unavailabilityEnd;
+        $this->housing = $housing;
     }
 
     public function setId(int $id): self{
@@ -83,5 +94,32 @@ class ReservationModel {
 
     public function getStatus(): ?string{
         return $this->reservation_status;
+    }
+
+    public function setUnavailabilityStart(string $unavailabilityStart): self{
+        $this->unavailabilityStart = $unavailabilityStart;
+        return $this;
+    }
+
+    public function getUnavailabilityStart(): ?string{
+        return $this->unavailabilityStart;
+    }
+
+    public function setUnavailabilityEnd(string $unavailabilityEnd): self{
+        $this->unavailabilityEnd = $unavailabilityEnd;
+        return $this;
+    }
+
+    public function getUnavailabilityEnd(): ?string{
+        return $this->unavailabilityEnd;
+    }
+    
+    public function setHousing(HousingModel $housing): self{
+        $this->housing = $housing;
+        return $this;
+    }
+
+    public function getHousing(): ?HousingModel{
+        return $this->housing;
     }
 }
