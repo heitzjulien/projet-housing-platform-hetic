@@ -35,10 +35,10 @@ class AuthController extends Controller{
                 [$error[], $mail] = $authService->checkMail($request->getRawBody()['mail'], 'register');
                 [$error[], $birthdate] = $authService->checkBirthdate($request->getRawBody()['birthdate']);
                 [$error[], $password] = $authService->checkPasswords($request->getRawBody()['password'], $request->getRawBody()['confpsd']);
-                
+
                 // Create user
                 $user = (new UserModel())->setFirstname($firstname)->setLastname($lastname)->setMail($mail)->setPassword($password)->setBirthdate($birthdate);
-                
+
                 // Clean array (false indice)
                 $error = array_filter($error, function ($value) { return $value; });
                 if(!$error){
@@ -46,9 +46,12 @@ class AuthController extends Controller{
                     $authService->registerUser($user);
                     $user = $authService->loginUser($user->getMail());
                     $token = $authService->createToken($user->getId(), $request->getHeaders()['HTTP_USER_AGENT']);
-                    
+
                     // Create Cookies
                     $authService->setCookies($user->getId(), $request->getHeaders()['HTTP_USER_AGENT'], $token);
+
+                    // Send mail
+                    $authService->sendMail($mail, $firstname, $lastname);
                     
                     header("Location: home");
                     exit();

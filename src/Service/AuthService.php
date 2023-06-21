@@ -9,6 +9,11 @@ use Repository\AuthRepository;
 // Model
 use Model\UserModel;
 
+// PHPMailer
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
+
 class AuthService{
 
     public function checkFirstname(string $firstname): array{
@@ -140,5 +145,74 @@ class AuthService{
 
     private function areSimilar(string $password, string $confpsd): ?string{
         return ($password === $confpsd) ? $password : null;
+    }
+
+    public function sendMail(string $email, string $firstname, string $lastname): void {
+        $mail = new PHPMailer(true);
+
+        try {
+            $mail->isSMTP();
+            $mail->Host = 'localhost';
+            $mail->Port = 1025;
+            $mail->CharSet = 'UTF-8';
+
+            $mail->setFrom('no-reply@aparis.fr', 'Aparis');
+            $mail->addAddress($email, $firstname . ' ' . $lastname);
+
+            $mail->isHTML(true);
+            $mail->Subject = 'Bienvenue sur Aparis';
+            $mail->Body = "<!DOCTYPE html>
+            <html>
+            <head>
+                <style>
+                    body {
+                        font-family: Helvetica, Arial, sans-serif;
+                        font-size: 14px;
+                        line-height: 1.5;
+                    }
+            
+                    .container {
+                        max-width: 600px;
+                        margin: 0 auto;
+                        padding: 20px;
+                        border: 1px solid #ccc;
+                        border-radius: 5px;
+                    }
+            
+                    h2 {
+                        color: #333;
+                    }
+            
+                    .button {
+                        display: inline-block;
+                        padding: 10px 20px;
+                        background-color: #435188;
+                        color: #FAFAFA;
+                        text-decoration: none;
+                        border-radius: 3px;
+                    }
+            
+                    .button:hover {
+                        background-color: #7A8AA4;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class='container'>
+                    <h2>Bonjour $lastname $firstname,</h2>
+                    <p>Nous sommes ravis que vous ayez choisi de rejoindre l\'agence APARIS !</p>
+                    <p>Afin de finaliser la création de votre compte, veuillez cliquer sur le lien ci-dessous pour valider votre adresse e-mail :</p>
+                    <a class='button' href='https://localhost/projet-housing-platform-hetic/home'>Cliquez ici pour valider votre compte</a>
+                    <p>Une fois que vous avez validé votre adresse e-mail, vous pourrez accéder à votre compte et profiter de tous les avantages offerts par notre entreprise. Si vous avez des questions ou rencontrez des difficultés lors de la procédure de validation, n\'hésitez pas à nous contacter à l\'adresse e-mail suivante : contact@aparis.fr</p>
+                    <p>Nous sommes impatients de vous accueillir parmi nous !</p>
+                    <p>Cordialement,<br>L\'équipe APARIS</p>
+                </div>
+            </body>
+            </html>";
+
+            $mail->send();
+        } catch (Exception $e) {
+            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        }
     }
 }
