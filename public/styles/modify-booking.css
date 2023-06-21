@@ -1,0 +1,407 @@
+@font-face {
+    font-family: 'Satoshi-Variable';
+    src: url('../fonts/Satoshi-Variable.woff2') format('woff2'),
+            url('../fonts/Satoshi-Variable.woff') format('woff'),
+            url('../fonts/Satoshi-Variable.ttf') format('truetype');
+    font-weight: 300 900;
+    font-display: swap;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Satoshi-VariableItalic';
+    src: url('../fonts/Satoshi-VariableItalic.woff2') format('woff2'),
+            url('../fonts/Satoshi-VariableItalic.woff') format('woff'),
+            url('../fonts/Satoshi-VariableItalic.ttf') format('truetype');
+    font-weight: 300 900;
+    font-display: swap;
+    font-style: italic;
+}
+
+
+@font-face {
+    font-family: 'Satoshi-Light';
+    src: url('../fonts/Satoshi-Light.woff2') format('woff2'),
+            url('../fonts/Satoshi-Light.woff') format('woff'),
+            url('../fonts/Satoshi-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-display: swap;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'Satoshi-LightItalic';
+    src: url('../fonts/Satoshi-LightItalic.woff2') format('woff2'),
+            url('../fonts/Satoshi-LightItalic.woff') format('woff'),
+            url('../fonts/Satoshi-LightItalic.ttf') format('truetype');
+    font-weight: 300;
+    font-display: swap;
+    font-style: italic;
+}
+
+
+@font-face {
+    font-family: 'Satoshi-Regular';
+    src: url('../fonts/Satoshi-Regular.woff2') format('woff2'),
+            url('../fonts/Satoshi-Regular.woff') format('woff'),
+            url('../fonts/Satoshi-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-display: swap;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'Satoshi-Italic';
+    src: url('../fonts/Satoshi-Italic.woff2') format('woff2'),
+            url('../fonts/Satoshi-Italic.woff') format('woff'),
+            url('../fonts/Satoshi-Italic.ttf') format('truetype');
+    font-weight: 400;
+    font-display: swap;
+    font-style: italic;
+}
+
+
+@font-face {
+    font-family: 'Satoshi-Medium';
+    src: url('../fonts/Satoshi-Medium.woff2') format('woff2'),
+            url('../fonts/Satoshi-Medium.woff') format('woff'),
+            url('../fonts/Satoshi-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-display: swap;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'Satoshi-MediumItalic';
+    src: url('../fonts/Satoshi-MediumItalic.woff2') format('woff2'),
+            url('../fonts/Satoshi-MediumItalic.woff') format('woff'),
+            url('../fonts/Satoshi-MediumItalic.ttf') format('truetype');
+    font-weight: 500;
+    font-display: swap;
+    font-style: italic;
+}
+
+
+@font-face {
+    font-family: 'Satoshi-Bold';
+    src: url('../fonts/Satoshi-Bold.woff2') format('woff2'),
+            url('../fonts/Satoshi-Bold.woff') format('woff'),
+            url('../fonts/Satoshi-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-display: swap;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'Satoshi-BoldItalic';
+    src: url('../fonts/Satoshi-BoldItalic.woff2') format('woff2'),
+            url('../fonts/Satoshi-BoldItalic.woff') format('woff'),
+            url('../fonts/Satoshi-BoldItalic.ttf') format('truetype');
+    font-weight: 700;
+    font-display: swap;
+    font-style: italic;
+}
+
+
+@font-face {
+    font-family: 'Satoshi-Black';
+    src: url('../fonts/Satoshi-Black.woff2') format('woff2'),
+            url('../fonts/Satoshi-Black.woff') format('woff'),
+            url('../fonts/Satoshi-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-display: swap;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'Satoshi-BlackItalic';
+    src: url('../fonts/Satoshi-BlackItalic.woff2') format('woff2'),
+            url('../fonts/Satoshi-BlackItalic.woff') format('woff'),
+            url('../fonts/Satoshi-BlackItalic.ttf') format('truetype');
+    font-weight: 900;
+    font-display: swap;
+    font-style: italic;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Satoshi-Variable', 'Arpona';
+    width: 100%;
+}
+
+h1 {
+    margin-left: 64px;
+    font-family: 'Arpona';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 66px;
+}
+
+section {
+    margin: 56px 66px;
+    display: flex;
+    gap: 20%;
+}
+
+/* Form */
+
+h4 {
+    margin: 0;
+    font-family: 'Arpona';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 34px;
+}
+
+.change {
+    display: flex;
+    flex-direction: column;
+}
+
+.change-dates {
+    margin-top: 19px;
+    display: flex;
+    width: fit-content;
+    padding: 20px 20px;
+    border: 1px solid #435188;
+    gap: 8px;
+    font-family: 'Satoshi';
+}
+
+input {
+    border: none;
+    font-family: 'Satoshi';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+input:focus {
+    outline: none;
+}
+
+.change img {
+    width: 46px;
+    height: 36px;
+}
+
+#calendar {
+    width: 26px;
+    height: 26px;
+    align-self: center;
+}
+
+.overview {
+    margin-top: 75px;
+}
+
+.toggle {
+    margin-top: 19px;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    padding: 20px 20px;
+    color: #435188;
+    border: 1px solid #435188;
+    font-family: 'Satoshi';
+    font-size: 18px;
+    position: relative;
+    cursor: pointer;
+}
+
+.dropdown {
+    display: flex;
+    gap: 150px;
+}
+
+.dropdown img {
+    width: 13px;
+    height: 8px;
+    align-self: center;
+    transition: transform 300ms ease-out;
+}
+
+.dropdown-content {
+    width: 100%;
+    padding: 10px 0;
+    font-family: 'Satoshi';
+    font-size: 18px;
+}
+
+/* .toggle.opened .dropdown-content {
+    display: unset;
+} */
+.toggle:not(.opened) .dropdown-content {
+    display: none;
+    transform: rotate(180deg) translate(0px, 0px);
+}
+
+.dropdown-content li {
+    list-style: none;
+    margin-top: 10px;
+    color: black;
+}
+
+.dropdown-content li:hover {
+    color: #435188;
+}
+
+.btn-submit {
+    margin: 64px;
+    display: flex;
+    width: fit-content;
+    padding: 25px 40px;
+    background-color: #435188;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-submit p {
+    color: white;
+    font-family: 'Arpona';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+}
+
+/* Aside */
+
+aside {
+    margin-top: 50px;
+}
+
+.booking-details {
+    width: 480px;
+    padding: 30px 20px;
+    border: 1px solid #435188;
+}
+
+.sub-details {
+    display: flex;
+    width: auto;
+}
+
+.arrival {
+    padding: 10px 10px;
+    background-color: #435188;
+    color: white;
+    width: 100%;
+    border: solid 1px #7A8AA4;
+
+}
+
+#start {
+    font-family: 'Arpona';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+#stop {
+    font-family: 'Arpona';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.travelers {
+    padding: 20px 20px;
+    display: flex;
+    justify-content: center;
+    background-color: #435188;
+    color: white;
+    width: 100%;
+    border: solid 1px #7A8AA4;
+    gap: 30px;
+}
+
+.travelers span {
+    font-family: 'Arpona';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.travelers img {
+    width: 13px;
+    height: 8px;
+    display: flex;
+    align-self: center;
+    filter: invert(100%) sepia(43%) saturate(543%) hue-rotate(241deg) brightness(112%) contrast(113%);
+}
+
+.prices {
+    margin-top: 30px;
+    width: 100%;
+}
+
+.price-details {
+    display: flex;
+    justify-content: space-between;
+}
+
+.price-details span {
+    margin: 5px;
+}
+
+.line {
+    margin-top: 30px;
+    border-top: 1px solid #7A8AA4;
+}
+
+.new-price {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.new-price span {
+    font-family: 'Satoshi-Bold';
+    font-size: 18px;
+}
+
+@media only screen and (min-width: 375px) and (max-width: 767px) { 
+    h1 {
+        margin: 30px 17px;
+        font-size: 40px;
+    }
+
+    section {
+        margin: 17px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .change-dates input {
+        width: 60%;
+    }
+
+    .booking-details {
+        width: 342px;
+    }
+
+    .sub-details {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .arrival {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn-submit {
+        margin: 50px 17px;
+    }
+}
