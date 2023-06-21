@@ -81,7 +81,7 @@ main {
 }
 
 h2 {
-    font-size: var(--fs-title);
+    font-size: var(--fs-subtitle);
     font-family: "arpona", serif;
     font-weight: 400;
 }
