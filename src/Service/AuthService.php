@@ -200,7 +200,7 @@ class AuthService{
             <body>
                 <div class='container'>
                     <h2>Bonjour $lastname $firstname,</h2>
-                    <p>Nous sommes ravis que vous ayez choisi de rejoindre l\'agence APARIS !</p>
+                    <p>Nous sommes ravis que vous ayez choisi de rejoindre l'agence APARIS !</p>
                     <p>Afin de finaliser la création de votre compte, veuillez cliquer sur le lien ci-dessous pour valider votre adresse e-mail :</p>
                     <a class='button' href='https://localhost/projet-housing-platform-hetic/home'>Cliquez ici pour valider votre compte</a>
                     <p>Une fois que vous avez validé votre adresse e-mail, vous pourrez accéder à votre compte et profiter de tous les avantages offerts par notre entreprise. Si vous avez des questions ou rencontrez des difficultés lors de la procédure de validation, n\'hésitez pas à nous contacter à l\'adresse e-mail suivante : contact@aparis.fr</p>

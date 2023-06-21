@@ -26,7 +26,7 @@
 <h3>Account validation</h3>
 <p>Your accoun't is <?= $data["user_logged_in"]->getAccountStatus() ?></p>
 <?php if($data["user_logged_in"]->getAccountStatus() == 'waiting'): ?>
-    <p>Please validate your email. <a href="">Resend the confirmation</a></p>
+    <p>Please validate your email. <a href="<?= __ROOT_URL__ ?>/dashboard/parametre?action=sendmail">Resend the confirmation</a></p>
 <?php elseif($data["user_logged_in"]->getAccountStatus() == 'valid'): ?>
     <p><a href="">Disable account</a></p>
 <?php elseif($data["user_logged_in"]->getAccountStatus() == 'disable'): ?>

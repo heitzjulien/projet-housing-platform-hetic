@@ -62,6 +62,12 @@ class PrivateController extends Controller{
         $valid = null;
 
         switch($request->getMethod()){
+            case "GET":
+                $authService = new AuthService();
+                if(isset($request->getQueryParams()['action'])){
+                    $authService->sendMail($this->userLoggedIn->getMail(), $this->userLoggedIn->getFirstname(), $this->userLoggedIn->getLastname());
+                }
+                break;
             case "POST":
                 $authService = new AuthService();
                 $change = false;
@@ -89,7 +95,7 @@ class PrivateController extends Controller{
                     }
 
                     $error = array_filter($error, function ($value) { return $value; });
-                    if(!$error && $change){                        
+                    if(!$error && $change){
                         $authService->updateUser($this->userLoggedIn);
                         $valid = "The information has been successfully modified";
                     }
