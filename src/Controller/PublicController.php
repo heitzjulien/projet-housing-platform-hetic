@@ -18,6 +18,18 @@ class PublicController extends Controller {
     public function home(Request $request, Route $route): void {
         $this->updateStyles(['home.css']);
         $HousingService = new HousingService();
+        $error = [];
+        $valid = null;
+
+        switch ($request->getQueryParams()['mail']) {
+            case 'valid':
+                $valid = "Votre mail a été validé !";
+                break;
+            
+            case 'error':
+                $error[] = "Votre mail est déjà validé";
+                break;
+        }
 
         $images = $HousingService->getRandomImg(1, 3);
         $housing = $HousingService->selectRandomHousing(3);
@@ -28,6 +40,8 @@ class PublicController extends Controller {
             "route" => $route,
             "request" => $request,
             "images" => $images,
+            "error" => $error,
+            "valid" => $valid,
             "housing" => $housing
         ]);
     }
@@ -76,6 +90,7 @@ class PublicController extends Controller {
             "route" => $route,
             "request" => $request,
             "error" => $error,
+            "valid" => $valid,
             "housing" => $housing,
             "filter" => $filter,
         ]);

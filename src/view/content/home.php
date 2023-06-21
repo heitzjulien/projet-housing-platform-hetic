@@ -1,4 +1,14 @@
 <main>
+    <?php foreach ($data["error"] as $e): ?>
+        <p class='error'>
+            <?= $e ?>
+        </p>
+    <?php endforeach; ?>
+    <?php if ($data["valid"]): ?>
+        <p class='valid'>
+            <?= $data["valid"] ?>
+        </p>
+    <?php endif; ?>
     <section id="homeHero">
         <div class="heroTextContainer">
             <h1>Profitez de nos logements premiums parisiens</h1>
