@@ -8,11 +8,12 @@ use Router\Route;
 
 use Service\AuthService;
 use Service\ReservationService;
-
+use Service\OpinionService;
 use Model\UserModel;
 
 
 class PrivateController extends Controller{
+
     public function __construct(?UserModel $userLoggedIn){
         parent::__construct($userLoggedIn);
 
@@ -139,20 +140,33 @@ class PrivateController extends Controller{
         ]);
     }
 
-
     public function dashboardReservation(Request $request, Route $route): void {
         $this->updateStyles(['dashboard_card.css', 'dashboardReservation.css ']);
 
         $reservation = (new ReservationService)->selectReservation($this->userLoggedIn->getId());
-        $reservation = (new ReservationService)->selectReservation($this->userLoggedIn->getId());
 
-        $this->render("reservation.php", $this->styles, [
+        // A CHANGER DE PAGE
+        $opinionService = new OpinionService();
+        $content = $opinionService->selectOpinionsByUserId($this->userLoggedIn->getId());
+        
+
         $this->render("reservation.php", $this->styles, [
             "route" => $route,
             "request" => $request,
-            "reservation" => $reservation
-            "request" => $request,
-            "reservation" => $reservation
+            "reservation" => $reservation,
+            "start" => $content,
+        ]);
+    }
+
+    public function gestion(Request $request, Route $route): void {
+        $this->updateStyles(['dashboard_card.css', 'gestion.css ']);
+
+        // $content = $this->templateService->selectContent();
+
+        $this->render("gestion.php", $this->styles, [
+            // "start" => $content,
+            "route" => $route,
+            "request" => $request
         ]);
     }
 }
