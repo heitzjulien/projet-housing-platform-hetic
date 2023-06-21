@@ -27,37 +27,11 @@ class PrivateController extends Controller{
     public function dashboard(Request $request, Route $route): void {
         $this->updateStyles(['dashboard_card.css', 'dashboardVotreEspace.css ']);
 
-        // $content = $this->templateService->selectContent();
 
-        $this->render("dashboardVotreEspace.php", $this->styles, [
-            // "start" => $content,
+        $this->render("dashboard.php", $this->styles, [
             "route" => $route,
             "request" => $request
         ]);
-    }
-
-    public function dashboardAdmin(Request $request, Route $route): void{
-        $this->updateStyles(['dashboard_card.css', 'dashboardVotreEspace.css ']);
-
-        // $content = $this->templateService->selectContent();
-
-        $this->render("dashboardAdmin.php", $this->styles, [
-                        // "start" => $content,
-                        "route" => $route,
-                        "request" => $request
-        ]);
-    }
-
-    public function dashboardUserParametre(Request $request, Route $route): void{
-        $this->updateStyles(['dashboard_card.css', 'dashboardVotreEspace.css ']);
-
-            // $content = $this->templateService->selectContent();
-
-            $this->render("dashboardParametre.php", $this->styles, [
-                // "start" => $content,
-                "route" => $route,
-                "request" => $request
-    ]);
     }
 
     public function dashboardParametre(Request $request, Route $route): void{
@@ -160,6 +134,17 @@ class PrivateController extends Controller{
             "reservation" => $reservation,
             "start" => $content,
         ]);
+    }
+    
+    public function dashboardReservationUpdate(Request $request, Route $route): void{
+        $reservationId = $request->getQueryParams()['id'] ?? null;
+
+        if($reservationId){
+            dump($reservationId);
+        }
+
+        header("Location: http://localhost/projet-housing-platform-hetic/public/dashboard/reservation");
+        exit;
     }
 
     public function dashboardReservationDelete(Request $request, Route $route): void{
