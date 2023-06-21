@@ -284,3 +284,10 @@ header #headerModal a:hover {
 header .hideModal {
     display: none;
 }
+
+@media only screen and (max-width: 780px) {
+    header {
+        padding-top: 16px;
+        padding-bottom: 16px;
+    }
+}
