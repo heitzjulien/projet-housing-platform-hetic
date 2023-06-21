@@ -18,15 +18,15 @@
             </a>
         </div>
         <div class="heroImgContainer">
-        <?php foreach($data['images'] as $i): ?>
-            <img src="<?= $i->getImage() ?>" alt="Appartment interior image" width="400px" class="mainImage">
-        <?php endforeach; ?>
+<!--        --><?php //foreach($data['images'] as $i): ?>
+<!--            <img src="--><?php //= $i->getImage() ?><!--" alt="Appartment interior image" width="400px" class="mainImage">-->
+<!--        --><?php //endforeach; ?>
         </div>
     </section>
     <section id="homeRecommandations">
         <h2>Nos recommandations</h2>
         <div class="recommandationsImgContainer">
-            <div class="cardContainer">
+            <div class="cardContainer container">
 <!--                <img src="#" alt="Appartment interior image" width="590px" class="cardImage">-->
                 <div class="imageCardFooter">
                     <div class="leftInfos"></div>
@@ -96,6 +96,7 @@
         }
     }
     let json = <?php echo json_encode($data['housing']); ?>;
+    console.log(json)
     createCardLogement(json)
 </script>
 
