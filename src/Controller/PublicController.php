@@ -77,7 +77,7 @@ class PublicController extends Controller {
                 if(!$error[2] && $request->getRawBody()['number_pieces'] != false){
                     $housing = $housingService->getHousingFilter($housing, 'number_pieces', $filter['number_pieces']);
                 }
-                
+
                 if($request->getRawBody()['area']) { [$error[3], $filter['area']] = $housingService->checkArea($request->getRawBody()['area']); }
                 if(!$error[3] && $request->getRawBody()['area'] != false){
                     $housing = $housingService->getHousingFilter($housing, 'area', $filter['area']);
@@ -90,7 +90,6 @@ class PublicController extends Controller {
             "route" => $route,
             "request" => $request,
             "error" => $error,
-            "valid" => $valid,
             "housing" => $housing,
             "filter" => $filter,
         ]);

@@ -211,7 +211,9 @@ class HousingRepository extends Repository{
             ->setCity($r['city'])
             ->setZip($r['zip'])
             ->setDistrict($r['district'])
-            ->setAddress($r['address']);
+            ->setAddress($r['address'])
+            ->setOpinion($this->selectHousingOpinion($r['id']))
+            ->setService($this->selectHousingService($r['id']));
         }
 
         return $arrayHousing;
@@ -245,7 +247,9 @@ class HousingRepository extends Repository{
             ->setCity($r['city'])
             ->setZip($r['zip'])
             ->setDistrict($r['district'])
-            ->setAddress($r['address']);
+            ->setAddress($r['address'])
+            ->setOpinion($this->selectHousingOpinion($r['id']))
+            ->setService($this->selectHousingService($r['id']));
         }
 
         return $arrayHousing;
@@ -279,7 +283,9 @@ class HousingRepository extends Repository{
             ->setCity($r['city'])
             ->setZip($r['zip'])
             ->setDistrict($r['district'])
-            ->setAddress($r['address']);
+            ->setAddress($r['address'])
+            ->setOpinion($this->selectHousingOpinion($r['id']))
+            ->setService($this->selectHousingService($r['id']));
         }
 
         return $arrayHousing;
@@ -323,7 +329,9 @@ class HousingRepository extends Repository{
             ->setCity($r['city'])
             ->setZip($r['zip'])
             ->setDistrict($r['district'])
-            ->setAddress($r['address']);
+            ->setAddress($r['address'])
+            ->setOpinion($this->selectHousingOpinion($r['id']))
+            ->setService($this->selectHousingService($r['id']));
         }
 
         return $arrayHousing;
