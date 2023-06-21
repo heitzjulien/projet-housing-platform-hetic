@@ -7,24 +7,10 @@
         "href": "http://localhost/projet-housing-platform-hetic/public/dashboard/parametre"
     },
     {
-        "src": "/projet-housing-platform-hetic/public/assets/icons/messagerie.svg",
-        "alt": "message icone",
-        "title": "Messagerie",
-        "description": "Contactez le concierge ou le service client et partagez vos besoins",
-        "href": "http://google.com"
-    },
-    {
         "src": "/projet-housing-platform-hetic/public/assets/icons/reservation.svg",
         "alt": "calendrier",
-        "title": "Modifier une réservation",
-        "description": "Modifiez le jour et le nombre de voyageurs",
-        "href": "http://"
-    },
-    {
-        "src": "/projet-housing-platform-hetic/public/assets/icons/avis.svg",
-        "alt": "Avis icone",
-        "title": "Ajouter une avis",
-        "description": "Partagez votre avis et évaluez votre expérience avec nous",
-        "href": "http://"
+        "title": "Mes réservations",
+        "description": "Garder un oeil sur vos réservation. Envoyer un message, rédiger un avis, modifier vos réservations ou annuler une réservation",
+        "href": "http://localhost/projet-housing-platform-hetic/public/dashboard/reservation"
     }
 ]

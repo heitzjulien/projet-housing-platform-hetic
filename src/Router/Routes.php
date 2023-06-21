@@ -75,6 +75,16 @@ class Routes {
         );
 
         $this->addRoute(
+            (new Route("dashboard/reservation", PrivateController::class, "dashboardReservation"))
+            ->setMethod("POST")->setTitle("Reservation")
+        );
+
+        $this->addRoute(
+            (new Route("dashboard/reservation", PrivateController::class, "dashboardReservation"))
+            ->setTitle("Reservation")
+        );
+
+        $this->addRoute(
             (new Route("dashboard/parametre", PrivateController::class, "dashboardParametre"))
             ->setMethod("POST")->setTitle("Parametre")
         );
