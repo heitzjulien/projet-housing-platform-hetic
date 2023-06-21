@@ -139,13 +139,18 @@ class PrivateController extends Controller{
         ]);
     }
 
+
     public function dashboardReservation(Request $request, Route $route): void {
         $this->updateStyles(['dashboard_card.css', 'dashboardReservation.css ']);
 
         $reservation = (new ReservationService)->selectReservation($this->userLoggedIn->getId());
+        $reservation = (new ReservationService)->selectReservation($this->userLoggedIn->getId());
 
         $this->render("reservation.php", $this->styles, [
+        $this->render("reservation.php", $this->styles, [
             "route" => $route,
+            "request" => $request,
+            "reservation" => $reservation
             "request" => $request,
             "reservation" => $reservation
         ]);

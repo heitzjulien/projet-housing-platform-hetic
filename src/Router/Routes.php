@@ -108,6 +108,11 @@ class Routes {
             (new Route("apartment", PublicController::class, "apartment"))
             ->setMethod("POST")->setTitle("Apartment")
         );
+
+        $this->addRoute(
+            (new Route("gestion", PrivateController::class, "gestion"))
+            ->setTitle("Gestion")
+        );
     }
 
     public function addRoute(Route $route): void{
