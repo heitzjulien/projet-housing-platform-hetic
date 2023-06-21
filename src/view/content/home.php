@@ -49,6 +49,15 @@ $cardCount = 0;
             <?php $cardCount++ ?>
             <?php endforeach; ?>
         </div>
+        <div class="carouselCta">
+            <button id="carouselButton1">
+            </button>
+            <button id="carouselButton2">
+            </button>
+            <button id="carouselButton3">
+            </button>
+
+        </div>
         <a href="<?= __ROOT_URL__ ?>/search" class="button fullBtn">
             En voir plus
         </a>
