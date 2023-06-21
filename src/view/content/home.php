@@ -1,7 +1,6 @@
 <?php
 $cardCount = 0;
 ?>
-
 <main>
     <?php foreach ($data["error"] as $e): ?>
         <p class='error'>
@@ -13,7 +12,7 @@ $cardCount = 0;
             <?= $data["valid"] ?>
         </p>
     <?php endif; ?>
-    <section id="homeHero">
+    <section id="homeHero" class="bgHeroImage">
         <div class="heroTextContainer">
             <h1>Profitez de nos logements premiums parisiens</h1>
             <p>Des localisations attractives et un service de compétition</p>
@@ -22,11 +21,17 @@ $cardCount = 0;
             </a>
         </div>
         <div class="heroImgContainer">
-<!--        --><?php //foreach($data['images'] as $i): ?>
-<!--            <img src="--><?php //= $i->getImage() ?><!--" alt="Appartment interior image" width="400px" class="mainImage">-->
-<!--        --><?php //endforeach; ?>
+            <div class="heroImgCard"
+                style="background-image: url('<?= $data['images'][0]->getImage() ?>');"
+            >
+            </div>
+            <div class="heroImgCard"
+                style="background-image: url('<?= $data['images'][1]->getImage() ?>');"
+            >
+            </div>
         </div>
     </section>
+
     <section id="homeRecommandations">
         <h2>Nos recommandations</h2>
         <div class="housingContainer">
@@ -78,5 +83,6 @@ $cardCount = 0;
         </div>
     </section>
 </main>
+
 <script src="./scripts/homeCardLogement.js"></script>
 
