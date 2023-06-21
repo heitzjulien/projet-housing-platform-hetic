@@ -133,6 +133,11 @@ aside>img {
     padding: 2%;
 }
 
+header,
+footer {
+    display: none;
+}
+
 @media (max-width: 700px) {
     aside {
         display: none;
