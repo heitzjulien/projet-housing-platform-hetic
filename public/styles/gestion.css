@@ -1,0 +1,138 @@
+@import url("https://use.typekit.net/olo1pvf.css");
+
+@font-face {
+    font-family: 'Satoshi';
+    src: url('../assets/fonts/Satoshi-Regular.woff2') format('woff2'),
+        url('../assets/fonts/Satoshi-Regular.woff') format('woff'),
+        url('../assets/fonts/Satoshi-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-display: swap;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Satoshi-Bold';
+    src: url('../assets/fonts/Satoshi-Bold.woff2') format('woff2'),
+        url('../assets/fonts/Satoshi-Bold.woff') format('woff'),
+        url('../assets/fonts/Satoshi-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-display: swap;
+    font-style: normal;
+}
+
+:root {
+    --step--2: clamp(0.99rem, calc(0.93rem + 0.30vw), 1.41rem);
+    --step--1: clamp(1.05rem, calc(0.94rem + 0.59vw), 1.88rem);
+    --step-0: clamp(1.13rem, calc(0.93rem + 0.98vw), 2.50rem);
+    --step-1: clamp(1.20rem, calc(0.90rem + 1.52vw), 3.33rem);
+    --step-2: clamp(1.28rem, calc(0.83rem + 2.26vw), 4.44rem);
+    --step-3: clamp(1.37rem, calc(0.72rem + 3.25vw), 5.92rem);
+    --step-4: clamp(1.46rem, calc(0.54rem + 4.60vw), 7.89rem);
+    --step-5: clamp(1.56rem, calc(0.27rem + 6.40vw), 10.52rem);
+}
+
+button {
+    border: none;
+    padding: none;
+    color: #FAFAFA;
+    background: none;
+    background-color: #435188;
+    font-family: "arpona", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+h2 {
+    font-family: "arpona", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: var(--step-2);
+}
+
+.settings,
+.listing>div {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.settings>button {
+    font-size: var(--step-0);
+    width: 140px;
+    height: 80px;
+}
+
+.toggle {
+    border: #050505 1px solid;
+    padding: 15px;
+}
+
+.toggle button {
+    width: 140px;
+    height: 50px;
+}
+
+.listing>div>div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px
+}
+
+.listing {
+    margin: auto;
+    margin-bottom: 50px;
+    border: 1px solid #050505;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 1260px;
+    height: 200px
+}
+
+.listing>button {
+    font-size: var(--step-1);
+    width: 260px;
+    height: 100px;
+}
+
+.name>p {
+    font-family: 'Satoshi';
+    font-size: var(--step-0)
+}
+
+.delete {
+    background-color: #AD2D2D;
+}
+
+.settings>form {
+    border: #050505 1px solid;
+    padding: 0px 10px;
+
+}
+
+.settings>form>input {
+    width: 600px;
+    height: 75px;
+    border: none;
+}
+
+.settings>form>input::placeholder {
+    font-family: 'Satoshi';
+    font-size: var(--step-0);
+}
+
+.settings>form>button {
+    width: 175px;
+    height: 60px;
+}
+
+.settings {
+    margin-bottom: 75px;
+}
