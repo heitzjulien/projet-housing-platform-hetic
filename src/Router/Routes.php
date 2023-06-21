@@ -80,6 +80,11 @@ class Routes {
         );
 
         $this->addRoute(
+            (new Route("dashboard/reservation/update", PrivateController::class, "dashboardReservationDelete"))
+            ->setTitle("Reservation")
+        );
+
+        $this->addRoute(
             (new Route("search", PublicController::class, "search"))
             ->setTitle("Search")
         );
