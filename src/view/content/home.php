@@ -1,3 +1,7 @@
+<?php
+$cardCount = 0;
+?>
+
 <main>
     <?php foreach ($data["error"] as $e): ?>
         <p class='error'>
@@ -25,15 +29,35 @@
     </section>
     <section id="homeRecommandations">
         <h2>Nos recommandations</h2>
-        <div class="recommandationsImgContainer">
-            <div class="cardContainer container">
-<!--                <img src="#" alt="Appartment interior image" width="590px" class="cardImage">-->
-                <div class="imageCardFooter">
-                    <div class="leftInfos"></div>
-                    <div class="dividingLine"></div>
-                    <div class="rightInfos"></div>
+        <div class="housingContainer">
+            <?php foreach($data['housing'] as $datum): ?>
+                <div class="housingCard" id="card<?= $cardCount ?>">
+                        <img src="<?= $datum['images']?>" alt="Image du logement"/>
+                    <a href="<?= __ROOT_URL__ . "/apartment?housing_id=" . $datum["id"]?>">
+                        <div class="housingCardFooter">
+                            <div class="primaryDesc">
+                                <p class="housingTitle"><?=$datum["name"]?></p>
+                                <p class="housingTitle"><?=$datum["number_pieces"]?> pièce(s) • <?= $datum["area"]?> m²</p>
+                                <p><?= $datum["city"] ?> • <?= (int)$datum["district"] == 1 ? (int)$datum["district"] . "er" : (int)$datum["district"] . "ème" ?> </p>
+                            </div>
+                            <div class="descDivider"></div>
+                            <div class="secondaryDesc">
+                                <p><?= $datum["description"]?></p>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-            </div>
+            <?php $cardCount++ ?>
+            <?php endforeach; ?>
+        </div>
+        <div class="carouselCta">
+            <button id="carouselButton1">
+            </button>
+            <button id="carouselButton2">
+            </button>
+            <button id="carouselButton3">
+            </button>
+
         </div>
         <a href="<?= __ROOT_URL__ ?>/search" class="button fullBtn">
             En voir plus
@@ -54,49 +78,5 @@
         </div>
     </section>
 </main>
-<script>
-    function createCardLogement(arrayAsso) {
-        for (let i = 0; i < arrayAsso.length; i++) {
-
-            let a = document.createElement('a')
-            let img = document.createElement('img')
-            let divDescription = document.createElement('div')
-            let divName = document.createElement('div')
-            let spanName = document.createElement('span')
-            let area = document.createElement('p')
-            let pDescription = document.createElement('p')
-            let piece = document.createElement('p')
-
-            a.setAttribute('href', "<?= __ROOT_URL__ ?>/apartment?housing_id=" + arrayAsso[i].id)
-            a.classList.add('cardLogement')
-
-            img.setAttribute('src', arrayAsso[i].images)
-            img.setAttribute('alt', arrayAsso[i].alt)
-
-            spanName.textContent = arrayAsso[i].name
-
-            area.textContent = arrayAsso[i].area + 'm²'
-
-            pDescription.textContent = arrayAsso[i].description
-
-            piece.textContent = arrayAsso[i].number_pieces + ' pièces'
-
-            divDescription.classList.add('description')
-            divName.classList.add('name')
-
-            a.appendChild(img)
-            a.appendChild(divDescription)
-            divDescription.appendChild(divName)
-            divDescription.appendChild(pDescription)
-            divName.appendChild(spanName)
-            divName.appendChild(area)
-            divName.appendChild(piece)
-
-            document.querySelector(".container").appendChild(a)
-        }
-    }
-    let json = <?php echo json_encode($data['housing']); ?>;
-    console.log(json)
-    createCardLogement(json)
-</script>
+<script src="./scripts/homeCardLogement.js"></script>
 

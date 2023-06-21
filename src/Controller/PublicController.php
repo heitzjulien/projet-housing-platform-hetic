@@ -16,7 +16,7 @@ class PublicController extends Controller {
     }
 
     public function home(Request $request, Route $route): void {
-        $this->updateStyles(['home.css']);
+        $this->updateStyles(['home.css', 'housing.css']);
         $HousingService = new HousingService();
         $error = [];
         $valid = null;
