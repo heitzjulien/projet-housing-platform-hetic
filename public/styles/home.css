@@ -1,7 +1,9 @@
 main {
     overflow: hidden;
 }
-
+body {
+    overflow-x: hidden;
+}
 #homeHero {
     color: var(--clr-beige);
     font-size: var(--fs-body-big);
