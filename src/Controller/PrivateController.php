@@ -162,6 +162,17 @@ class PrivateController extends Controller{
         ]);
     }
 
+    public function dashboardReservationDelete(Request $request, Route $route): void{
+        $reservationId = $request->getQueryParams()['id'] ?? null;
+
+        if($reservationId){
+            (new ReservationService)->deleteReservation($this->userLoggedIn->getId(), $reservationId);
+        }
+
+        header("Location: http://localhost/projet-housing-platform-hetic/public/dashboard/reservation");
+        exit;
+    }
+
     public function gestion(Request $request, Route $route): void {
         $this->updateStyles(['dashboard_card.css', 'gestion.css ']);
 

@@ -32,4 +32,12 @@ class ReservationRepository extends Repository{
 
         return $reservation;
     }
+
+    public function deleteReservation(int $user_id, int $reservation_id): void{
+        $stmt = $this->db->pdo->prepare("DELETE FROM reservations WHERE user_id = :user_id AND id = :reservation_id");
+        $stmt->execute([
+            ":user_id" => $user_id,
+            ":reservation_id" => $reservation_id
+        ]);
+    }
 }

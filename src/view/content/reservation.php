@@ -10,7 +10,7 @@
             case "accept": ?>
                 <a href="">Messagerie</a>
                 <a href="">Modifier la réservation</a>
-                <a href="">Supprimer la réservation</a>
+                <a href="<?= __ROOT_URL__ ?>/dashboard/reservation/delete?id=<?= $r->getId() ?>">Supprimer la réservation</a>
                 <?php break;
             case "currently": ?>
                 <a href="">Messagerie</a>
@@ -19,5 +19,7 @@
                 <a href="">Rédiger un avis</a>
                 <?php break;
         endswitch; ?>
+
+        <br>
     <?php endforeach; ?>
 </div>

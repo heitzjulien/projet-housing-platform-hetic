@@ -18,4 +18,8 @@ class ReservationService {
         
         return $reservation;
     }
+
+    public function deleteReservation(int $user_id, int $reservation_id): void{
+        $this->reservationRepository->deleteReservation($user_id, $reservation_id);
+    }
 }
