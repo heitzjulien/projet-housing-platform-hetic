@@ -1,3 +1,7 @@
+main {
+    overflow: hidden;
+}
+
 #homeHero {
     background-color: var(--clr-regular-blue);
     color: var(--clr-beige);

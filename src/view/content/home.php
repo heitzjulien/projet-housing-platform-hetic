@@ -30,7 +30,6 @@ $cardCount = 0;
     <section id="homeRecommandations">
         <h2>Nos recommandations</h2>
         <div class="housingContainer">
-<!--            --><?php //= var_dump($data['housing']) ?>
             <?php foreach($data['housing'] as $datum): ?>
                 <div class="housingCard" id="card<?= $cardCount ?>">
                     <img src="<?= $datum['images']?>" alt="Image du logement"/>
