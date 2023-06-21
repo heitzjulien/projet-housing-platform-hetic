@@ -7,7 +7,6 @@ use App\Request;
 use Router\Route;
 
 use Service\AuthService;
-use Service\ReservationService;
 
 use Model\UserModel;
 
@@ -138,16 +137,15 @@ class PrivateController extends Controller{
             "valid" => $valid,
         ]);
     }
-    
-    public function dashboardReservation(Request $request, Route $route): void{
-        $housingService = new ReservationService();
-        $reservation = $housingService->selectReservation($this->userLoggedIn->getId());
+    public function dashboardReservation(Request $request, Route $route): void {
+        $this->updateStyles(['dashboard_card.css', 'dashboardReservation.css ']);
 
+        // $content = $this->templateService->selectContent();
 
-        $this->render("reservation.php", $this->styles, [
+        $this->render("dashboardReservation.php", $this->styles, [
+            // "start" => $content,
             "route" => $route,
-            "request" => $request,
-            "reservation" => $reservation
+            "request" => $request
         ]);
     }
 }
