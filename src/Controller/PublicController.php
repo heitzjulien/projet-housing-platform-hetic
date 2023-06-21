@@ -21,7 +21,7 @@ class PublicController extends Controller {
         $error = [];
         $valid = null;
 
-        switch ($request->getQueryParams()['mail']) {
+        switch (isset($request->getQueryParams()['mail'])) {
             case 'valid':
                 $valid = "Votre mail a été validé !";
                 break;

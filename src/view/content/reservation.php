@@ -1,5 +1,5 @@
 <div>
-    <?php foreach($data['reservation'] as $h): ?>
-        <span><?= $h->getId() ?></span>
+    <?php foreach($data['reservation'] as $r): ?>
+        <span><?= $r->getId() ?></span>
     <?php endforeach; ?>
 </div>
