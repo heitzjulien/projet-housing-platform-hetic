@@ -77,7 +77,10 @@ class PrivateController extends Controller{
                 }
                 if (isset($request->getQueryParams()['action']) && $request->getQueryParams()['action'] == 'waiting' && $this->userLoggedIn->getAccountStatus() == 'waiting'){
                     $authService->updateAccountStatus($this->userLoggedIn->getId(), 'valid');
-                    header("Location: http://localhost/projet-housing-platform-hetic/public/home");
+                    header("Location: http://localhost/projet-housing-platform-hetic/public/home?mail=valid");
+                }
+                if (isset($request->getQueryParams()['action']) && $request->getQueryParams()['action'] == 'waiting' && $this->userLoggedIn->getAccountStatus() != 'waiting'){
+                    header("Location: http://localhost/projet-housing-platform-hetic/public/home?mail=error");
                 }
                 break;
             case "POST":
