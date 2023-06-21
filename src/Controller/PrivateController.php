@@ -64,8 +64,16 @@ class PrivateController extends Controller{
         switch($request->getMethod()){
             case "GET":
                 $authService = new AuthService();
-                if(isset($request->getQueryParams()['action'])){
+                if(isset($request->getQueryParams()['action']) == 'sendmail'){
                     $authService->sendMail($this->userLoggedIn->getMail(), $this->userLoggedIn->getFirstname(), $this->userLoggedIn->getLastname());
+                }
+                if (isset($request->getQueryParams()['action']) && $request->getQueryParams()['action'] == 'valid') {
+                    $authService->updateAccountStatus($this->userLoggedIn->getId(), 'valid');
+                    header("Location: http://localhost/projet-housing-platform-hetic/public/dashboard/parametre");
+                }
+                if(isset($request->getQueryParams()['action']) && $request->getQueryParams()['action'] == 'disable'){
+                    $authService->updateAccountStatus($this->userLoggedIn->getId(), "disable");
+                    header("Location: http://localhost/projet-housing-platform-hetic/public/dashboard/parametre");
                 }
                 break;
             case "POST":

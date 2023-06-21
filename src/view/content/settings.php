@@ -28,9 +28,9 @@
 <?php if($data["user_logged_in"]->getAccountStatus() == 'waiting'): ?>
     <p>Please validate your email. <a href="<?= __ROOT_URL__ ?>/dashboard/parametre?action=sendmail">Resend the confirmation</a></p>
 <?php elseif($data["user_logged_in"]->getAccountStatus() == 'valid'): ?>
-    <p><a href="">Disable account</a></p>
+    <p><a href="<?= __ROOT_URL__ ?>/dashboard/parametre?action=disable">Disable account</a></p>
 <?php elseif($data["user_logged_in"]->getAccountStatus() == 'disable'): ?>
-    <p><a href="">Reactivate account</a></p>
+    <p><a href="<?= __ROOT_URL__ ?>/dashboard/parametre?action=valid">Reactivate account</a></p>
 <?php endif; ?>
 
 <br>

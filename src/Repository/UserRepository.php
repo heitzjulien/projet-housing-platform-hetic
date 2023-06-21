@@ -99,4 +99,12 @@ class UserRepository extends Repository{
             ":id" => $user->getId(),
         ]);
     }
+
+    public function updateAccountStatus(int $id, string $status): void{
+        $stmt = $this->db->pdo->prepare("UPDATE users SET account_status = :status WHERE id = :id");
+        $stmt->execute([
+            ":status" => $status,
+            ":id" => $id,
+        ]);
+    }
 }
