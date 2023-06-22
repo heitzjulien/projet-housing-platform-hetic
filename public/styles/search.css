@@ -192,9 +192,6 @@ label {
     display: none;
 }
 
-#popup {
-    display: none;
-}
 
 /* @media screen and (max-width: 1400px) {
     body {
@@ -277,5 +274,12 @@ label {
 
     .location {
         margin-bottom: 10px;
+    }
+
+    dialog {
+        top: 100px;
+        left: 16px;
+        width: 100%;
+        height: 752px;
     }
 }

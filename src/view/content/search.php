@@ -52,8 +52,8 @@
     </form>
     <button type="button" class="refine" id="displayForm">Affiner votre recherche</button>
     <dialog class="toggle" id="popup">
-        <form method="POST" class="filterForm">
-            <!-- <img class="close" src="image/close.png" alt="croix" onclick="toggle()"> -->
+        <form method="POST" class="filterForm2">
+            <img class="close" id="closeBtn" src=".././public/assets/icons/close.png" alt="croix">
             <div class="input-row">
                 <label for="date_start">Date d'arrivée :</label>
                 <input id="date_start" type="date" name="date_start" value="<?php if ($data['filter']['date_start']) {
@@ -159,13 +159,15 @@
     let json = <?php echo json_encode($data['housing']); ?>;
     createCardLogement(json)
 
-    let toggle =document.querySelector("#displayForm");
-    // let toggle = document.querySelector("#popup");
+    let btnDisplayForm = document.querySelector("#displayForm");
+    let btnClose = document.querySelector("#closeBtn");
 
-    toggle.onclick = displayFilter;
+    btnDisplayForm.onclick = function() {
+        document.querySelector("#popup").showModal();
+    };
 
-    function displayFilter() {
-        toggle.classList.toggle("opened");
-        console.log("It's upsetting me !")
-    }
+    btnClose.onclick = function() {
+        document.querySelector("#popup").close();
+    };
+    
 </script>
