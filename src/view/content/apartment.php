@@ -15,6 +15,7 @@
         <p><?= $data["valid"] ?></p>
     <?php endif; ?>
     <h1><?= $data["housing"]->getName() ?></h1>
+    <span><?= $data["housing"]->getAddress() . " " . $data["housing"]->getCity()  . " " . $data["housing"]->getDistrict() ?></span>
     <div class="container">
         <?php foreach($data["housing"]->getImage() as $i): ?>
             <div class="image">
@@ -31,6 +32,11 @@
         <h2>Description</h2>
         <div class="text">
             <p><?= $data["housing"]->getDescription() ?></p>
+            <span><?= $data["housing"]->getArea() ?>m2</span>
+            <span><?= $data["housing"]->getCapacity() ?> voyageurs</span>
+            <span><?= $data["housing"]->getNumberPieces() ?> pièces</span>
+            <span><?= $data["housing"]->getNumberRooms() ?> chambre(s)</span>
+            <span><?= $data["housing"]->getNumberBathroom() ?> salle de bain</span>
         </div>
         <aside>
             <div class="booking-details">
@@ -46,10 +52,6 @@
                             </form>
                         <?php endif; ?>
                     </div>
-                </div>
-                <div class="traverlers">
-                        <span><?= $data["housing"]->getCapacity() ?> voyageurs</span>
-                        <img src="./icons/chevron.png" alt="chevron">
                 </div>
                 <div class="prices">
                     <div class="price-details">
