@@ -47,4 +47,31 @@ class OpinionRepository extends Repository{
         }
         return $opinions;
     }
+
+    public function addOpinion(int $user_id, int $housing_id, int $reservation_id, string $content, string $display): void {
+        $stmt = $this->db->pdo->prepare("INSERT INTO opinions (user_id, housing_id, reservation_id, content, display) VALUES (:user_id, :housing_id, :reservation_id, :content, :display)");
+        $stmt->execute([
+            "user_id" => $user_id,
+            "housing_id" => $housing_id,
+            "reservation_id" => $reservation_id,
+            "content" => $content,
+            "display" => $display
+        ]);
+    }
+
+    public function updateDiplayOpinion(int $id, string $display): void {
+        $stmt = $this->db->pdo->prepare("UPDATE opinions SET display = :display WHERE id = :id");
+        $stmt->execute([
+            "id" => $id,
+            "display" => $display
+        ]);
+    }
+
+    public function deleteOpinion(int $id, int $user_id): void {
+        $stmt = $this->db->pdo->prepare("DELETE FROM opinions WHERE id = :id, user_id = :user_id");
+        $stmt->execute([
+            "id" => $id,
+            "user_id" => $user_id
+        ]);
+    }
 }
