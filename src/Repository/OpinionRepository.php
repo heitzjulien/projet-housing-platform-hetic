@@ -59,6 +59,17 @@ class OpinionRepository extends Repository{
         ]);
     }
 
+    public function updateOpinion(int $id, int $user_id, int $housing_id, int $reservation_id, string $content): void {
+        $stmt = $this->db->pdo->prepare("UPDATE opinions SET user_id = :user_id, housing_id = :housing_id, reservation_id = :reservation_id, content = :content WHERE id = :id");
+        $stmt->execute([
+            "id" => $id,
+            "user_id" => $user_id,
+            "housing_id" => $housing_id,
+            "reservation_id" => $reservation_id,
+            "content" => $content
+        ]);
+    }
+
     public function updateDiplayOpinion(int $id, string $display): void {
         $stmt = $this->db->pdo->prepare("UPDATE opinions SET display = :display WHERE id = :id");
         $stmt->execute([
@@ -74,4 +85,13 @@ class OpinionRepository extends Repository{
             "user_id" => $user_id
         ]);
     }
+
+    public function adminDeleteOpinion(int $id, int $admin_id): void {
+        $stmt = $this->db->pdo->prepare("DELETE FROM opinions WHERE id = :id
+        AND user_id = :admin_id IN (SELECT id FROM users WHERE roles = 'admin')");
+        $stmt->execute([
+            "id" => $id,
+            "admin_id" => $admin_id
+        ]);
+    }       
 }
