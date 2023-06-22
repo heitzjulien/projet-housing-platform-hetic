@@ -77,8 +77,8 @@
 
             <div class="input-row">
                 <label for="number_pieces">Pièces :</label>
-                <input id="number_pieces" type="number" name="number_pieces" value="<?= $data['filter']['number_pieces'] ?>"
-                    placeholder="7 pièces">
+                <input id="number_pieces" type="number" name="number_pieces"
+                    value="<?= $data['filter']['number_pieces'] ?>" placeholder="7 pièces">
             </div>
 
             <div class="input-row">
@@ -163,12 +163,12 @@
     let btnDisplayForm = document.querySelector("#displayForm");
     let btnClose = document.querySelector("#closeBtn");
 
-    btnDisplayForm.onclick = function() {
+    btnDisplayForm.onclick = function  () {
         document.querySelector("#popup").showModal();
     };
 
-    btnClose.onclick = function() {
+    btnClose.onclick = functio n () {
         document.querySelector("#popup").close();
     };
-    
+
 </script>
