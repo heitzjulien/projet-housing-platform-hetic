@@ -86,8 +86,11 @@ h1{
 }
 
 .description{
+    position: relative;
     margin-top: 100px;
     width: 100%;
+    margin-bottom: 50px;
+    height: 650px;
     /* height: 100vh; */
 }
 
@@ -284,6 +287,7 @@ form .filter {
     background: #435188;
     overflow: hidden;
     margin-bottom: 100px;
+    margin-top: 50px;
 }
 
 .service .photo{
@@ -360,8 +364,8 @@ form .filter {
         margin-left: 13%;
     }
 
-    .description h1{
-        margin-left: 45%;
+    .description h2{
+        margin-left: 40%;
         font-size: calc(10px + 3.3vw);
         margin-bottom: 50px;
         width: 300px;
@@ -378,7 +382,7 @@ form .filter {
     .description aside{
         float: right;
         display: inline-block;
-        margin: 10% 23% 15% 0;
+        margin: 40% 15% 15% 0;
     }
 
     .description .text span{

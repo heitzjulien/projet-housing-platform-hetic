@@ -1,6 +1,6 @@
 <main>
     <aside>
-        <img src="../public/assets/images/login.svg" alt="">
+        <img src="<?= __ROOT_URL__ ?>/assets/images/login.svg" alt="">
     </aside>
     <div class='form'>
         <div class="error">

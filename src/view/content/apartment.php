@@ -1,19 +1,25 @@
 <main>
 <?php if($data['error']):?>
-    <?php foreach ($data["error"] as $e): ?>
-        <p>
-            <?= $e ?>
-        </p>
-    <?php endforeach; ?>
+    <div class="error">
+        <?php foreach ($data["error"] as $e): ?>
+            <p>
+                <?= $e ?>
+            </p>
+        <?php endforeach; ?>
+    </div>
 <?php else: ?>
-    <?php foreach ($data["filter_error"] as $e): ?>
-        <p>
-            <?= $e ?>
-        </p>
-    <?php endforeach; ?>
-    <?php if($data["valid"]): ?>
-        <p><?= $data["valid"] ?></p>
-    <?php endif; ?>
+    <div class="error">
+        <?php foreach ($data["filter_error"] as $e): ?>
+            <p>
+                <?= $e ?>
+            </p>
+        <?php endforeach; ?>
+    </div>
+    <div class="valid">
+        <?php if($data["valid"]): ?>
+            <p><?= $data["valid"] ?></p>
+        <?php endif; ?>
+    </div>
     <h1><?= $data["housing"]->getName() ?></h1>
     <span class="adress"><?= $data["housing"]->getAddress() . " " . $data["housing"]->getCity()  . " " . $data["housing"]->getDistrict() ?></span>
     <div class="container">

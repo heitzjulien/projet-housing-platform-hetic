@@ -1,10 +1,15 @@
-<?php foreach($data["error"] as $e): ?>
-    <p><?= $e ?></p>
-<?php endforeach; ?>
-
-<?php if($data["valid"]): ?>
-    <p><?= $data["valid"] ?></p>
-<?php endif; ?>
+<div class="error">
+    <?php foreach($data["error"] as $e): ?>
+        <p>
+            <?= $e ?>
+        </p>
+    <?php endforeach; ?>
+</div>
+<div class="valid">
+    <?php if($data["valid"]): ?>
+        <p><?= $data["valid"] ?></p>
+    <?php endif; ?>
+</div>
 
 <h2>Settings</h2>
 
