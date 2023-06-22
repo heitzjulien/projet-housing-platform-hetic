@@ -70,19 +70,19 @@ $cardCount = 0;
     </section>
     <section id="homeServices">
         <div>
-            <img src="./assets/images/washing.service.svg" alt="Cleaning service">
+            <img src="<?= __ROOT_URL__ ?>/assets/images/washing.service.svg" alt="Cleaning service">
             <h3>Laverie</h3>
         </div>
         <div>
-            <img src="./assets/images/taxi.service.svg" alt="Cleaning service">
+            <img src="<?= __ROOT_URL__ ?>/assets/images/taxi.service.svg" alt="Cleaning service">
             <h3>Taxi</h3>
         </div>
         <div>
-            <img src="./assets/images/cleaning.service.svg" alt="Cleaning service">
+            <img src="<?= __ROOT_URL__ ?>/assets/images/cleaning.service.svg" alt="Cleaning service">
             <h3>Nettoyage</h3>
         </div>
     </section>
 </main>
 
-<script src="./scripts/homeCardLogement.js"></script>
+<script src="<?= __ROOT_URL__ ?>/scripts/homeCardLogement.js"></script>
 
