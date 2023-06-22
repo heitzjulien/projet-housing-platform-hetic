@@ -145,7 +145,6 @@
             a.appendChild(img)
             a.appendChild(divDescription)
             divDescription.appendChild(divName)
-            divDescription.appendChild(pDescription)
             divName.appendChild(spanName)
             divName.appendChild(area)
             divName.appendChild(piece)
