@@ -337,6 +337,12 @@ form .filter {
     h1{
         font-size: calc(10px + 3.3vw);
         width: 100%;
+        margin-left: 13%;
+        margin-top: 5%;
+    }
+
+    .adress{
+        margin-left: 13%;
     }
 
     .container{
@@ -348,7 +354,7 @@ form .filter {
     }
 
     .description h1{
-        margin-left: 35%;
+        margin-left: 45%;
         font-size: calc(10px + 3.3vw);
         margin-bottom: 50px;
         width: 300px;
@@ -356,16 +362,23 @@ form .filter {
 
     .text{ 
         width: 90%;
+        height: 70%;
         font-size: calc(8px + 1.3vw);
         margin-left: 5%;
     
     }
 
-    .description aside {
+    .description aside{
         float: right;
         display: inline-block;
-        margin: 25% 14% 25% 0;
+        margin: 10% 23% 15% 0;
     }
+
+    .description .text span{
+        margin-left: 35px;
+        margin-right: 5px;
+    }
+    
 
     .service{
         width:100%;
