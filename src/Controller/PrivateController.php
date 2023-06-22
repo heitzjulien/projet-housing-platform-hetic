@@ -117,34 +117,49 @@ class PrivateController extends Controller{
 
     public function dashboardReservation(Request $request, Route $route): void {
         $this->updateStyles(['dashboard_card.css', 'dashboardReservation.css ']);
+        $error = []; 
+        if(isset($request->getQueryParams()['update']) && $request->getQueryParams()['update'] == "valid"){
+            $valid = "Modification effectué";
+        } else {
+            $valid = null;
+        };
+        $date_start = isset($request->getRawBody()['date_start']);
+        $date_end = isset($request->getRawBody()['date_end']);
+        $housingService = new HousingService;
 
         $reservation = (new ReservationService)->selectReservation($this->userLoggedIn->getId());
         foreach($reservation as $r){
-            [$error, $housing] = (new HousingService)->getHousingById($r->getHousingId());
+            [$temp, $housing] = $housingService->getHousingById($r->getHousingId());
             $r->setHousing($housing);
         }
 
+        switch($request->getMethod()){
+            case "POST":
+                [$error[], $date_start, $date_end] = $housingService->checkDate($request->getRawBody()['date_start'], $request->getRawBody()['date_end']);
+                $error = array_filter($error, function ($value) { return $value; });
+                if(!$error && isset($request->getRawBody()['reservation_id']) && isset($request->getRawBody()['housing_id'])){
+                    $error[] = (new ReservationService)->updateReservation($this->userLoggedIn->getId(), $request->getRawBody()['reservation_id'], date("Y-m-d", $date_start), date("Y-m-d", $date_end), $request->getRawBody()['housing_id']);
+                    $error = array_filter($error, function ($value) { return $value; });
+                    if(!$error){
+                        header("Location: http://localhost/projet-housing-platform-hetic/public/dashboard/reservation?update=valid");
+                        exit;
+                    }
+                }
+                break;
+        }
+
         // A CHANGER DE PAGE
-        $opinionService = new OpinionService();
-        $content = $opinionService->selectOpinionsByUserId($this->userLoggedIn->getId());
+        // $opinionService = new OpinionService();
+        // $content = $opinionService->selectOpinionsByUserId($this->userLoggedIn->getId());
 
         $this->render("reservation.php", $this->styles, [
             "route" => $route,
             "request" => $request,
             "reservation" => $reservation,
-            "start" => $content,
+            "error" => $error,
+            "valid" => $valid,
+            // "start" => $content,
         ]);
-    }
-    
-    public function dashboardReservationUpdate(Request $request, Route $route): void{
-        $reservationId = $request->getQueryParams()['id'] ?? null;
-
-        if($reservationId){
-            dump($reservationId);
-        }
-
-        header("Location: http://localhost/projet-housing-platform-hetic/public/dashboard/reservation");
-        exit;
     }
 
     public function dashboardReservationDelete(Request $request, Route $route): void{

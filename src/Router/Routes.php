@@ -75,11 +75,6 @@ class Routes {
         );
 
         $this->addRoute(
-            (new Route("dashboard/reservation/update", PrivateController::class, "dashboardReservationUpdate"))
-            ->setTitle("Reservation")
-        );
-
-        $this->addRoute(
             (new Route("dashboard/reservation/delete", PrivateController::class, "dashboardReservationDelete"))
             ->setTitle("Reservation")
         );
