@@ -181,4 +181,20 @@ class PrivateController extends Controller{
             "request" => $request
         ]);
     }
+
+    public function opinion(Request $request, Route $route): void {
+        $this->updateStyles(['dashboard_card.css', 'opinion.css ']);
+        switch($request->getMethod()) {
+            case "POST":
+                $opinionService = new OpinionService();
+                $opinionService->addOpinion($this->userLoggedIn->getId(), $request->getQueryParams()['reservation_id'], $request->getRawBody()['comment']);
+                header("Location: http://localhost/projet-housing-platform-hetic/public/opinion");
+                exit;
+        }
+
+        $this->render("opinion.php", $this->styles, [
+            "route" => $route,
+            "request" => $request
+        ]);
+    }
 }

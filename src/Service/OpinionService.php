@@ -21,7 +21,7 @@ class OpinionService {
         return $this->opinionRepository->selectOpinionsByUserId($user_id);
     }
 
-    public function addOpinion(int $user_id, int $housing_id, int $reservation_id, string $content, string $display): void {
-        $this->opinionRepository->addOpinion($user_id, $housing_id, $reservation_id, $content, $display);
+    public function addOpinion(int $user_id, int $reservation_id, string $content): void {
+        $this->opinionRepository->addOpinion($user_id, $reservation_id, $content);
     }
 }

@@ -103,6 +103,15 @@ class Routes {
             (new Route("gestion", PrivateController::class, "gestion"))
             ->setTitle("Gestion")
         );
+
+        $this->addRoute(
+            (new Route("opinion", PrivateController::class, "opinion"))
+            ->setTitle("Opinion")
+        );
+        $this->addRoute(
+            (new Route("opinion", PrivateController::class, "opinion"))
+            ->setMethod("POST")->setTitle("Opinion")
+        );
     }
 
     public function addRoute(Route $route): void{
