@@ -36,12 +36,14 @@ button {
     padding: none;
     color: #FAFAFA;
     background: none;
-    background-color: #435188;
     font-family: "arpona", serif;
     font-weight: 400;
     font-style: normal;
 }
 
+button:not(#employe):not(#customer) {
+    background-color: #435188;
+}
 
 h2 {
     font-family: "arpona", serif;
@@ -135,4 +137,17 @@ h2 {
 
 .settings {
     margin-bottom: 75px;
+}
+
+.hauss {
+    color: #7A8AA4;
+}
+
+.royal {
+    background-color: #435188;
+    color: #FAFAFA;
+}
+
+.colorless {
+    background-color: #FAFAFA;
 }
