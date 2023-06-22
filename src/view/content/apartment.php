@@ -15,7 +15,7 @@
         <p><?= $data["valid"] ?></p>
     <?php endif; ?>
     <h1><?= $data["housing"]->getName() ?></h1>
-    <span><?= $data["housing"]->getAddress() . " " . $data["housing"]->getCity()  . " " . $data["housing"]->getDistrict() ?></span>
+    <span class="adress"><?= $data["housing"]->getAddress() . " " . $data["housing"]->getCity()  . " " . $data["housing"]->getDistrict() ?></span>
     <div class="container">
         <?php foreach($data["housing"]->getImage() as $i): ?>
             <div class="image">
@@ -31,12 +31,12 @@
     <div class="description">
         <h2>Description</h2>
         <div class="text">
-            <p><?= $data["housing"]->getDescription() ?></p>
             <span><?= $data["housing"]->getArea() ?>m2</span>
             <span><?= $data["housing"]->getCapacity() ?> voyageurs</span>
             <span><?= $data["housing"]->getNumberPieces() ?> pièces</span>
             <span><?= $data["housing"]->getNumberRooms() ?> chambre(s)</span>
-            <span><?= $data["housing"]->getNumberBathroom() ?> salle de bain</span>
+            <span><?= $data["housing"]->getNumberBathroom() ?> salle de bains</span><br><br>
+            <p><?= $data["housing"]->getDescription() ?></p>
         </div>
         <aside>
             <div class="booking-details">
@@ -48,21 +48,17 @@
                                 <input id="date_start" type="date" name="date_start" value="<?php if($data['filter']['date_start']) { echo(date("Y-m-d", $data['filter']['date_start'])); } ?>">
                                 <label for="date_end">Date de départ :</label>
                                 <input id="date_end" type="date" name="date_end" value="<?php if($data['filter']['date_end']) { echo(date("Y-m-d", $data['filter']['date_end'])); } ?>">
+                                <div class="prices">
+                                    <div class="price-details">
+                                        <span><?= $data["housing"]->getPrice() ?>€</span>
+                                        <span>/ nuit</span>
+                                    </div>
+                                </div>
                                 <input type="submit" value="Réserver">
                             </form>
                         <?php endif; ?>
                     </div>
                 </div>
-                <div class="prices">
-                    <div class="price-details">
-                        <span><?= $data["housing"]->getPrice() ?>€</span>
-                        <span>/ nuit</span>
-                    </div>
-                </div>
-                <a href="#">
-                    <span style="margin: 10% 0 0 18%;">Réserver</span>
-                </a>
-            </div>
         </aside>
     </div>
     <div class="service">

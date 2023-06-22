@@ -19,8 +19,12 @@ h1{
     font-weight: 400;
     font-style: normal;
     font-size: 40px;
+    margin-bottom: 45px;
 }
 
+.adress{
+    font-size: 20px;
+}
 
 .container{
     margin: 0 5vw;
@@ -87,11 +91,17 @@ h1{
     height: 100vh;
 }
 
-.description h1{
-    margin-left: 180px;
-    font-size: 50px;
+.description h2{
+    margin-left: 240px;
+    font-size: 30px;
     margin-bottom: 50px;
 }
+
+.description .text span{
+    margin-right: 20px;
+    margin-left: 18px;
+}
+
 
 .text{  
     float:left;
@@ -122,7 +132,6 @@ h1{
 }
 
 .sub-details {
-    display: flex;
     width: auto;
 }
 
@@ -133,6 +142,53 @@ h1{
     width: 100%;
     border: solid 1px #7A8AA4;
 
+}
+
+.arrival form label{
+    display: inline-block;
+    width: 40%;
+    margin: 0;
+}
+
+
+.arrival form input{
+    background:  #435188;
+    color: #FAFAFA;
+    font-family: 'Satoshi';
+    border: none;
+    width: 43%;
+    margin-left: 15%;
+    padding: 10px 2px;
+}
+
+
+.arrival form input #date_end{
+    color: #FAFAFA;
+}
+
+
+.arrival form input:focus{
+    border:none;
+    outline: none;
+}
+
+.arrival form input:last-child{
+    border: 1px solid #FAFAFA;
+    margin-left: 80px;
+    margin-top: 10px;
+}
+
+.arrival form .prices{
+    position: relative;
+    background: #FAFAFA;
+    color:#435188;
+    padding: 5%;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+form .filter {
+    color:#FAFAFA
 }
 
 #start {
@@ -220,6 +276,7 @@ h1{
     border: 1px solid #7A8AA4;
 }
 
+
 .service{
     position: relative;
     height: 40vh;
@@ -232,8 +289,9 @@ h1{
 .service .photo{
     height: inherit;
     background: #435188;
-    width:60%;
+    width:55%;
     float: left;
+    padding: 0;
 }
 
 .service .photo img{
@@ -242,24 +300,27 @@ h1{
     overflow: hidden;
     object-fit: cover;
     image-rendering: auto;
+    
 }
 
 .service .text2{
-    width: 40%;
+    width: 43%;
     height: inherit;
     float: right;
     text-align:start;
+    padding: 0;
+    margin-top: 4.5%;
 }
 
-.service .text2 h1{
-    margin:3% 0 0 30%;
+.service .text2 h2{
+    margin:3% 0 5% 10%;
     color:#FAFAFA;
 
 
 }
 
 .service .text2 .liste{
-    margin: 0 0 0 30%; 
+    margin: 0 0 0 5%; 
     font-family: 'satoshi';
     font-style: normal;
     font-weight: 100;
