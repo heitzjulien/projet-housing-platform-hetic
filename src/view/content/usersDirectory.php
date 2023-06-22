@@ -45,8 +45,8 @@ class MySQLPersistencePort implements PersistencePort
             $firstname = $item['firstname'];
             $lastname = $item['lastname'];
             $subrogation_role = $item['subrogation_role'];
-
-            $sql = "UPDATE users_admins_extra SET nom='$nom', prenom='$prenom', role='$subrogation_role' WHERE id=$user_id";
+            
+            $sql = "UPDATE users_admins_extra SET firstname='$firstname', lastname='$lastname', subrogation_role='$subrogation_role' WHERE id=$user_id";
             $this->conn->query($sql);
         }
 
@@ -136,7 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $data = $application->getAllData();
     } elseif (isset($_POST['add'])) {
         $fistname = $_POST['new_fistname'];
-        $prenom = $_POST['new_lastname'];
+        $lastname = $_POST['new_lastname'];
         $subrogation_role = $_POST['new_subrogation_role'];
 
         $newData = array(
