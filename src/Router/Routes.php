@@ -96,7 +96,7 @@ class Routes {
 
         $this->addRoute(
             (new Route("apartment", PublicController::class, "apartment"))
-            ->setMethod("POST")->setTitle("Apartment")
+            ->setMethod("POST")->setTitle("Appartement")
         );
 
         $this->addRoute(
