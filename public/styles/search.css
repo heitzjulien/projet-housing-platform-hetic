@@ -212,11 +212,11 @@ label {
     }
 
 
-
+    
     .cardLogement p {
         padding: 20px;
     }
-
+    
 } */
 
 @media only screen and (max-width: 767px) {
@@ -225,9 +225,56 @@ label {
     .filter {
         margin-bottom: 20px;
     }
-
+    
     .filterForm:not(.opened) {
         display: none;
+    }
+    
+    dialog {
+        top: 100px;
+        left: 16px;
+        width: 100%;
+        height: 752px;
+        padding: 22px;
+    }
+
+    dialog span {
+        margin-top: 25px;
+        margin-bottom: 20px;
+        font-family: 'Satoshi-Bold';
+        font-size: 18px;
+    }
+
+    dialog img {
+        width: 18px;
+        height: 18px;
+        margin-bottom: 50px;
+    }
+
+    .filterForm2 {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+        border: 1px solid #050505;
+        padding: 20px;
+    }
+
+    .filterForm2 input {
+        width: 260px;
+        height: 40px;
+    }
+
+    .filterForm2 button {
+        background-color: #435188;
+        color: #FAFAFA;
+        margin: 10px;
+        margin-top: 30px;
+        padding: 10px 25px;
+        font-family: 'Satoshi';
+        font-size: 18px;
     }
 
     .refine {
@@ -276,10 +323,4 @@ label {
         margin-bottom: 10px;
     }
 
-    dialog {
-        top: 100px;
-        left: 16px;
-        width: 100%;
-        height: 752px;
-    }
 }

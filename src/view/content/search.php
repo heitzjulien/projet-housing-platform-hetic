@@ -53,6 +53,7 @@
     <button type="button" class="refine" id="displayForm">Affiner votre recherche</button>
     <dialog class="toggle" id="popup">
         <form method="POST" class="filterForm2">
+            <span>Affiner votre recherche</span>
             <img class="close" id="closeBtn" src=".././public/assets/icons/close.png" alt="croix">
             <div class="input-row">
                 <label for="date_start">Date d'arrivée :</label>
