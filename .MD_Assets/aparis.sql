@@ -32,7 +32,7 @@ CREATE TABLE `authentifications` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `uc_user_agent` (`user_id`,`agent`),
   CONSTRAINT `authentifications_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=126 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=128 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -143,9 +143,9 @@ CREATE TABLE `housing` (
   `name` varchar(255) NOT NULL,
   `capacity` int(11) NOT NULL,
   `price` int(11) NOT NULL,
-  `description` varchar(255) NOT NULL,
-  `note` text,
-  `instruction` text,
+  `description` text NOT NULL,
+  `note` varchar(255) DEFAULT NULL,
+  `instruction` varchar(255) DEFAULT NULL,
   `number_pieces` int(11) NOT NULL,
   `number_rooms` int(11) NOT NULL,
   `number_bathroom` int(11) NOT NULL,
@@ -267,7 +267,7 @@ CREATE TABLE `housing_unavailability` (
   KEY `fk_housing_unavailability_reservation` (`reservation_id`),
   CONSTRAINT `fk_housing_unavailability_reservation` FOREIGN KEY (`reservation_id`) REFERENCES `reservations` (`id`) ON DELETE CASCADE,
   CONSTRAINT `housing_unavailability_ibfk_1` FOREIGN KEY (`housing_id`) REFERENCES `housing` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -276,6 +276,7 @@ CREATE TABLE `housing_unavailability` (
 
 LOCK TABLES `housing_unavailability` WRITE;
 /*!40000 ALTER TABLE `housing_unavailability` DISABLE KEYS */;
+INSERT INTO `housing_unavailability` VALUES (12,1,'2023-06-13','2023-06-18','booked',10),(16,2,'2023-06-23','2023-06-25','booked',14),(18,2,'2023-06-26','2023-06-30','booked',16),(21,3,'2023-06-26','2023-06-30','booked',19),(22,3,'2023-07-01','2023-07-04','booked',20);
 /*!40000 ALTER TABLE `housing_unavailability` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -404,13 +405,13 @@ CREATE TABLE `reservations` (
   `housing_id` int(11) NOT NULL,
   `reservation_period` int(11) NOT NULL,
   `reservation_total_price` int(11) NOT NULL,
-  `reservation_status` enum('pass','accept','cancel') NOT NULL DEFAULT 'accept',
+  `reservation_status` enum('pass','accept','cancel','currently') NOT NULL DEFAULT 'accept',
   PRIMARY KEY (`id`),
   KEY `fk_reservations_user_id` (`user_id`),
   KEY `fk_reservations_housing_id` (`housing_id`),
   CONSTRAINT `fk_reservations_housing_id` FOREIGN KEY (`housing_id`) REFERENCES `housing` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_reservations_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -419,6 +420,7 @@ CREATE TABLE `reservations` (
 
 LOCK TABLES `reservations` WRITE;
 /*!40000 ALTER TABLE `reservations` DISABLE KEYS */;
+INSERT INTO `reservations` VALUES (10,1,1,7,2100,'pass'),(14,1,2,2,900,'currently'),(16,1,2,4,1800,'accept'),(19,1,3,4,1000,'accept'),(20,1,3,3,750,'accept');
 /*!40000 ALTER TABLE `reservations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -477,7 +479,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Benjamin','SCHINKEL','b_schinkel@hetic.eu','$2y$10$VyEce85T1gXP8SAktpGvw.87qSH7jsJPdi7pUZX.Aia2zQXUBebOK','2001-12-16','client,admin','2023-06-13 03:43:04','valid','2023-06-20 18:45:06'),(3,'Julien','Heitz','j_heitz@hetic.eu','$2y$10$3ZBo5Vd.zwOeS/PnJK9VD.xbE86EO5NJlJmgTFvqkNmRcVPm7QaA2','2001-04-30','client,admin','2023-06-13 04:02:22','valid','2023-06-13 04:02:22'),(4,'Tanguy','Claude','t_claude@hetic.eu','$2y$10$PfiL6brtpUhF.OO1yZyBkueR21f/wQtwgiJIsCuLo1Af6sw3GHdoi','2001-03-21','client','2023-06-18 17:21:51','waiting','2023-06-18 21:44:16'),(5,'Louisan','Tchitoula','l_tchitoula@hetic.eu','$2y$10$pnqgog5JR4xCxybNYVCkCOCFH5jk4UmgohkhUR20WBMKbsFKiboDC','2001-01-01','client,admin','2023-06-20 14:00:34','valid','2023-06-20 12:00:38'),(6,'Sabrina','Attos','s_attos@hetic.eu','$2y$10$py3DaPWDIrGmxRdbqXv84Ogaj/ocXvCcCpfPQCq5WvUq7N7fP2wsK','2001-01-01','client,admin','2023-06-20 14:01:09','valid','2023-06-20 12:01:12'),(7,'Alessandro','Garau','a_garau@hetic.eu','$2y$10$nZJIRG/3/nD5QXtmnuwM3enA5UTFoUq7XaJysukM6gK3nf9OQtwDG','2001-01-01','client,admin','2023-06-20 14:01:42','valid','2023-06-20 12:01:45'),(8,'Marie-Gwenaëlle','Fahem','m_fahem@hetic.eu','$2y$10$q/qdZO05ywj0zXJiKvhTFueQqbCKfYkdzgAzvaEdWu/nrIk73NXWO','2001-01-01','client,admin','2023-06-20 14:02:30','valid','2023-06-20 12:02:34'),(9,'Marie','René','m_rene@hetic.eu','$2y$10$nFUSEBOQafSD0lFiL/KkWeVoerxFOui5uX1qMHtO7SxI8lfaoxp8m','2001-01-01','client,admin','2023-06-20 14:03:02','valid','2023-06-20 12:03:08'),(10,'John','Doe','j_doe@hetic.eu','$2y$10$I9LezQX7nvXVd8FTiUHazecAui3bkJI1PUSyefoPjx2xcvaGRZzXq','2001-01-01','client','2023-06-20 14:21:54','waiting','2023-06-20 14:21:54');
+INSERT INTO `users` VALUES (1,'Benjamin','SCHINKEL','b_schinkel@hetic.eu','$2y$10$VyEce85T1gXP8SAktpGvw.87qSH7jsJPdi7pUZX.Aia2zQXUBebOK','2001-12-16','client,admin','2023-06-13 03:43:04','valid','2023-06-22 22:29:44'),(3,'Julien','Heitz','j_heitz@hetic.eu','$2y$10$3ZBo5Vd.zwOeS/PnJK9VD.xbE86EO5NJlJmgTFvqkNmRcVPm7QaA2','2001-04-30','client,admin','2023-06-13 04:02:22','valid','2023-06-13 04:02:22'),(4,'Tanguy','Claude','t_claude@hetic.eu','$2y$10$PfiL6brtpUhF.OO1yZyBkueR21f/wQtwgiJIsCuLo1Af6sw3GHdoi','2001-03-21','client','2023-06-18 17:21:51','waiting','2023-06-18 21:44:16'),(5,'Louisan','Tchitoula','l_tchitoula@hetic.eu','$2y$10$pnqgog5JR4xCxybNYVCkCOCFH5jk4UmgohkhUR20WBMKbsFKiboDC','2001-01-01','client,admin','2023-06-20 14:00:34','valid','2023-06-20 12:00:38'),(6,'Sabrina','Attos','s_attos@hetic.eu','$2y$10$py3DaPWDIrGmxRdbqXv84Ogaj/ocXvCcCpfPQCq5WvUq7N7fP2wsK','2001-01-01','client,admin','2023-06-20 14:01:09','valid','2023-06-20 12:01:12'),(7,'Alessandro','Garau','a_garau@hetic.eu','$2y$10$nZJIRG/3/nD5QXtmnuwM3enA5UTFoUq7XaJysukM6gK3nf9OQtwDG','2001-01-01','client,admin','2023-06-20 14:01:42','valid','2023-06-20 12:01:45'),(8,'Marie-Gwenaëlle','Fahem','m_fahem@hetic.eu','$2y$10$q/qdZO05ywj0zXJiKvhTFueQqbCKfYkdzgAzvaEdWu/nrIk73NXWO','2001-01-01','client,admin','2023-06-20 14:02:30','valid','2023-06-20 12:02:34'),(9,'Marie','René','m_rene@hetic.eu','$2y$10$nFUSEBOQafSD0lFiL/KkWeVoerxFOui5uX1qMHtO7SxI8lfaoxp8m','2001-01-01','client,admin','2023-06-20 14:03:02','valid','2023-06-20 12:03:08'),(10,'John','Doe','j_doe@hetic.eu','$2y$10$I9LezQX7nvXVd8FTiUHazecAui3bkJI1PUSyefoPjx2xcvaGRZzXq','2001-01-01','client','2023-06-20 14:21:54','waiting','2023-06-20 14:21:54');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -514,4 +516,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-21  1:02:38
+-- Dump completed on 2023-06-23  1:12:05
