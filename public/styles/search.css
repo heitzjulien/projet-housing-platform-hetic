@@ -92,7 +92,6 @@
     height: 120px;
     padding: 20px;
     display: flex;
-    justify-content: center;
     box-sizing: border-box;
 }
 
@@ -106,18 +105,31 @@
     height: 80px;
     border-right: 1px solid black;
     width: 200px;
+}
 
+.name p {
+    padding: 0;
+}
+
+.size {
+    margin-bottom: 10px;
+    display: flex;
+    gap: 10px;
+    font-family: 'Satoshi-Bold';
+}
+
+.location {
+    display: flex;
+    gap: 5px;
 }
 
 .cardLogement span:first-child {
     font-family: 'Satoshi-Bold';
     padding-right: 20px;
-    margin-bottom: 10px;
 }
 
-.cardLogement p {
+.cardLogement p:not(.name p) {
     padding-left: 20px;
-
 }
 
 
@@ -127,7 +139,7 @@
 }
 
 .container {
-    gap: 20px;
+    gap: 33px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -138,10 +150,11 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    flex-wrap: wrap;
     gap: 10px;
     border: 1px solid #050505;
     width: 80%;
-    height: 180px;
+    padding: 20px;
 }
 
 .filterForm input {
@@ -175,8 +188,12 @@ label {
     margin-bottom: 5px;
 }
 
+.refine {
+    display: none;
+}
 
-@media screen and (max-width: 1400px) {
+
+/* @media screen and (max-width: 1400px) {
     body {
         margin: 0;
     }
@@ -195,9 +212,115 @@ label {
     }
 
 
-
+    
     .cardLogement p {
         padding: 20px;
+    }
+    
+} */
+
+@media only screen and (max-width: 767px) {
+/* @media only screen and (min-width: 375px) and (max-width: 767px) { */
+    
+    .filter {
+        margin-bottom: 20px;
+    }
+    
+    .filterForm:not(.opened) {
+        display: none;
+    }
+    
+    dialog {
+        top: 100px;
+        left: 16px;
+        width: 100%;
+        height: 752px;
+        padding: 22px;
+    }
+
+    dialog span {
+        margin-top: 25px;
+        margin-bottom: 20px;
+        font-family: 'Satoshi-Bold';
+        font-size: 18px;
+    }
+
+    dialog img {
+        width: 18px;
+        height: 18px;
+        margin-bottom: 50px;
+    }
+
+    .filterForm2 {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+        border: 1px solid #050505;
+        padding: 20px;
+    }
+
+    .filterForm2 input {
+        width: 260px;
+        height: 40px;
+    }
+
+    .filterForm2 button {
+        background-color: #435188;
+        color: #FAFAFA;
+        margin: 10px;
+        margin-top: 30px;
+        padding: 10px 25px;
+        font-family: 'Satoshi';
+        font-size: 18px;
+    }
+
+    .refine {
+        display: block;
+        background-color: #435188;
+        color: #FAFAFA;
+        margin: 10px;
+        margin-top: 30px;
+        padding: 10px 30px;
+        width: fit-content;
+        font-family: 'Satoshi';
+        font-size: 18px;
+    }
+    
+    .container {
+        width: 100%;
+    }
+
+    .cardLogement, .cardLogement>.description, .cardLogement>img {
+        width: 100%;
+    }
+
+    .cardLogement>.description {
+        display: flex;
+        flex-direction: column;
+        height: 177px;
+    }
+
+    .cardLogement p:not(.name p) {
+        padding: 20px 0;
+    }
+
+    .name {
+        display: flex;
+        border-bottom: 1px solid black;
+        border-right: none;
+        width: 100%;
+        font-size: 18px;
+    }
+
+    .size {
+        margin-bottom: 0;
+    }
+
+    .location {
+        margin-bottom: 10px;
     }
 
 }

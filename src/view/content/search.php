@@ -48,7 +48,47 @@
         </div>
 
         <button type="submit">Filtrer</button>
+
     </form>
+    <button type="button" class="refine" id="displayForm">Affiner votre recherche</button>
+    <dialog class="toggle" id="popup">
+        <form method="POST" class="filterForm2">
+            <span>Affiner votre recherche</span>
+            <img class="close" id="closeBtn" src=".././public/assets/icons/close.png" alt="croix">
+            <div class="input-row">
+                <label for="date_start">Date d'arrivée :</label>
+                <input id="date_start" type="date" name="date_start" value="<?php if ($data['filter']['date_start']) {
+                    echo (date("Y-m-d", $data['filter']['date_start']));
+                } ?>">
+            </div>
+
+            <div class="input-row">
+                <label for="date_end">Date de départ :</label>
+                <input id="date_end" type="date" name="date_end" value="<?php if ($data['filter']['date_end']) {
+                    echo (date("Y-m-d", $data['filter']['date_end']));
+                } ?>">
+            </div>
+
+            <div class="input-row">
+                <label for="district">Arrondissement :</label>
+                <input id="district" type="number" name="district" value="<?= $data['filter']['district'] ?>"
+                    placeholder="16e">
+            </div>
+
+            <div class="input-row">
+                <label for="number_pieces">Pièces :</label>
+                <input id="number_pieces" type="number" name="number_pieces" value="<?= $data['filter']['number_pieces'] ?>"
+                    placeholder="7 pièces">
+            </div>
+
+            <div class="input-row">
+                <label for="area">Surface en m² :</label>
+                <input id="area" type="number" name="area" value="<?= $data['filter']['area'] ?>" placeholder="100m²">
+            </div>
+
+            <button type="submit">Filtrer</button>
+        </form>
+    </dialog>
 </div>
 
 
@@ -85,15 +125,17 @@
 
             area.textContent = arrayAsso[i].area + 'm²'
 
-            city.textContent = arrayAsso[i].city
+            city.textContent = arrayAsso[i].city + ' - '
 
-            district.textContent = arrayAsso[i].district
+            district.textContent = arrayAsso[i].district + 'ème'
 
             pDescription.textContent = arrayAsso[i].description
 
             piece.textContent = arrayAsso[i].number_pieces + ' pièces'
 
             divDescription.classList.add('description')
+            size.classList.add('size')
+            location.classList.add('location')
             divName.classList.add('name')
 
             a.appendChild(img)
@@ -117,4 +159,16 @@
     }
     let json = <?php echo json_encode($data['housing']); ?>;
     createCardLogement(json)
+
+    let btnDisplayForm = document.querySelector("#displayForm");
+    let btnClose = document.querySelector("#closeBtn");
+
+    btnDisplayForm.onclick = function() {
+        document.querySelector("#popup").showModal();
+    };
+
+    btnClose.onclick = function() {
+        document.querySelector("#popup").close();
+    };
+    
 </script>
