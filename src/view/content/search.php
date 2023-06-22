@@ -1,10 +1,10 @@
-<div class="error">
-    <?php foreach ($data["error"] as $e): ?>
+<?php foreach ($data["error"] as $e): ?>
+    <div class="error">
         <p>
             <?= $e ?>
         </p>
-    <?php endforeach; ?>
-</div>
+    </div>
+<?php endforeach; ?>
 <!-- <h2>Search</h2> -->
 
 <!-- <div class="searchBar">
