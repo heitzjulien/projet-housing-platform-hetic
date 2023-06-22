@@ -116,7 +116,7 @@ class PrivateController extends Controller{
     }
 
     public function dashboardReservation(Request $request, Route $route): void {
-        $this->updateStyles(['dashboard_card.css', 'dashboardReservation.css ']);
+        $this->updateStyles(['dashboard_card.css', 'reservation.css ']);
         $error = []; 
         if(isset($request->getQueryParams()['update']) && $request->getQueryParams()['update'] == "valid"){
             $valid = "Modification effectué";
