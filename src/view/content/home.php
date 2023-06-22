@@ -47,7 +47,7 @@ $cardCount = 0;
                             </div>
                             <div class="descDivider"></div>
                             <div class="secondaryDesc">
-                                <p><?= $datum["description"]?></p>
+                                <p><?= $datum["name"]?></p>
                             </div>
                         </div>
                     </a>
