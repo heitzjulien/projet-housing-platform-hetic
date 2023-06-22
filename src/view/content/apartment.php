@@ -56,6 +56,9 @@
                                 </div>
                                 <input type="submit" value="Réserver">
                             </form>
+                        <?php else: ?>
+                            <p>Vous devez être connecté pour réserver</p>
+                            <a href="/login" class="btn-connection">Se connecter</a>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -63,7 +66,7 @@
     </div>
     <div class="service">
         <section class="photo">
-            <img src="Chef.jpg" alt="">
+            <img src="<?= __ROOT_URL__ ?>/assets/images/chef.jpg" alt="">
         </section>
         <section class="text2">
             <h2>Services</h2>
