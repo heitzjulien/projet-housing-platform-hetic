@@ -22,6 +22,16 @@
     --step-5: clamp(1.56rem, calc(0.27rem + 6.40vw), 10.52rem);
 }
 
+body{
+    height: 100vh;
+    overflow: hidden;
+}
+
+header{
+    position: fixed;
+    width: 100vw;
+}
+
 h2 {
     font-family: "arpona", serif;
     font-weight: 400;
@@ -88,16 +98,18 @@ main {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    height: inherit;
 }
 
 aside {
     width: 45vw;
-
+    height: inherit;
 }
 
 aside>img {
     width: 45vw;
-
+    height: inherit;
+    object-fit: cover;
 }
 
 .form {
@@ -133,7 +145,6 @@ aside>img {
     padding: 2%;
 }
 
-header,
 footer {
     display: none;
 }

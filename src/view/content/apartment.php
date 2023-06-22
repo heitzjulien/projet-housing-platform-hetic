@@ -10,9 +10,11 @@
 <?php else: ?>
     <div class="error">
         <?php foreach ($data["filter_error"] as $e): ?>
+            <?php if($e): ?>
             <p>
                 <?= $e ?>
             </p>
+            <?php endif; ?>
         <?php endforeach; ?>
     </div>
     <div class="valid">
