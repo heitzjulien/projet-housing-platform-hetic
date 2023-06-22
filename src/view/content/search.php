@@ -167,7 +167,7 @@
         document.querySelector("#popup").showModal();
     };
 
-    btnClose.onclick = functio n () {
+    btnClose.onclick = function () {
         document.querySelector("#popup").close();
     };
 
