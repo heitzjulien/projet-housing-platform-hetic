@@ -31,7 +31,7 @@ class PublicController extends Controller {
                 break;
         }
 
-        $images = $HousingService->getRandomImg(1, 3);
+        $images = $HousingService->getRandomImg(54, 3);
         $housing = $HousingService->selectRandomHousing(3);
 
         $housing = $this->prepareHousing($housing);

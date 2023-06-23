@@ -96,12 +96,12 @@ class HousingModel {
         return $this;
     }
 
-    public function setNote(string $note): self{
+    public function setNote(?string $note): self{
         $this->note = $note;
         return $this;
     }
 
-    public function setInstruction(string $instruction): self{
+    public function setInstruction(?string $instruction): self{
         $this->instruction = $instruction;
         return $this;
     }

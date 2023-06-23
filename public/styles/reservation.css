@@ -4,7 +4,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #fafafa;
 }
 
 body {
@@ -18,8 +17,6 @@ body {
     pointer-events: none;
     user-select: none;
 }
-
-
 
 .table h1 {
     width: 100%;
