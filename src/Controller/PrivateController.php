@@ -35,6 +35,7 @@ class PrivateController extends Controller{
     }
 
     public function dashboardParametre(Request $request, Route $route): void{
+        $this->updateStyles(['settings.css']);
         $error = [];
         $valid = null;
 
