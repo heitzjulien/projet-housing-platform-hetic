@@ -92,45 +92,24 @@
     height: 120px;
     padding: 20px;
     display: flex;
-    align-items: center;
     box-sizing: border-box;
 }
 
 
 .name {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
     width: fit-content;
     height: 80px;
     border-right: 1px solid black;
     width: 200px;
 }
 
-.name span{
-    position: absolute;
-    display: flex;
-    margin-left: 230px;
-    width: 100%;
-    font-size: 25px;
-    margin-top: 17px;
-}
-
-
 .name p {
     padding: 0;
-
 }
-
-.name .size{
-    position: absolute;
-    margin-top: 11px;
-}
-
-.name .location{
-    position: absolute;
-    margin-top: 43px;
-}
-
-
 
 .size {
     margin-bottom: 10px;
