@@ -18,22 +18,22 @@ class Routes {
     public function __construct(){
         $this->addRoute(
             (new Route("login", AuthController::class, "login"))
-            ->setTitle("Login")
+            ->setTitle("Connexion")
         );
         
         $this->addRoute(
             (new Route("login", AuthController::class, "login"))
-            ->setMethod("POST")->setTitle("Login")
+            ->setMethod("POST")->setTitle("Connexion")
         );
 
         $this->addRoute(
             (new Route("register", AuthController::class, "register"))
-            ->setTitle("Register")
+            ->setTitle("Inscription")
         );
         
         $this->addRoute(
             (new Route("register", AuthController::class, "register"))
-            ->setMethod("POST")->setTitle("Register")
+            ->setMethod("POST")->setTitle("Inscription")
         );
 
         $this->addRoute(
@@ -81,27 +81,36 @@ class Routes {
 
         $this->addRoute(
             (new Route("search", PublicController::class, "search"))
-            ->setTitle("Search")
+            ->setTitle("Recherche")
         );
 
         $this->addRoute(
             (new Route("search", PublicController::class, "search"))
-            ->setMethod("POST")->setTitle("Search")
+            ->setMethod("POST")->setTitle("Recherche")
         );
 
         $this->addRoute(
             (new Route("apartment", PublicController::class, "apartment"))
-            ->setTitle("Apartment")
+            ->setTitle("Appartement")
         );
 
         $this->addRoute(
             (new Route("apartment", PublicController::class, "apartment"))
-            ->setMethod("POST")->setTitle("Apartment")
+            ->setMethod("POST")->setTitle("Appartement")
         );
 
         $this->addRoute(
             (new Route("gestion", PrivateController::class, "gestion"))
             ->setTitle("Gestion")
+        );
+
+        $this->addRoute(
+            (new Route("opinion", PrivateController::class, "opinion"))
+            ->setTitle("Opinion")
+        );
+        $this->addRoute(
+            (new Route("opinion", PrivateController::class, "opinion"))
+            ->setMethod("POST")->setTitle("Opinion")
         );
     }
 

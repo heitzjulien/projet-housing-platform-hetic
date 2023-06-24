@@ -1,0 +1,151 @@
+h1 {
+    margin-left: 64px;
+    font-family: 'Arpona';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 66px;
+}
+
+h3 {
+    font-family: 'Arpona';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 42px;
+}
+
+section {
+    margin: 56px 66px;
+    padding: 0;
+}
+
+.user {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+
+.user form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
+
+form label {
+    margin-bottom: 10px;
+}
+
+form input {
+    margin-bottom: 20px;
+    border: solid 1px black;
+    padding: 10px;
+    width: 240px;
+}
+
+.btn-submit {
+    margin-top: 40px;
+    display: flex;
+    width: fit-content;
+    padding: 16px 70px;;
+    background-color: #435188;
+    border: none;
+    color: white;
+    font-family: 'Arpona';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.user p {
+    margin: 20px 0;
+}
+
+.user a {
+    margin-top: 10px;
+    width: fit-content;
+    text-decoration: none;
+    background-color: #435188;
+    padding: 16px 70px;
+    color: white;
+    font-family: 'Arpona';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+#btn-delete {
+    margin-top: 10px;
+    width: fit-content;
+    text-decoration: none;
+    background-color: #AD2D2D;
+    padding: 16px 70px;
+    color: white;
+    font-family: 'Arpona';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.user-choice {
+    padding: 40px 0;
+    display: flex;
+    gap: 40px;
+}
+
+@media only screen and (max-width: 780px) {
+    
+    h1 {
+        margin: 17px;
+        font-size: 42px;
+    }
+
+    h3 {
+        font-size: 32px;
+    }
+
+    section {
+        margin: 17px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .user form {
+        width: 100%;
+    }
+
+    .user p {
+        font-size: 18px;
+    }
+
+    form label {
+        font-size: 18px;
+    }
+
+    form input {
+        width: 100%;
+    }
+
+    .user-choice {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .user-choice a {
+        width: 100%;
+        font-weight: 300;
+    }
+
+    .btn-submit {
+        font-weight: 300;
+    }
+
+    #btn-account {
+        font-weight: 300;
+    }
+
+    #btn-delete {
+        font-weight: 300;
+    }
+    
+}

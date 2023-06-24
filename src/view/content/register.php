@@ -4,12 +4,12 @@
 
 
     <aside>
-        <img src="../public/assets/images/register.svg" alt="">
+        <img src="<?= __ROOT_URL__ ?>/assets/images/register.svg" alt="">
     </aside>
 
     <div class="form">
+        
         <div class="error">
-
             <?php foreach ($data["error"] as $e): ?>
                 <p>
                     <?= $e ?>

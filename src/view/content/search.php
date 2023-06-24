@@ -1,8 +1,12 @@
-<?php foreach ($data["error"] as $e): ?>
-    <p class='error'>
-        <?= $e ?>
-    </p>
-<?php endforeach; ?>
+<div class="error">
+    <?php foreach ($data["error"] as $e): ?>
+        <?php if($e): ?>
+            <p>
+                <?= $e ?>
+            </p>
+        <?php endif; ?>
+    <?php endforeach; ?>
+</div>
 <!-- <h2>Search</h2> -->
 
 <!-- <div class="searchBar">
@@ -141,7 +145,6 @@
             a.appendChild(img)
             a.appendChild(divDescription)
             divDescription.appendChild(divName)
-            divDescription.appendChild(pDescription)
             divName.appendChild(spanName)
             divName.appendChild(area)
             divName.appendChild(piece)
@@ -167,7 +170,7 @@
         document.querySelector("#popup").showModal();
     };
 
-    btnClose.onclick = functio n () {
+    btnClose.onclick = function () {
         document.querySelector("#popup").close();
     };
 

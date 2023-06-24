@@ -9,7 +9,10 @@
 
 body{
     background: #FAFAFA;
-    margin: 0 220px 0 220px;
+}
+
+main{
+    margin: 0 auto;
 }
 
 h1{
@@ -30,18 +33,19 @@ h1{
     margin: 0 5vw;
     width: calc(80vw - 9vw);
     height: 95vh;
-    margin: 70px 0 0 0;
+    margin: 0 auto;
     position: relative;
     overflow: hidden;
     align-items: center;
     justify-content: center;
+    height: fit-content;
     
 }
 
 
 .container .image{
     width: inherit;
-    height: inherit;
+    height: fit-content;
 }
 
 .container img{
@@ -82,13 +86,18 @@ h1{
 .line1{
     margin-top: 100px;
     border-top: 1px solid #7A8AA4;
-    width: calc(80vw - 9vw);
+    width: 100vw;
 }
 
 .description{
+    position: relative;
     margin-top: 100px;
     width: 100%;
-    height: 100vh;
+    margin: 50px;
+    height: 650px;
+    display: flex;
+    flex-direction: column;
+    /* height: 100vh; */
 }
 
 .description h2{
@@ -119,7 +128,8 @@ h1{
 }
 
 .description aside {
-    float: right;
+    position: absolute;
+    right: 100px;
     margin-right: 0;
     display: inline-block;
     margin-bottom: 50px;
@@ -279,11 +289,10 @@ form .filter {
 
 .service{
     position: relative;
-    height: 40vh;
-    width:calc(80vw - 9vw);
+    height: fit-content;
+    width:100vw;
     background: #435188;
     overflow: hidden;
-    margin-bottom: 100px;
 }
 
 .service .photo{
@@ -329,6 +338,13 @@ form .filter {
     color: #FAFAFA;
 }
 
+.btn-connection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
 @media screen and (max-width: 1000px) {
     body{
         margin: 0;
@@ -353,8 +369,8 @@ form .filter {
         margin-left: 13%;
     }
 
-    .description h1{
-        margin-left: 45%;
+    .description h2{
+        margin-left: 40%;
         font-size: calc(10px + 3.3vw);
         margin-bottom: 50px;
         width: 300px;
@@ -371,7 +387,7 @@ form .filter {
     .description aside{
         float: right;
         display: inline-block;
-        margin: 10% 23% 15% 0;
+        margin: 40% 15% 15% 0;
     }
 
     .description .text span{

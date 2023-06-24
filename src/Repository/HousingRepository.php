@@ -98,7 +98,10 @@ class HousingRepository extends Repository{
     }
 
     public function selectHousingOpinion(int $id): array{
-        $stmt = $this->db->pdo->prepare("SELECT id, user_id, housing_id, reservation_id, content, display FROM opinions WHERE housing_id = :id");
+        $stmt = $this->db->pdo->prepare("SELECT o.id, o.user_id, o.reservation_id, o.content, o.display
+        FROM opinions o
+        JOIN reservations r ON o.reservation_id = r.id
+        WHERE r.housing_id = :id");
         $stmt->execute([
             ":id" => $id,
         ]);

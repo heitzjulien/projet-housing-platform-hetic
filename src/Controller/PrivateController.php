@@ -35,6 +35,7 @@ class PrivateController extends Controller{
     }
 
     public function dashboardParametre(Request $request, Route $route): void{
+        $this->updateStyles(['settings.css']);
         $error = [];
         $valid = null;
 
@@ -116,7 +117,7 @@ class PrivateController extends Controller{
     }
 
     public function dashboardReservation(Request $request, Route $route): void {
-        $this->updateStyles(['dashboard_card.css', 'dashboardReservation.css ']);
+        $this->updateStyles(['dashboard_card.css', 'reservation.css ']);
         $error = []; 
         if(isset($request->getQueryParams()['update']) && $request->getQueryParams()['update'] == "valid"){
             $valid = "Modification effectué";
@@ -177,6 +178,22 @@ class PrivateController extends Controller{
         $this->updateStyles(['dashboard_card.css', 'gestion.css ']);
 
         $this->render("gestion.php", $this->styles, [
+            "route" => $route,
+            "request" => $request
+        ]);
+    }
+
+    public function opinion(Request $request, Route $route): void {
+        $this->updateStyles(['dashboard_card.css', 'opinion.css ']);
+        switch($request->getMethod()) {
+            case "POST":
+                $opinionService = new OpinionService();
+                $opinionService->addOpinion($this->userLoggedIn->getId(), $request->getQueryParams()['reservation_id'], $request->getRawBody()['comment']);
+                header("Location: http://localhost/projet-housing-platform-hetic/public/opinion");
+                exit;
+        }
+
+        $this->render("opinion.php", $this->styles, [
             "route" => $route,
             "request" => $request
         ]);

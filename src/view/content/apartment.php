@@ -1,19 +1,27 @@
 <main>
 <?php if($data['error']):?>
-    <?php foreach ($data["error"] as $e): ?>
-        <p>
-            <?= $e ?>
-        </p>
-    <?php endforeach; ?>
+    <div class="error">
+        <?php foreach ($data["error"] as $e): ?>
+            <p>
+                <?= $e ?>
+            </p>
+        <?php endforeach; ?>
+    </div>
 <?php else: ?>
-    <?php foreach ($data["filter_error"] as $e): ?>
-        <p>
-            <?= $e ?>
-        </p>
-    <?php endforeach; ?>
-    <?php if($data["valid"]): ?>
-        <p><?= $data["valid"] ?></p>
-    <?php endif; ?>
+    <div class="error">
+        <?php foreach ($data["filter_error"] as $e): ?>
+            <?php if($e): ?>
+            <p>
+                <?= $e ?>
+            </p>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    </div>
+    <div class="valid">
+        <?php if($data["valid"]): ?>
+            <p><?= $data["valid"] ?></p>
+        <?php endif; ?>
+    </div>
     <h1><?= $data["housing"]->getName() ?></h1>
     <span class="adress"><?= $data["housing"]->getAddress() . " " . $data["housing"]->getCity()  . " " . $data["housing"]->getDistrict() ?></span>
     <div class="container">
@@ -56,6 +64,9 @@
                                 </div>
                                 <input type="submit" value="Réserver">
                             </form>
+                        <?php else: ?>
+                            <p>Vous devez être connecté pour réserver</p>
+                            <a href="/login" class="btn-connection">Se connecter</a>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -63,7 +74,7 @@
     </div>
     <div class="service">
         <section class="photo">
-            <img src="Chef.jpg" alt="">
+            <img src="<?= __ROOT_URL__ ?>/assets/images/chef.jpg" alt="">
         </section>
         <section class="text2">
             <h2>Services</h2>
