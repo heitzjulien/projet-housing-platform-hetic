@@ -66,7 +66,7 @@
                             </form>
                         <?php else: ?>
                             <p>Vous devez être connecté pour réserver</p>
-                            <a href="/login" class="btn-connection">Se connecter</a>
+                            <a href="<?= __ROOT_URL__ ?>/login" class="btn-connection">Se connecter</a>
                         <?php endif; ?>
                     </div>
                 </div>
