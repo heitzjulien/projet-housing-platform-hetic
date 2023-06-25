@@ -31,7 +31,7 @@ Ce projet à été réalisé dans le cadre d'un projet scolaire de fin de premi�
 ## **Installation** :
 - Cloner le projet ```git clone https://github.com/heitzjulien/projet-housing-platform-hetic.git```
 - Installer les dépendances ```composer require phpmailer/phpmailer```
-- Mettre à jour l'auto-chargement de composer ```php composer.phar dump-autoload```
+- Mettre à jour l'auto-chargement de composer ```php composer dump-autoload```
 - Créer une base de données et importer le fichier SQL ```aparis.sql```
 - Modifier le fichier ```const.php``` avec vos informations de connexion à la base de données
 - Lancer le serveur et profiter du projet ! 
