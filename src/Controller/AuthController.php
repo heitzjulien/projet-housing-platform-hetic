@@ -131,10 +131,15 @@ class AuthController extends Controller{
     }
 
     public function delete(Request $request, Route $route): void{
-        (new AuthService())->deleteAccount($this->userLoggedIn->getId());
-
-        header("Location: login");
-        exit;
+        if(isset($request->getQueryParams()['id'])){
+            (new AuthService())->deleteAccountInAdmin($request->getQueryParams()['id']);
+            header("Location: http://localhost/projet-housing-platform-hetic/public/dashboard/admin?update=valid");
+            exit;
+        }else{
+            (new AuthService())->deleteAccount($this->userLoggedIn->getId());
+            header("Location: login");
+            exit;
+        }
     }
         
 }

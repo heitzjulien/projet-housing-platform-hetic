@@ -10,6 +10,7 @@ use Service\AuthService;
 use Service\ReservationService;
 use Service\OpinionService;
 use Service\HousingService;
+use Service\UserService;
 
 use Model\UserModel;
 
@@ -149,17 +150,12 @@ class PrivateController extends Controller{
                 break;
         }
 
-        // A CHANGER DE PAGE
-        // $opinionService = new OpinionService();
-        // $content = $opinionService->selectOpinionsByUserId($this->userLoggedIn->getId());
-
         $this->render("reservation.php", $this->styles, [
             "route" => $route,
             "request" => $request,
             "reservation" => $reservation,
             "error" => $error,
             "valid" => $valid,
-            // "start" => $content,
         ]);
     }
 
@@ -196,6 +192,41 @@ class PrivateController extends Controller{
         $this->render("opinion.php", $this->styles, [
             "route" => $route,
             "request" => $request
+        ]);
+    }
+
+    public function admin(Request $request, Route $route): void {
+        if(!in_array('admin', $this->userLoggedIn->getRoles())){
+            header("Location: http://localhost/projet-housing-platform-hetic/public/dashboard");
+            exit;
+        }
+        $this->updateStyles(['dashboard_card.css', 'gestion.css ']);
+        $users = (new UserService)->selectUsers();
+        $error = [];
+        $valid = $request->getQueryParams()['update'] ?? null;
+
+        switch($request->getMethod()) {
+            case "POST":
+                $roles = [
+                    "admin" => isset($request->getRawBody()["admin"]), 
+                    "management" => isset($request->getRawBody()["management"]), 
+                    "maintenance" => isset($request->getRawBody()["maintenance"])];
+                [$error[], $accountStatus] = (new UserService)->checkAccountStatus($request->getRawBody()["account_status"] ?? null);
+
+                $error = array_filter($error, function ($value) { return $value; });
+                if(!$error && isset($request->getRawBody()["id"])){
+                    (new UserService)->updateUser($request->getRawBody()["id"], $roles, $accountStatus);
+                    header("Location: http://localhost/projet-housing-platform-hetic/public/dashboard/admin?update=valid");
+                    exit;
+                }
+        }
+
+        $this->render("administration.php", $this->styles, [
+            "route" => $route,
+            "request" => $request,
+            "error" => $error,
+            "valid" => $valid,
+            "users" => $users
         ]);
     }
 }

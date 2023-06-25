@@ -107,4 +107,38 @@ class UserRepository extends Repository{
             ":id" => $id,
         ]);
     }
+
+    public function selectUser(): array{
+        $stmt = $this->db->pdo->prepare("SELECT id, firstname, lastname, mail, password, birthdate, roles, account_date, account_status, last_seen FROM users");
+        $stmt->execute();
+
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $users = [];
+
+        foreach ($results as $r){
+            $users[] = new UserModel(
+                $r['id'],
+                $r['firstname'],
+                $r['lastname'],
+                $r['mail'],
+                $r['password'],
+                $r['birthdate'],
+                explode(',', $r['roles']),
+                $r['account_date'],
+                $r['account_status'],
+                $r['last_seen'],
+            );
+        }
+
+        return $users;
+    }
+
+    public function updateUser(int $id, string $roles, string $accountStatus): void{
+        $stmt = $this->db->pdo->prepare("UPDATE users SET account_status = :account_status, roles = :roles WHERE id = :id");
+        $stmt->execute([
+            ":account_status" => $accountStatus,
+            ":roles" => $roles,
+            ":id" => $id,
+        ]);
+    }
 }
