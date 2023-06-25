@@ -188,8 +188,8 @@ class PrivateController extends Controller{
         switch($request->getMethod()) {
             case "POST":
                 $opinionService = new OpinionService();
-                $opinionService->addOpinion($this->userLoggedIn->getId(), $request->getQueryParams()['reservation_id'], $request->getRawBody()['comment']);
-                header("Location: http://localhost/projet-housing-platform-hetic/public/opinion");
+                $opinionService->addOpinion($this->userLoggedIn->getId(), $request->getQueryParams()['id'], $request->getRawBody()['comment']);
+                header("Location: http://localhost/projet-housing-platform-hetic/public/dashboard/reservation");
                 exit;
         }
 

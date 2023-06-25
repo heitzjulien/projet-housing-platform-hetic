@@ -67,6 +67,10 @@ class UserModel extends Model{
         return $this->birthdate;
     }
 
+    public function getRoles(): ?array{
+        return $this->roles;
+    }
+
     public function getAccountStatus(): ?string{
         return $this->account_status;
     }

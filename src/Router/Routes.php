@@ -105,12 +105,23 @@ class Routes {
         );
 
         $this->addRoute(
-            (new Route("opinion", PrivateController::class, "opinion"))
+            (new Route("dashboard/reservation/opinion", PrivateController::class, "opinion"))
             ->setTitle("Opinion")
         );
+
         $this->addRoute(
-            (new Route("opinion", PrivateController::class, "opinion"))
+            (new Route("dashboard/reservation/opinion", PrivateController::class, "opinion"))
             ->setMethod("POST")->setTitle("Opinion")
+        );
+
+        $this->addRoute(
+            (new Route("dashboard/admin", PrivateController::class, "admin"))
+            ->setTitle("Administration")
+        );
+        
+        $this->addRoute(
+            (new Route("dashboard/admin", PrivateController::class, "admin"))
+            ->setMethod("POST")->setTitle("Administration")
         );
     }
 

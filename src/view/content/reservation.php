@@ -64,7 +64,7 @@
                             <a class="edit" href="">Messagerie</a>
                             <?php break;
                         case "pass": ?>
-                            <a class="edit" href="">Rédiger un avis</a>
+                            <a class="edit" href="<?= __ROOT_URL__ ?>/dashboard/reservation/opinion?id=<?= $r->getId() ?>">Rédiger un avis</a>
                             <?php break;
                     endswitch; ?>
                     </td>

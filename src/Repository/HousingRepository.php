@@ -112,7 +112,6 @@ class HousingRepository extends Repository{
             $opinions[] = (new OpinionModel())
             ->setId($r['id'])
             ->setUserId($r['user_id'])
-            ->setHousingId($r['housing_id'])
             ->setReservationId($r['reservation_id'])
             ->setContent($r['content'])
             ->setDisplay($r['display']);
