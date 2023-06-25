@@ -123,6 +123,16 @@ class Routes {
             (new Route("dashboard/admin", PrivateController::class, "admin"))
             ->setMethod("POST")->setTitle("Administration")
         );
+
+        $this->addRoute(
+            (new Route("dashboard/appartment", PrivateController::class, "dashboardAppartment"))
+            ->setTitle("Gestion d'appartement")
+        );
+        
+        $this->addRoute(
+            (new Route("dashboard/appartment", PrivateController::class, "dashboardAppartment"))
+            ->setMethod("POST")->setTitle("Gestion d'appartement")
+        );
     }
 
     public function addRoute(Route $route): void{

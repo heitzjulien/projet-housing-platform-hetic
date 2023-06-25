@@ -118,7 +118,7 @@ class PrivateController extends Controller{
     }
 
     public function dashboardReservation(Request $request, Route $route): void {
-        $this->updateStyles(['dashboard_card.css', 'reservation.css ']);
+        $this->updateStyles(['dashboard_card.css', 'reservation.css']);
         $error = []; 
         if(isset($request->getQueryParams()['update']) && $request->getQueryParams()['update'] == "valid"){
             $valid = "Modification effectué";
@@ -200,7 +200,7 @@ class PrivateController extends Controller{
             header("Location: http://localhost/projet-housing-platform-hetic/public/dashboard");
             exit;
         }
-        $this->updateStyles(['dashboard_card.css', 'gestion.css ']);
+        $this->updateStyles(['dashboard_card.css', 'gestion.css']);
         $users = (new UserService)->selectUsers();
         $error = [];
         $valid = $request->getQueryParams()['update'] ?? null;
@@ -227,6 +227,27 @@ class PrivateController extends Controller{
             "error" => $error,
             "valid" => $valid,
             "users" => $users
+        ]);
+    }
+
+    public function dashboardAppartment(Request $request, Route $route): void{
+        if(!in_array('management', $this->userLoggedIn->getRoles())){
+            header("Location: http://localhost/projet-housing-platform-hetic/public/dashboard");
+            exit;
+        }
+        $this->updateStyles(['dashboard_card.css', 'reservation.css']);
+        $error = [];
+        $valid = null;
+        $housingService = new HousingService;
+
+        $housing = $housingService->selectHousing();
+        
+        $this->render("gestionAppartment.php", $this->styles, [
+            "route" => $route,
+            "request" => $request,
+            "error" => $error,
+            "valid" => $valid,
+            "housing" => $housing
         ]);
     }
 }
