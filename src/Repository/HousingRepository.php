@@ -398,7 +398,36 @@ class HousingRepository extends Repository{
     public function deleteHousingById(int $id): void{
         $stmt = $this->db->pdo->prepare("DELETE FROM housing WHERE id = :id");
         $stmt->execute([
-            "id" => $id
+            ":id" => $id
+        ]);
+    }
+
+    public function updateHousing(HousingModel $housing): void{
+        $stmt = $this->db->pdo->prepare("UPDATE housing SET name = :name, capacity = :capacity, price = :price, description = :description, note = :note, instruction = :instruction, number_pieces = :number_pieces, number_rooms = :number_rooms, number_bathroom = :number_bathroom, exterior = :exterior, car_park = :car_park, area = :area WHERE id = :id");
+        $stmt->execute([
+            ":id" => $housing->getId(),
+            ":name" => $housing->getName(),
+            ":capacity" => $housing->getCapacity(),
+            ":price" => $housing->getPrice(),
+            ":description" => $housing->getDescription(),
+            ":note" => $housing->getNote(),
+            ":instruction" => $housing->getInstruction(),
+            ":number_pieces" => $housing->getNumberPieces(),
+            ":number_rooms" => $housing->getNumberRooms(),
+            ":number_bathroom" => $housing->getNumberBathroom(),
+            ":exterior" => implode(',', $housing->getExterior()),
+            ":car_park" => implode(',', $housing->getCarPark()),
+            ":area" => $housing->getArea(),
+        ]);
+    }
+
+    public function updateHousingLocation(HousingModel $housing): void{
+        $stmt = $this->db->pdo->prepare("UPDATE housing_location SET district = :district, address = :address, zip = :zip WHERE housing_id = :id");
+        $stmt->execute([
+            ":id" => $housing->getId(),
+            ":district" => $housing->getDistrict(),
+            ":address" => $housing->getAddress(),
+            ":zip" => '750' . $housing->getDistrict(),
         ]);
     }
 }

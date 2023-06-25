@@ -151,6 +151,14 @@ class HousingService {
         return $this->housingRepository->selectServices();
     }
 
+    public function updateHousing(HousingModel $housing): void{
+        $this->housingRepository->updateHousing($housing);
+    }
+
+    public function updateHousingLocation(HousingModel $housing): void{
+        $this->housingRepository->updateHousingLocation($housing);
+    }
+
     private function serializeAll(array $array): array{
         $tempArray = [];
         foreach ($array as $a){

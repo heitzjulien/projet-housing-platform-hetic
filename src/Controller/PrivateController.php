@@ -258,12 +258,65 @@ class PrivateController extends Controller{
         }
         $this->updateStyles(['dashboard_card.css', 'reservation.css']);
         $error = [];
-        $valid = null;
+        $valid = $request->getQueryParams()["update"] ?? null;
         $housingService = new HousingService;
 
         [$error[], $housing] = $housingService->getHousingById($request->getQueryParams()["id"]);
         $services = $housingService->selectServices();
-        dump($housing);
+        switch($request->getMethod()) {
+            case "POST":
+                switch($request->getRawBody()["table"]) {
+                    case "housing":
+                        $exterior = [];
+                        $exterior[] = $request->getRawBody()["pool"] ?? null;
+                        $exterior[] = $request->getRawBody()["terrace"] ?? null;
+                        $exterior[] = $request->getRawBody()["garden"] ?? null;
+                        $exterior[] = $request->getRawBody()["gym"] ?? null;
+                        $exterior = array_filter($exterior, function ($value) { return $value; });
+                        $exterior = implode(',', $exterior);
+                        $carPark = [];
+                        $carPark[] = $request->getRawBody()["garage"] ?? null;
+                        $carPark[] = $request->getRawBody()["underground_parking"] ?? null;
+                        $carPark[] = $request->getRawBody()["parking_spot"] ?? null;
+                        $carPark[] = $request->getRawBody()["covered_parking_space"] ?? null;
+                        $carPark = array_filter($carPark, function ($value) { return $value; });
+                        $carPark = implode(',', $carPark);
+                        $housing
+                        ->setName($request->getRawBody()["name"])
+                        ->setCapacity($request->getRawBody()["capacity"])
+                        ->setPrice($request->getRawBody()["price"])
+                        ->setDescription($request->getRawBody()["description"])
+                        ->setNote($request->getRawBody()["note"])
+                        ->setInstruction($request->getRawBody()["instruction"])
+                        ->setNumberPieces($request->getRawBody()["number_pieces"])
+                        ->setNumberRooms($request->getRawBody()["number_rooms"])
+                        ->setNumberBathroom($request->getRawBody()["number_bathroom"])
+                        ->setExterior($exterior)
+                        ->setCarPark($carPark)
+                        ->setArea($request->getRawBody()["area"]);
+                        $housingService->updateHousing($housing);
+                        break;
+                    case "housing_images":
+                        echo("images");
+                        break;
+                    case "housing_services":
+                        echo("services");
+                        break;
+                    case "opinions":
+                        echo("avis");
+                        break;
+                    case "housing_location":
+                        $housing
+                        ->setDistrict($request->getRawBody()["district"])
+                        ->setAddress($request->getRawBody()["address"]);
+                        $housingService->updateHousingLocation($housing);
+                        break;
+                }
+                header("Location: http://localhost/projet-housing-platform-hetic/public/dashboard/appartement/update?id=" . $housing->getId() . "&update=valid");
+                exit;
+            break;
+        }
+        
         $error = array_filter($error, function ($value) { return $value; });
         $this->render("updateAppartement.php", $this->styles, [
             "route" => $route,

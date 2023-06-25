@@ -7,7 +7,7 @@
 </div>
 <div class="valid">
     <?php if($data["valid"]): ?>
-        <p><?= $data["valid"] ?></p>
+        <p>Modifications apportées</p>
     <?php endif; ?>
 </div>
 
