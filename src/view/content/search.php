@@ -7,16 +7,6 @@
         <?php endif; ?>
     <?php endforeach; ?>
 </div>
-<!-- <h2>Search</h2> -->
-
-<!-- <div class="searchBar">
-     <form action="" class="searchBarForm">
-        <input type="text" placeholder="Arrondissement">
-        <input type="text" placeholder="Arrivé">
-        <input type="text" placeholder="Départ">
-        <button type="submit">Chercher</button>
-    </form> 
-</div> -->
 
 <div class="filter">
     <form method="POST" class="filterForm">

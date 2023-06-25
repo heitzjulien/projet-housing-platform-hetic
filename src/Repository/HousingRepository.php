@@ -97,6 +97,23 @@ class HousingRepository extends Repository{
         return $services;
     }
 
+    public function selectServices(): array{
+        $stmt = $this->db->pdo->prepare("SELECT id, icon, name, description FROM services");
+        $stmt->execute();
+
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $services = [];
+        foreach ($results as $r){
+            $services[] = (new ServiceModel())
+            ->setId($r['id'])
+            ->setIcon($r['icon'])
+            ->setName($r['name'])
+            ->setDescription($r['description']);
+        }
+
+        return $services;
+    }
+
     public function selectHousingOpinion(int $id): array{
         $stmt = $this->db->pdo->prepare("SELECT o.id, o.user_id, o.reservation_id, o.content, o.display
         FROM opinions o

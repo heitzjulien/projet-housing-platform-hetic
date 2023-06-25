@@ -147,6 +147,10 @@ class HousingService {
         $this->housingRepository->deleteHousingById($id);
     }
 
+    public function selectServices(): array{
+        return $this->housingRepository->selectServices();
+    }
+
     private function serializeAll(array $array): array{
         $tempArray = [];
         foreach ($array as $a){
