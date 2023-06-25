@@ -376,6 +376,12 @@ class HousingRepository extends Repository{
             ":unavailability_status" => 'booked',
             ":reservation_id" => $reservationId
         ]);        
+    }
 
+    public function deleteHousingById(int $id): void{
+        $stmt = $this->db->pdo->prepare("DELETE FROM housing WHERE id = :id");
+        $stmt->execute([
+            "id" => $id
+        ]);
     }
 }

@@ -250,4 +250,37 @@ class PrivateController extends Controller{
             "housing" => $housing
         ]);
     }
+
+    public function dashboardAppartmentUpdate(Request $request, Route $route): void{
+        if(!in_array('management', $this->userLoggedIn->getRoles())){
+            header("Location: http://localhost/projet-housing-platform-hetic/public/dashboard");
+            exit;
+        }
+        $this->updateStyles(['dashboard_card.css', 'reservation.css']);
+        $error = [];
+        $valid = null;
+        $housingService = new HousingService;
+
+        $housing = $housingService->selectHousing();
+        
+        $this->render("updateAppartment.php", $this->styles, [
+            "route" => $route,
+            "request" => $request,
+            "error" => $error,
+            "valid" => $valid,
+            "housing" => $housing
+        ]);
+    }
+
+    public function dashboardAppartmentDelete(Request $request, Route $route): void{
+        if(!in_array('management', $this->userLoggedIn->getRoles())){
+            header("Location: http://localhost/projet-housing-platform-hetic/public/dashboard");
+            exit;
+        }
+        $housingService = new HousingService;
+        $housingService->deleteHousingById($request->getQueryParams()["id"]);
+
+        header("Location: http://localhost/projet-housing-platform-hetic/public/dashboard/appartment");
+        exit;
+    }
 }

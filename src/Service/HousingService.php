@@ -143,6 +143,10 @@ class HousingService {
         return [null, "Reservation made successfully"];
     }
 
+    public function deleteHousingById(int $id): void{
+        $this->housingRepository->deleteHousingById($id);
+    }
+
     private function serializeAll(array $array): array{
         $tempArray = [];
         foreach ($array as $a){

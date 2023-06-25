@@ -32,8 +32,8 @@
                         <span><?= $h->getCity() ?>, <?= $h->getZip() ?></span></div></td>
                         <td><?= $h->getPrice() ?></td>
                         <td>
-                            <button class="edit">Edit</button>
-                            <button class="delete">Delete</button>
+                            <a href="<?= __ROOT_URL__ ?>/dashboard/appartment/update?id=<?= $h->getId() ?>" class="edit">Edit</a>
+                            <a href="<?= __ROOT_URL__ ?>/dashboard/appartment/delete?id=<?= $h->getId() ?>" class="delete">Delete</a>
                         </td>
                     </tr>
                     <?php endforeach; ?>

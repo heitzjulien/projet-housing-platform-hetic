@@ -133,6 +133,20 @@ class Routes {
             (new Route("dashboard/appartment", PrivateController::class, "dashboardAppartment"))
             ->setMethod("POST")->setTitle("Gestion d'appartement")
         );
+
+        $this->addRoute(
+            (new Route("dashboard/appartment/update", PrivateController::class, "dashboardAppartmentUpdate"))
+            ->setTitle("Gestion d'appartement Update")
+        );
+        
+        $this->addRoute(
+            (new Route("dashboard/appartment/update", PrivateController::class, "dashboardAppartmentUpdate"))
+            ->setMethod("POST")->setTitle("Gestion d'appartement Update")
+        );
+        
+        $this->addRoute(
+            (new Route("dashboard/appartment/delete", PrivateController::class, "dashboardAppartmentDelete"))
+        );
     }
 
     public function addRoute(Route $route): void{
