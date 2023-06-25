@@ -1,5 +1,6 @@
 <?php
 $cardCount = 0;
+$partners = ["partner1", "partner2", "partner3", "partner4", "partner5"];
 ?>
 <main>
     <?php foreach ($data["error"] as $e): ?>
@@ -70,16 +71,24 @@ $cardCount = 0;
     </section>
     <section id="homeServices">
         <div>
-            <img src="<?= __ROOT_URL__ ?>/assets/images/washing.service.svg" alt="Cleaning service">
+            <img src="<?= __ROOT_URL__ ?>/assets/images/washing.service.svg" alt="Cleaning service" />
             <h3>Laverie</h3>
         </div>
         <div>
-            <img src="<?= __ROOT_URL__ ?>/assets/images/taxi.service.svg" alt="Cleaning service">
+            <img src="<?= __ROOT_URL__ ?>/assets/images/taxi.service.svg" alt="Cleaning service" />
             <h3>Taxi</h3>
         </div>
         <div>
-            <img src="<?= __ROOT_URL__ ?>/assets/images/cleaning.service.svg" alt="Cleaning service">
+            <img src="<?= __ROOT_URL__ ?>/assets/images/cleaning.service.svg" alt="Cleaning service" />
             <h3>Nettoyage</h3>
+        </div>
+    </section>
+    <section id="homeReinsurance">
+        <h2>Nos partenaires</h2>
+        <div>
+            <?php foreach ($partners as $partner): ?>
+            <img src="<?= __ROOT_URL__ ?>/assets/images/partnerships/<?= $partner ?>.svg" alt="Partner Logo" />
+            <?php endforeach; ?>
         </div>
     </section>
 </main>
