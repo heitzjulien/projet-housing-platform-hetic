@@ -1,13 +1,15 @@
-# **projet-housing-platform-hetic**
+# **Aparis**
 
 --- 
 
-APARIS - Platforme de location de logement haut de gamme sur Paris.
+Projet de fin de première année du Bachelor Développeur Web
 
 ---
 
-## **Description** : 
-Ce projet à été réalisé dans le cadre d'un projet scolaire de fin de première année du Bachelor Développeur Web à HETIC.
+## **Contexte** : 
+
+Notre solution à l'appel d'offre d'un client possédant un grand parc locatif privé. 
+<br>APARIS est une plateforme de location de logement haut de gamme parisien. 
 
 ## **Fonctionnalités** :
 - **Authentification sécurisée** : Permet aux utilisateurs de créer des comptes et de se connecter en toute sécurité.
@@ -18,23 +20,23 @@ Ce projet à été réalisé dans le cadre d'un projet scolaire de fin de premi�
 - **Gestion des employés et des tâches** : Permet aux administrateurs d'attribuer des tâches aux employés.
 - **Avis clients** : Permet aux utilisateurs de laisser des avis et aux propriétaires de les gérer.
 
-
 ## **Technologies utilisées** :
-- PHP
-- HTML
-- CSS
-- JavaScript
 
-## **Dépendances** :
-- [PHPMailer](https://github.com/PHPMailer/PHPMailer)
+- HTML5
+- CSS3
+- PHP
+- JavaScript
 
 ## **Installation** :
 - Cloner le projet ```git clone https://github.com/heitzjulien/projet-housing-platform-hetic.git```
 - Installer les dépendances ```composer require phpmailer/phpmailer```
 - Mettre à jour l'auto-chargement de composer ```composer dump-autoload```
-- Créer une base de données et importer le fichier SQL ```aparis.sql```
+- Créer une base de données et importer le fichier SQL se trouvant dans le folder .MD_Assets ```aparis.sql```
 - Modifier le fichier ```const.php``` avec vos informations de connexion à la base de données
-- Lancer le serveur et profiter du projet ! 
+- Lancer le serveur et profiter du projet !
+
+## **Dépendances** :
+- [PHPMailer](https://github.com/PHPMailer/PHPMailer)
 
 ## **Email** : 
 Pour pouvoir utiliser la fonction qui vérifie le compte d'un utilisateur par email, il faut passer par [mailhog](https://github.com/mailhog/MailHog).
