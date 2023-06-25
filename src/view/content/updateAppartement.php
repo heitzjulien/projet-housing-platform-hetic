@@ -118,7 +118,7 @@
             <legend>Services disponible pour l'appartement :</legend>
             <?php foreach($data['services'] as $s): ?>
             <div>
-                <input type="checkbox" id="service<?= $s->getId() ?>" name="service<?= $s->getId() ?>" value="service<?= $s->getId() ?>" <?php if(in_array($s, $data['housing']->getService())){ echo("checked"); }?>>
+                <input type="checkbox" id="service<?= $s->getId() ?>" name="service<?= $s->getId() ?>" value="<?= $s->getId() ?>" <?php if(in_array($s, $data['housing']->getService())){ echo("checked"); }?>>
                 <label for="service<?= $s->getId() ?>"><?= $s->getName() ?></label>
             </div>
             <?php endforeach; ?>

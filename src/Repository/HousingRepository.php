@@ -430,4 +430,22 @@ class HousingRepository extends Repository{
             ":zip" => '750' . $housing->getDistrict(),
         ]);
     }
+
+    public function deleteHousingServiceById(int $housing_id): void{
+        $stmt = $this->db->pdo->prepare("DELETE FROM housing_services WHERE housing_id = :id");
+        $stmt->execute([
+            ":id" => $housing_id
+        ]);
+    }
+
+    public function addHousingServiceById(int $housing_id, array $newServices): void{
+        foreach($newServices as $s){
+            $stmt = $this->db->pdo->prepare("INSERT INTO housing_services (housing_id, service_id) VALUES (:housing_id, :service_id)");
+            $stmt->execute([
+                ":housing_id" => $housing_id,
+                ":service_id" => $s
+            ]);  
+        }
+    }
+
 }

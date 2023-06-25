@@ -15,7 +15,7 @@ Notre solution à l'appel d'offre d'un client possédant un grand parc locatif p
 - **Authentification sécurisée** : Permet aux utilisateurs de créer des comptes et de se connecter en toute sécurité.
 - **Recherche avancée de logements** : Permet aux utilisateurs de trouver des logements en fonction de critères spécifiques.
 - **Réservation de logements** : Permet aux utilisateurs de réserver des logements disponibles en effectuant le paiement.
-- **Gestion des logements** : Permet aux propriétaires/gestionnaires de gérer leurs annonces et les informations des logements. (La création n'est pas disponible ni la modification des images / opinions / services, le reste est disponible)
+- **Gestion des logements** : Permet aux propriétaires/gestionnaires de gérer leurs annonces et les informations des logements. (La création n'est pas disponible ni la modification des images et l'affichage des opinions, le reste est disponible)
 - **Gestion des réservations** : Offre un suivi des réservations, y compris les paiements et les remboursements.
 - **Gestion des employés et des tâches** : Permet aux administrateurs d'attribuer des tâches aux employés.
 - **Avis clients** : Permet aux utilisateurs de laisser des avis et aux propriétaires de les gérer.

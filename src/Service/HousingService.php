@@ -159,6 +159,11 @@ class HousingService {
         $this->housingRepository->updateHousingLocation($housing);
     }
 
+    public function updateHousingServices(int $housing_id, array $newServices): void{
+        $this->housingRepository->deleteHousingServiceById($housing_id);
+        $this->housingRepository->addHousingServiceById($housing_id, $newServices);
+    }
+
     private function serializeAll(array $array): array{
         $tempArray = [];
         foreach ($array as $a){

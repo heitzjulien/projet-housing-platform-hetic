@@ -300,7 +300,12 @@ class PrivateController extends Controller{
                         echo("images");
                         break;
                     case "housing_services":
-                        echo("services");
+                        $newServices = [];
+                        foreach($services as $s){
+                            $newServices[] = $request->getRawBody()["service" . $s->getId()] ?? null;
+                        }
+                        $newServices = array_filter($newServices, function ($value) { return $value; });
+                        $housingService->updateHousingServices($housing->getId(), $newServices);
                         break;
                     case "opinions":
                         echo("avis");
