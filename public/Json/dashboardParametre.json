@@ -1,51 +1,9 @@
 [
     {
-        "src": "/projet-housing-platform-hetic/public/assets/icons/info.svg",
-        "alt": "infor logo",
-        "title": "Informations personnelles",
-        "description": "Communiquez vos coordonnées et indiquez  comment nous pouvons vous joindre",
-        "href": "http://"
-    },
-    {
-        "src": "/projet-housing-platform-hetic/public/assets/icons/sécurité.svg",
-        "alt": "sécurité logo",
-        "title": "Connexion & sécurité",
-        "description": "Mettez à jour vos mots et passe et sécurisez votre compte",
-        "href": "http://"
-    },
-    {
-        "src": "/projet-housing-platform-hetic/public/assets/icons/paiement.svg",
-        "alt": "dollar logo",
-        "title": "Paiements et versements",
+        "src": "/projet-housing-platform-hetic/public/assets/icons/logement.svg",
+        "alt": "Maison",
+        "title": "Gestion des logements",
         "description": "Consulter les paiements, les versements et les taxes",
-        "href": "http://"
-    },
-    {
-        "src": "/projet-housing-platform-hetic/public/assets/icons/notification.svg",
-        "alt": "Cloche icone",
-        "title": "Notifications",
-        "description": "Choisissez vos préférences en matière de notification et la manière dont vous souhaitez être contacté",
-        "href": "http://"
-    },
-    {
-        "src": "/projet-housing-platform-hetic/public/assets/icons/confidentialité.svg",
-        "alt": "Bloc note",
-        "title": "Confidentialité et partage",
-        "description": "Contrôlez les applications connectées, ce que vous partagez et qui les voit",
-        "href": "http://"
-    },
-    {
-        "src": "/projet-housing-platform-hetic/public/assets/icons/voyagePro.svg",
-        "alt": "valise",
-        "title": "Voyage professionnel",
-        "description": "Ajoutez un mail professionnel afin de profiter d’avantages liés à vos voyages",
-        "href": "http://"
-    },
-    {
-        "src": "/projet-housing-platform-hetic/public/assets/icons/préférences.svg",
-        "alt": "Avis icone",
-        "title": "Préférences générales",
-        "description": "Revoir les paiements, les versements et les taxes",
-        "href": "http://"
+        "href": "http://localhost/projet-housing-platform-hetic/public/dashboard/appartment"
     }
 ]

@@ -25,7 +25,7 @@
             <input id="mail" name="mail" type="text" placeholder="exemple@mail.com" value="<?= $data["user_logged_in"]->getMail() ?>">
             <label for="birthdate">Date de naissance </label>
             <input id="birthdate" name="birthdate" type="date" value="<?= $data["user_logged_in"]->getBirthdate() ?>">
-            <input type="submit" value="Update" class="btn-submit">
+            <input type="submit" value="Mettre a jour" class="btn-submit">
         </form>
     </div>
     
@@ -50,7 +50,7 @@
             <input id="newPsd" name="newPsd" type="password" placeholder="Nouveau le mot de passe">
             <label for="confNewPsd">Confirmer le nouveau mot de passe</label>
             <input id="confNewPsd" name="confNewPsd" type="password" placeholder="Confirmer le mot de passe">
-            <input type="submit" value="Update" class="btn-submit">
+            <input type="submit" value="Mettre a jour" class="btn-submit">
         </form>
     </div>
     

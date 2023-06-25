@@ -1,30 +1,9 @@
 [
     {
-        "src": "/projet-housing-platform-hetic/public/assets/icons/entretient.svg",
-        "alt": "Balais",
-        "title": "Entretient",
-        "description": "Gérer le ménage, réparation et le matériel de vos biens",
-        "href": "http://"
-    },
-    {
-        "src": "/projet-housing-platform-hetic/public/assets/icons/messagerieAdmin.svg",
-        "alt": "message icone",
-        "title": "Messagerie",
-        "description": "Avoir un contact direct avec le client et pouvoir répondre à n’importe lequel de ses besoins",
-        "href": "http://"
-    },
-    {
-        "src": "/projet-housing-platform-hetic/public/assets/icons/logement.svg",
-        "alt": "Maison",
-        "title": "Gestion des logements",
-        "description": "Consulter les paiements, les versements et les taxes",
-        "href": "http://"
-    },
-    {
         "src": "/projet-housing-platform-hetic/public/assets/icons/admin.svg",
         "alt": "Admin logo",
         "title": "Administrateur",
         "description": "Gestion des employés et des clients, ajout, rôle et supprimer",
-        "href": "http://"
+        "href": "http://localhost/projet-housing-platform-hetic/public/dashboard/admin"
     }
 ]
